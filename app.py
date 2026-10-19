@@ -9,23 +9,29 @@ st.set_page_config(page_title="Analytický Tútor", layout="wide")
 # --- CSS ÚPRAVA PRE KLIKACÍ TEXT ---
 st.markdown("""
     <style>
-    /* Agresívnejšie CSS pre zalomenie textu a prispôsobenie výšky tlačidla */
-    [data-testid="column"]:nth-of-type(1) div.stButton > button {
+    /* Absolútne zrušenie skracovania (...) textu a vynútenie plného zobrazenia */
+    [data-testid="column"]:nth-of-type(1) div.stButton > button,
+    [data-testid="column"]:nth-of-type(1) div.stButton > button > div,
+    [data-testid="column"]:nth-of-type(1) div.stButton > button p,
+    [data-testid="column"]:nth-of-type(1) div.stButton > button span {
         white-space: normal !important;
-        text-align: left !important;
+        word-wrap: break-word !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
         height: auto !important;
-        min-height: 40px !important;
+        min-height: auto !important;
+        text-align: left !important;
         display: block !important;
-        padding: 15px 10px !important;
-        line-height: 1.5 !important;
     }
     
-    /* Vynútenie zalomenia aj pre vnútorné elementy (odseky) v Streamlit tlačidle */
-    [data-testid="column"]:nth-of-type(1) div.stButton > button * {
-        white-space: normal !important;
+    /* Vizuálne oddelenie odsekov pre lepšie čítanie */
+    [data-testid="column"]:nth-of-type(1) div.stButton > button {
+        padding: 10px 10px !important;
+        width: 100% !important;
+        margin-bottom: 5px !important;
     }
     </style>
-""", unsafe_allow_html=True)
+""", unsafe_allow_html=True)	
 
 # --- BOČNÝ PANEL PRE API KĽÚČ ---
 with st.sidebar:
