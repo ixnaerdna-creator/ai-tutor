@@ -12,14 +12,14 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE DIZAJN A POSUVNÍKY ---
+# --- 2. CSS PRE DIZAJN, POSUVNÍKY A VEĽKÉ PÍSMO ---
 st.markdown("""
     <style>
     header {visibility: hidden !important;}
     .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
 
-    /* POSUVNÍKY */
-    ::-webkit-scrollbar { width: 14px !important; }
+    /* VÝRAZNÉ POSUVNÍKY PRE OBOJE OKNÁ */
+    ::-webkit-scrollbar { width: 16px !important; }
     ::-webkit-scrollbar-track { background: #f1f1f1 !important; border-radius: 8px !important; }
     ::-webkit-scrollbar-thumb { background-color: #666666 !important; border-radius: 8px !important; border: 2px solid #f1f1f1 !important; }
     ::-webkit-scrollbar-thumb:hover { background-color: #333333 !important; }
@@ -27,43 +27,41 @@ st.markdown("""
 
     .book-title { color: #2c3e50; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-bottom: 10px; }
 
-    /* OBMEDZENIE ŠÍRKY TEXTU NA 90% PRE VYTVORENIE VOĽNEJ KOĽAJNICE PRE POSUVNÍK */
-    div[data-testid="column"]:nth-of-type(1) div.stButton {
-        width: 90% !important;
+    /* FYZICKÉ VYTVORENIE VOĽNEJ KOĽAJNICE PRE POSUVNÍK VĽAVO */
+    div[data-testid="column"]:nth-of-type(1) div[data-testid="stVerticalBlock"] > div.element-container {
+        padding-right: 40px !important; 
     }
 
-    /* ZÁKLADNÉ TLAČIDLO S TEXTOM KNIHY */
-    div[data-testid="column"]:nth-of-type(1) div.stButton > button {
-        white-space: normal !important;
+    /* ZÁKLADNÉ TLAČIDLO KNIHY */
+    div[data-testid="stButton"] > button {
         text-align: left !important;
         height: auto !important;
         padding: 15px !important;
         border: none !important;
         background: transparent !important;
-        border-radius: 5px !important;
-        box-shadow: none !important;
+        display: block !important;
+        width: 100% !important;
     }
-    div[data-testid="column"]:nth-of-type(1) div.stButton > button:hover {
+    div[data-testid="stButton"] > button:hover {
         background-color: #f8f9fa !important;
     }
-
-    /* HRUBÁ SILA NA DEFINITÍVNE ZVÄČŠENIE ZÁKLADNÉHO PÍSMA (20px) */
-    div[data-testid="column"]:nth-of-type(1) div.stButton > button p {
+    
+    /* DEFINITÍVNE ZVÄČŠENIE PÍSMA (Cielené priamo na textový uzol Streamlitu) */
+    div[data-testid="stButton"] p {
         font-size: 20px !important; 
         line-height: 1.6 !important;
         color: #1a1a1a !important;
         margin: 0 !important;
     }
 
-    /* VYSVIETENÝ TEXT (Zladený na 90% šírku a 20px písmo) */
+    /* VYSVIETENÝ TEXT (Zladený na 20px) */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
-        padding: 15px;
+        padding: 15px; 
         border-radius: 5px;
         border-left: 5px solid #ffc107;
         margin-bottom: 10px;
-        width: 90% !important; 
         font-size: 20px !important;
         line-height: 1.6 !important;
     }
@@ -87,7 +85,7 @@ if "prompt_count" not in st.session_state: st.session_state.prompt_count = 0
 if "chat_locked" not in st.session_state: st.session_state.chat_locked = False
 if "show_explanation" not in st.session_state: st.session_state.show_explanation = False
 
-# INICIALIZÁCIA MODELU (Upravené na povinnú verziu 3.8-flash)
+# --- 4. INICIALIZÁCIA SPRÁVNEHO MODELU ---
 system_instruction = """
 Si sokratovský tútor vyučujúci analytickú filozofiu, konkrétne Wittgensteinov Tractatus Logico-Philosophicus.
 Tvojou úlohou je pomáhať študentovi porozumieť textu, ale NIKDY mu nedáš priamu a úplnú odpoveď.
@@ -95,10 +93,11 @@ Veď s ním kritický dialóg, pýtaj sa analytické otázky a naviguj ho k tomu
 Ak sa študent spýta na niečo mimo filozofie alebo textu, zdvorilo ho vráť k danej téme.
 """
 if "chat_session" not in st.session_state or st.session_state.chat_session is None:
+    # Model vybraný priamo z vášho lokálneho zoznamu povolených modelov
     model = genai.GenerativeModel(model_name="gemini-3.8-flash", system_instruction=system_instruction)
     st.session_state.chat_session = model.start_chat(history=[])
 
-# --- 4. FUNKCIA GENERÁCIE VYSVETLENIA ---
+# --- 5. FUNKCIA GENERÁCIE VYSVETLENIA ---
 @st.cache_data(show_spinner=False, ttl=86400)
 def generate_explanation(para_text):
     model_exp = genai.GenerativeModel("gemini-3.8-flash")
@@ -106,11 +105,12 @@ def generate_explanation(para_text):
     try:
         return model_exp.generate_content(prompt).text
     except Exception as e:
-        if "ResourceExhausted" in str(e) or "429" in str(e):
-            return "⏳ **Tútor je momentálne preťažený.** Počkajte 30 sekúnd a skúste odsek vybrať znova."
-        return f"❌ Neočakávaná chyba API: {e}"
+        error_msg = str(e)
+        if "ResourceExhausted" in error_msg or "429" in error_msg:
+            return "⏳ **Tútor je momentálne preťažený.** (Počkajte 30 sekúnd a skúste znova)."
+        return f"❌ Chyba modelu (Skopírujte pre vývojára): {error_msg}"
 
-# --- 5. HLAVNÉ ROZLOŽENIE STRÁNKY ---
+# --- 6. HLAVNÉ ROZLOŽENIE STRÁNKY ---
 col1, col2 = st.columns([2.2, 1])
 
 # ĽAVÝ STĹPEC: TEXT KNIHY
@@ -124,16 +124,15 @@ with col1:
             if st.session_state.selected_paragraph == para['id']:
                 st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
             else:
-                para_display = f"**{para['id']}** {para['text']}"
-                if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
+                if st.button(f"**{para['id']}** {para['text']}", key=f"btn_{para['id']}", use_container_width=True):
                     st.session_state.selected_paragraph = para['id']
                     st.session_state.show_explanation = True
                     with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
                         st.session_state.explanation = generate_explanation(para['text'])
                     st.rerun()
         
-        # PRIDANÉ PRÁZDNE MIESTO NA SPODKU PRE BEZPROBLÉMOVÉ DOROLOVANIE
-        st.markdown("<br><br><br><br>", unsafe_allow_html=True)
+        # Odrážka o výške 250px pre garanciu úplného rolovania na dno okna
+        st.markdown("<div style='height: 250px; width: 100%;'></div>", unsafe_allow_html=True)
 
 # PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
 with col2:
@@ -153,8 +152,8 @@ with col2:
 
     if st.session_state.selected_paragraph and st.session_state.show_explanation:
         st.markdown(f"**💡 Výklad (Odsek {st.session_state.selected_paragraph})**")
-        if "preťažený" in st.session_state.explanation:
-            st.warning(st.session_state.explanation)
+        if "preťažený" in st.session_state.explanation or "❌" in st.session_state.explanation:
+            st.error(st.session_state.explanation)
         else:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
@@ -169,6 +168,8 @@ with col2:
         for msg in st.session_state.messages:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
+        
+        st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)
 
     if st.session_state.chat_locked:
         st.error("Dosiahli ste limit 20 správ.")
@@ -179,9 +180,6 @@ with col2:
             st.session_state.prompt_count += 1
             st.session_state.messages.append({"role": "user", "content": user_msg})
 
-            if st.session_state.prompt_count >= 20:
-                st.session_state.chat_locked = True
-
             with chat_container:
                 with st.chat_message("user"):
                     st.markdown(user_msg)
@@ -189,28 +187,31 @@ with col2:
                 with st.chat_message("assistant"):
                     with st.spinner("Tútor premýšľa..."):
                         selected_text_raw = next((p['text'] for p in st.session_state.text_data if p['id'] == st.session_state.selected_paragraph), "") if st.session_state.selected_paragraph else ""
-                        context_str = f"[Tichý kontext: Študent sa zameriava na odsek {st.session_state.selected_paragraph}: '{selected_text_raw}']\n\n" if selected_text_raw else ""
+                        context_str = f"[Zameranie na odsek {st.session_state.selected_paragraph}: '{selected_text_raw}']\n\n" if selected_text_raw else ""
                         full_context_msg = f"{context_str}Otázka študenta: {user_msg}"
 
                         try:
+                            # Volanie funkčného modelu 3.8
                             response = st.session_state.chat_session.send_message(full_context_msg)
                             response_text = response.text
                         except Exception as e:
-                            if "ResourceExhausted" in str(e) or "429" in str(e):
-                                response_text = "⏳ **Tútor je preťažený.** Zopakujte prosím otázku za malú chvíľu."
+                            error_msg = str(e)
+                            if "ResourceExhausted" in error_msg or "429" in error_msg:
+                                response_text = "⏳ **Tútor je preťažený.** Zopakujte prosím otázku o malú chvíľu."
                             else:
-                                 response_text = f"❌ Chyba API: {e}"
-
+                                 # ZOBRAZENIE PRESNEJ CHYBY PRE VÁS NA LADENIE
+                                 response_text = f"❌ Chyba modelu: {error_msg}"
+                            
                             st.session_state.prompt_count -= 1
-
+                            
                         st.markdown(response_text)
 
+            # Aj chybu natrvalo zapíšeme, aby nezmizla a mohli ste ju prečítať
             st.session_state.messages.append({"role": "assistant", "content": response_text})
             st.rerun()
 
     if len(st.session_state.messages) > 0:
-        chat_history_text = "Tractatus Logico-Philosophicus - Prepis diskusie\n"
-        chat_history_text += "="*50 + "\n\n"
+        chat_history_text = "Tractatus Logico-Philosophicus - Prepis diskusie\n" + "="*50 + "\n\n"
         for msg in st.session_state.messages:
             role_name = "ŠTUDENT" if msg["role"] == "user" else "TÚTOR"
             chat_history_text += f"{role_name}:\n{msg['content']}\n\n"
