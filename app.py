@@ -12,33 +12,53 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE ČISTÝ DIZAJN (Bez fixných výšok) ---
+# --- 2. CSS PRE DIZAJN A NEZÁVISLÉ POSUVNÍKY ---
 st.markdown("""
     <style>
     header {visibility: hidden !important;}
-    .block-container { padding-top: 1rem !important; padding-bottom: 2rem !important; max-width: 95%; }
+    .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
+    
+    /* VÝRAZNÝ TMAVÝ POSUVNÍK PRE OBOJE OKNÁ */
+    ::-webkit-scrollbar {
+        width: 14px !important;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1 !important; 
+        border-radius: 8px !important;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #666666 !important; 
+        border-radius: 8px !important;
+        border: 2px solid #f1f1f1 !important;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #333333 !important; 
+    }
 
-    /* Elegantný nadpis knihy */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #666666 #f1f1f1;
+    }
+
     .book-title {
         color: #2c3e50;
         border-bottom: 2px solid #e9ecef;
         padding-bottom: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     
-    /* Zväčšený a elegantný text knihy (ako tlačidlá) */
+    /* ÚPRAVA ZÁKLADNÉHO TEXTU - Veľké písmo a odsadenie */
     [data-testid="column"]:nth-of-type(1) button {
         white-space: normal !important;
         text-align: left !important;
         height: auto !important;
-        padding: 15px 20px !important;
+        padding: 15px !important; 
         display: block !important;
-        width: 100% !important;
+        width: 95% !important; /* Zúženie textu, aby ostal priestor pre posuvník vpravo od neho */
         border: none !important;
         background: transparent !important;
-        color: #1a1a1a !important;
         border-radius: 5px !important;
-        margin-bottom: 5px !important;
+        margin-bottom: 2px !important;
     }
     
     [data-testid="column"]:nth-of-type(1) button p,
@@ -54,29 +74,20 @@ st.markdown("""
         background-color: #f8f9fa !important;
     }
     
-    /* Vysvietený odsek */
+    /* ÚPRAVA VYSVIETENÉHO TEXTU */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
-        padding: 15px 20px; 
+        padding: 15px; 
         border-radius: 5px;
         border-left: 5px solid #ffc107;
         margin-bottom: 10px;
-        width: 100%; 
+        width: 95%; /* Rovnaká šírka ako základný text */
         font-size: 20px !important; 
         line-height: 1.6 !important;
     }
     .highlighted-text b {
         font-size: 20px !important;
-    }
-
-    /* Zabezpečenie, aby pravý stĺpec stál na mieste, zatiaľ čo rolujeme celú stránku s knihou */
-    [data-testid="column"]:nth-of-type(2) {
-        position: sticky;
-        top: 2rem;
-        height: 90vh; /* Zastaví sa tak, aby nepresiahol monitor */
-        overflow-y: auto;
-        padding-right: 10px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -103,7 +114,7 @@ if "chat_locked" not in st.session_state:
 if "show_explanation" not in st.session_state:
     st.session_state.show_explanation = False
 
-# Inicializácia modelu (Zmena na verziu 1.5 pre stabilitu pri free limitoch)
+# Inicializácia modelu (Návrat k funkčnému modelu)
 if "chat_session" not in st.session_state or st.session_state.chat_session is None:
     system_instruction = """
     Si sokratovský tútor vyučujúci analytickú filozofiu, konkrétne Wittgensteinov Tractatus Logico-Philosophicus. 
@@ -112,7 +123,7 @@ if "chat_session" not in st.session_state or st.session_state.chat_session is No
     Ak sa študent spýta na niečo mimo filozofie alebo textu, zdvorilo ho vráť k danej téme.
     """
     model = genai.GenerativeModel(
-        model_name="gemini-1.5-flash",
+        model_name="gemini-2.5-flash", # Návrat k stabilnému modelu
         system_instruction=system_instruction
     )
     st.session_state.chat_session = model.start_chat(history=[])
@@ -120,37 +131,40 @@ if "chat_session" not in st.session_state or st.session_state.chat_session is No
 # --- 4. FUNKCIA NA GENERÁCIU PASÍVNEHO VYSVETLENIA ---
 @st.cache_data(show_spinner=False, ttl=86400)
 def generate_explanation(para_text):
-    # Zmena modelu aj pre vysvetlenia
-    model_exp = genai.GenerativeModel("gemini-1.5-flash")
+    model_exp = genai.GenerativeModel("gemini-2.5-flash") # Zmena na správny model
     prompt = f"Vysvetli odborne, jasne a zrozumiteľne pre vysokoškolského študenta hlavnú myšlienku tohto odseku z Wittgensteinovho Tractatus Logico-Philosophicus. Buď vecný a nezačínaj dialóg:\n\n'{para_text}'"
     try:
         return model_exp.generate_content(prompt).text
     except Exception as e:
         if "ResourceExhausted" in str(e) or "429" in str(e):
-            return "⏳ **Tútor je momentálne preťažený.** (Príliš veľa požiadaviek za minútu). Počkajte minútu a skúste znova."
+            return "⏳ **Tútor je momentálne preťažený.** Počkajte 30 sekúnd a skúste odsek vybrať znova."
         return f"❌ Neočakávaná chyba API: {e}"
 
 # --- 5. HLAVNÉ ROZLOŽENIE STRÁNKY ---
-col1, col2 = st.columns([2.3, 1])
+col1, col2 = st.columns([2.2, 1])
 
-# ĽAVÝ STĹPEC: TEXT KNIHY (Voľne položený na stránke, bez kontajnera s fixnou výškou)
+# ĽAVÝ STĹPEC: TEXT KNIHY (S vlastným posuvníkom)
 with col1:
     st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
     st.info("👈 **Kliknutím na text dostaneš vysvetlenie danej pasáže.**")
     
-    for para in st.session_state.text_data:
-        if st.session_state.selected_paragraph == para['id']:
-            st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
-        else:
-            para_display = f"**{para['id']}** {para['text']}"
-            if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
-                st.session_state.selected_paragraph = para['id']
-                st.session_state.show_explanation = True 
-                with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
-                    st.session_state.explanation = generate_explanation(para['text'])
-                st.rerun()
+    # Obnovený kontajner pre text s fixnou výškou a vnútorným rolovaním
+    book_container = st.container(height=650, border=False)
+    with book_container:
+        for para in st.session_state.text_data:
+            
+            if st.session_state.selected_paragraph == para['id']:
+                st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
+            else:
+                para_display = f"**{para['id']}** {para['text']}"
+                if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
+                    st.session_state.selected_paragraph = para['id']
+                    st.session_state.show_explanation = True 
+                    with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
+                        st.session_state.explanation = generate_explanation(para['text'])
+                    st.rerun()
 
-# PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA (Prilepený - sticky)
+# PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA (S vlastným posuvníkom)
 with col2:
     col_title, col_btn = st.columns([1.5, 1])
     with col_title:
@@ -160,8 +174,7 @@ with col2:
             st.session_state.messages = []
             st.session_state.prompt_count = 0
             st.session_state.chat_locked = False
-            # Zmena modelu pri reštarte
-            model_new = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=system_instruction)
+            model_new = genai.GenerativeModel(model_name="gemini-2.5-flash", system_instruction=system_instruction)
             st.session_state.chat_session = model_new.start_chat(history=[])
             st.rerun()
             
@@ -175,8 +188,8 @@ with col2:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
     
-    # Kontajner pre chat (Teraz už môže byť vyšší, lebo celý pravý stĺpec nepresiahne výšku obrazovky vďaka CSS 90vh)
-    chat_height = 300 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 500
+    # Obnovený kontajner pre chat s fixnou výškou a vnútorným rolovaním
+    chat_height = 250 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 450
     chat_container = st.container(height=chat_height, border=True)
     
     with chat_container:
