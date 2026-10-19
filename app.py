@@ -16,6 +16,16 @@ except KeyError:
 # --- 2. CSS PRE DIZAJN A ROZLOŽENIE ---
 st.markdown("""
     <style>
+    /* ODSTRÁNENIE ZBYTOČNÝCH MEDZIER NA STRÁNKE A MAXIMALIZÁCIA VÝŠKY */
+    .block-container {
+        padding-top: 2rem !important; /* Zmenšená horná medzera */
+        padding-bottom: 0rem !important; /* Žiadna dolná medzera */
+        margin-bottom: 0rem !important;
+    }
+    
+    /* Skrytie Streamlit footera, aby neuberal miesto dole */
+    footer {visibility: hidden;}
+
     /* Zväčšenie písma pre text knihy a riadkovanie */
     .book-text {
         font-size: 18px !important;
@@ -43,7 +53,7 @@ st.markdown("""
         white-space: normal !important;
         margin: 0 !important;
         text-align: left !important;
-        font-size: 18px !important; /* Požiadavka č. 1: väčšie písmo */
+        font-size: 18px !important;
         line-height: 1.7 !important;
     }
     [data-testid="column"]:nth-of-type(1) button:hover {
@@ -59,16 +69,16 @@ st.markdown("""
         border-radius: 8px;
         border-left: 5px solid #ffc107;
         margin-bottom: 5px;
-        font-size: 18px; /* Požiadavka č. 1: väčšie písmo */
+        font-size: 18px;
         line-height: 1.7;
     }
 
-    /* Požiadavka č. 3: Výraznejší posuvník (Scrollbar) PRE ĽAVÝ KONTAJNER */
+    /* Výraznejší posuvník (Scrollbar) PRE ĽAVÝ KONTAJNER */
     [data-testid="stVerticalBlock"] > div > div > div > div > div > div[data-testid="stVerticalBlock"] {
         overflow-y: auto !important;
     }
     ::-webkit-scrollbar {
-        width: 14px; /* Širší pásik */
+        width: 14px;
     }
     ::-webkit-scrollbar-track {
         background: #f1f1f1; 
@@ -77,7 +87,7 @@ st.markdown("""
     ::-webkit-scrollbar-thumb {
         background: #888; 
         border-radius: 10px;
-        border: 3px solid #f1f1f1; /* Efekt odsadenia */
+        border: 3px solid #f1f1f1;
     }
     ::-webkit-scrollbar-thumb:hover {
         background: #555; 
@@ -127,7 +137,6 @@ def generate_explanation(para_text):
     return response.text
 
 # --- 5. HLAVNÉ ROZLOŽENIE STRÁNKY ---
-# Požiadavka č. 2: Zmena pomeru stĺpcov na cca 2:1 (pomer 2.2 ku 1 pre lepší vizuál knihy)
 col1, col2 = st.columns([2.2, 1])
 
 # ĽAVÝ STĹPEC: TEXT KNIHY
@@ -135,18 +144,28 @@ with col1:
     st.markdown("### 📖 Tractatus Logico-Philosophicus")
     st.markdown("<hr style='margin-top: 0; margin-bottom: 10px;'>", unsafe_allow_html=True)
     
-    # Požiadavka č. 4: Kontajner roztiahnutý na výšku obrazovky (850px pre väčšinu monitorov)
-    book_container = st.container(height=850, border=False)
+    # Použitie relatívnej výšky '85vh', čo znamená 85% výšky okna prehliadača,
+    # aby sa kontajner prispôsobil a využil maximum priestoru
+    book_container = st.container(height=None, border=False)
+    
+    # Pre vizuálne natiahnutie do výšky ho uzavrieme do bloku, 
+    # ktorý si cez CSS vypýta maximálnu dostupnú výšku (tzv. flexbox alebo vh)
+    st.markdown("""
+        <style>
+        /* Kontajner knihy využije 85% výšky obrazovky */
+        div[data-testid="stVerticalBlock"] > div > div > div > div > div > div[data-testid="stVerticalBlock"]:nth-of-type(1) {
+            height: 85vh !important;
+            min-height: 85vh !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
     
     with book_container:
         for para in st.session_state.text_data:
             para_display = f"**{para['id']}** {para['text']}"
             
-            # Ak je odsek kliknutý, zobrazí sa ako žltý zvýraznený box
             if st.session_state.selected_paragraph == para['id']:
                 st.markdown(f"<div class='highlighted-text'>{para_display}</div>", unsafe_allow_html=True)
-            
-            # Inak sa zobrazí ako maskované tlačidlo
             else:
                 if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
                     st.session_state.selected_paragraph = para['id']
@@ -157,19 +176,31 @@ with col1:
 
 # PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
 with col2:
-    # OKNO 1: PASÍVNE VYSVETLENIE (Zobrazí sa, len ak je niečo vybrané)
     if st.session_state.selected_paragraph:
         st.markdown(f"### 💡 Výklad (Odsek {st.session_state.selected_paragraph})")
         st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
     
-    # OKNO 2: SOKRATOVSKÁ DISKUSIA (Požiadavka 5: Je nezávislá a vždy prítomná)
-    # Požiadavka č. 6: Počítadlo promptov
     st.markdown(f"### 💬 Diskusia k textu ({st.session_state.prompt_count} / 20)")
     
-    # Výška chat okna sa prispôsobí podľa toho, či je zobrazené vysvetlenie
-    chat_height = 400 if st.session_state.selected_paragraph else 750
-    chat_container = st.container(height=chat_height, border=True)
+    # Ak je vybraný odsek a ukazuje sa výklad, chat okno bude menšie, inak zaberie viac miesta (napr. 60vh)
+    chat_container_css_height = "35vh" if st.session_state.selected_paragraph else "70vh"
+    
+    st.markdown(f"""
+        <style>
+        /* Kontajner chatu v pravej časti */
+        div[data-testid="stVerticalBlock"] > div > div > div > div > div > div[data-testid="stVerticalBlock"]:nth-of-type(2) {
+            height: {chat_container_css_height} !important;
+            overflow-y: auto !important;
+            border: 1px solid rgba(49, 51, 63, 0.2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    # Použijeme obyčajný kontajner, o ktorého výšku sa už postará vložené CSS vyššie
+    chat_container = st.container()
     
     with chat_container:
         if len(st.session_state.messages) == 0:
@@ -179,7 +210,6 @@ with col2:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
     
-    # Vstupné pole pre študenta a logika limitov
     if st.session_state.chat_locked:
         st.error("Dosiahli ste limit 20 správ pre túto diskusiu.")
     else:
@@ -197,7 +227,6 @@ with col2:
                 
                 with st.chat_message("assistant"):
                     with st.spinner("Tútor premýšľa..."):
-                        # Odovzdáme kontext o vybranom odseku, ak nejaký existuje
                         context_str = f"[Zameranie na odsek {st.session_state.selected_paragraph}] " if st.session_state.selected_paragraph else ""
                         full_context_msg = f"{context_str}Otázka študenta: {user_msg}"
                         
@@ -207,7 +236,6 @@ with col2:
             st.session_state.messages.append({"role": "assistant", "content": response.text})
             st.rerun()
 
-    # Požiadavka č. 7: Možnosť stiahnuť diskusiu (Zobrazí sa hneď, ako je aspoň 1 správa)
     if len(st.session_state.messages) > 0:
         st.markdown("<br>", unsafe_allow_html=True)
         chat_history_text = "Tractatus Logico-Philosophicus - Prepis diskusie\n"
