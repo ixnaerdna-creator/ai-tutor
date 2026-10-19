@@ -6,6 +6,18 @@ import json # <-- Toto je nový riadok, ktorý musíte pridať
 # 1. Konfigurácia stránky
 st.set_page_config(page_title="Analytický Tútor", layout="wide")
 
+# --- CSS ÚPRAVA PRE KLIKACÍ TEXT ---
+st.markdown("""
+    <style>
+    /* Zabezpečí, že dlhý text v ľavom stĺpci sa nezreže, ale zalomí sa ako v knihe */
+    [data-testid="column"]:nth-of-type(1) div.stButton > button {
+        white-space: normal !important;
+        text-align: left !important;
+        padding: 10px !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # --- BOČNÝ PANEL PRE API KĽÚČ ---
 with st.sidebar:
     st.title("Nastavenia")
@@ -76,23 +88,34 @@ else:
         if not filtered_data:
             st.info("Nenašli sa žiadne zhody v texte.")
 
-        # Vykreslenie odsekov a tlačidiel
+        # Vykreslenie odsekov (klikací text)
         for para in filtered_data:
-            st.markdown(f"**{para['id']}** {para['text']}")
+            # Zistíme, či je tento odsek práve vybratý na analýzu
+            is_selected = st.session_state.get("selected_paragraph") == para['id']
             
-            if st.button(f"Analyzovať odsek {para['id']}", key=f"btn_{para['id']}", disabled=st.session_state.chat_locked):
-                if st.session_state.prompt_count < 20:
-                    user_msg = f"Zameral som sa na odsek {para['id']}: '{para['text']}'. Vysvetli jeho hlavnú myšlienku podľa tvojich inštrukcií a polož mi analytickú otázku."
+            if is_selected:
+                # Zvýraznený text so žltým podfarbením a čiernym písmom pre dobrú čitateľnosť
+                st.markdown(
+                    f"<div style='background-color: #fff3cd; color: black; padding: 15px; border-radius: 8px; border-left: 5px solid #ffc107; margin-bottom: 10px;'>"
+                    f"<b>{para['id']}</b> {para['text']}</div>", 
+                    unsafe_allow_html=True
+                )
+            else:
+                # Vytvoríme "neviditeľné" tlačidlo, ktoré vyzerá ako obyčajný text
+                if st.button(f"**{para['id']}** {para['text']}", key=f"btn_{para['id']}", disabled=st.session_state.chat_locked, type="tertiary", use_container_width=True):
+                    st.session_state.selected_paragraph = para['id']
                     
-                    st.session_state.messages.append({"role": "user", "content": f"*(Kliknutie na odsek {para['id']})*"})
-                    st.session_state.prompt_count += 1
-                    
-                    with st.spinner("Tútor analyzuje text..."):
-                        response = st.session_state.chat_session.send_message(user_msg)
-                    
-                    st.session_state.messages.append({"role": "assistant", "content": response.text})
-                    st.rerun()
-            st.markdown("---") # Oddeľovacia čiara medzi odsekmi
+                    if st.session_state.prompt_count < 20:
+                        user_msg = f"Zameral som sa na odsek {para['id']}: '{para['text']}'. Vysvetli jeho hlavnú myšlienku podľa tvojich inštrukcií a polož mi analytickú otázku."
+                        
+                        st.session_state.messages.append({"role": "user", "content": f"*(Študent si vybral na analýzu odsek {para['id']})*"})
+                        st.session_state.prompt_count += 1
+                        
+                        with st.spinner("Tútor analyzuje text..."):
+                            response = st.session_state.chat_session.send_message(user_msg)
+                        
+                        st.session_state.messages.append({"role": "assistant", "content": response.text})
+                        st.rerun()
 
     # 5. Pravý stĺpec: Chatové rozhranie
     with col2:
