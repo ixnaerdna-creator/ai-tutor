@@ -50,9 +50,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- INICIALIZÁCIA SESSION STATE ---
-if "api_key" not in st.session_state:
-    st.session_state.api_key = ""
+# --- INICIALIZÁCIA SESSION STATE A BEZPEČNÉHO KĽÚČA ---
+# Získanie skrytého kľúča priamo zo servera Streamlitu
+api_key = st.secrets["GEMINI_API_KEY"]
+genai.configure(api_key=api_key)
+
 if "text_data" not in st.session_state:
     try:
         with open("text.json", "r", encoding="utf-8") as file:
@@ -60,6 +62,7 @@ if "text_data" not in st.session_state:
     except FileNotFoundError:
         st.error("Chyba: Nepodarilo sa načítať text. Súbor 'text.json' sa nenašiel.")
         st.session_state.text_data = []
+
 if "selected_paragraph" not in st.session_state:
     st.session_state.selected_paragraph = None
 if "explanation" not in st.session_state:
@@ -70,38 +73,20 @@ if "prompt_count" not in st.session_state:
     st.session_state.prompt_count = 0
 if "chat_locked" not in st.session_state:
     st.session_state.chat_locked = False
-if "chat_session" not in st.session_state:
-    st.session_state.chat_session = None
 
-# --- BOČNÝ PANEL PRE API KĽÚČ ---
-with st.sidebar:
-    st.title("⚙️ Nastavenia")
-    api_key_input = st.text_input("Vložte váš Gemini API kľúč:", type="password", value=st.session_state.api_key)
-    if api_key_input:
-        st.session_state.api_key = api_key_input
-        genai.configure(api_key=st.session_state.api_key)
-        
-        # Inicializácia modelu pre Sokratovskú DISKUSIU
-        if st.session_state.chat_session is None:
-            system_instruction = """
-            Si sokratovský tútor vyučujúci analytickú filozofiu, konkrétne Wittgensteinov Tractatus Logico-Philosophicus. 
-            Tvojou úlohou je pomáhať študentovi porozumieť textu, ale NIKDY mu nedáš priamu a úplnú odpoveď.
-            Veď s ním kritický dialóg, pýtaj sa analytické otázky a naviguj ho k tomu, aby na filozofické dôsledky prišiel sám.
-            Ak sa študent spýta na niečo mimo filozofie alebo textu, zdvorilo ho vráť k danej téme.
-            """
-            model = genai.GenerativeModel(
-                model_name="gemini-3.8-flash",
-                system_instruction=system_instruction
-            )
-            st.session_state.chat_session = model.start_chat(history=[])
-            
-    if "prompt_count" in st.session_state:
-        st.info(f"Počet otázok v diskusii: {st.session_state.prompt_count} / 20")
-
-# Ak nie je kľúč, zastavíme vykresľovanie stránky a čakáme na používateľa
-if not st.session_state.api_key:
-    st.warning("Pre začatie práce s aplikáciou vložte svoj Gemini API kľúč do bočného panelu naľavo.")
-    st.stop()
+# Inicializácia modelu pre Sokratovskú DISKUSIU
+if "chat_session" not in st.session_state or st.session_state.chat_session is None:
+    system_instruction = """
+    Si sokratovský tútor vyučujúci analytickú filozofiu, konkrétne Wittgensteinov Tractatus Logico-Philosophicus. 
+    Tvojou úlohou je pomáhať študentovi porozumieť textu, ale NIKDY mu nedáš priamu a úplnú odpoveď.
+    Veď s ním kritický dialóg, pýtaj sa analytické otázky a naviguj ho k tomu, aby na filozofické dôsledky prišiel sám.
+    Ak sa študent spýta na niečo mimo filozofie alebo textu, zdvorilo ho vráť k danej téme.
+    """
+    model = genai.GenerativeModel(
+        model_name="gemini-3.8-flash",
+        system_instruction=system_instruction
+    )
+    st.session_state.chat_session = model.start_chat(history=[])
 
 # --- FUNKCIA NA GENERÁCIU PASÍVNEHO VYSVETLENIA (Mimo Sokratovského dialógu) ---
 def generate_explanation(para_text):
