@@ -29,45 +29,52 @@ st.markdown("""
 
     /* KOĽAJNICA PRE POSUVNÍK VĽAVO */
     div[data-testid="column"]:nth-of-type(1) div[data-testid="stVerticalBlock"] > div.element-container {
-        padding-right: 40px !important; 
+        padding-right: 30px !important; 
     }
 
-    /* ZÁKLADNÉ TLAČIDLO KNIHY (Zamerané len na ľavý stĺpec) */
+    /* ZRUŠENIE RÁMČEKOV A ZMENŠENIE ROZOSTUPOV */
     div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button {
         text-align: left !important;
         height: auto !important;
-        padding: 15px !important;
+        /* Zmenšené odsadenie, aby boli odstavce bližšie k sebe */
+        padding: 5px 10px !important;
         border: none !important;
         background: transparent !important;
         display: block !important;
         width: 100% !important;
-    }
-    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button:hover {
-        background-color: #f8f9fa !important;
+        box-shadow: none !important; /* Zrušenie akýchkoľvek tieňov/rámikov */
     }
     
-    /* ZLATÁ STREDNÁ CESTA PRE PÍSMO: 18px */
+    /* Jemné zvýraznenie textu pri prejdení myšou namiesto celého rámčeka */
+    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button:hover p {
+        color: #0056b3 !important;
+    }
+    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button:hover {
+        background: transparent !important; 
+    }
+    
+    /* PÍSMO: Zväčšené na 19px a zmenšené riadkovanie medzi odstavcami */
     div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] p {
-        font-size: 18px !important; 
-        line-height: 1.6 !important;
+        font-size: 19px !important; 
+        line-height: 1.5 !important;
         color: #1a1a1a !important;
         margin: 0 !important;
     }
 
-    /* VYSVIETENÝ TEXT (Zladený na 18px) */
+    /* VYSVIETENÝ TEXT (Zladený na 19px) - Ponechaný len jemný podklad bez zbytočných okrajov */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
-        padding: 15px; 
+        padding: 10px 10px; 
         border-radius: 5px;
-        border-left: 5px solid #ffc107;
-        margin-bottom: 10px;
-        font-size: 18px !important;
-        line-height: 1.6 !important;
+        border-left: 4px solid #ffc107;
+        margin-bottom: 2px;
+        font-size: 19px !important;
+        line-height: 1.5 !important;
     }
-    .highlighted-text b { font-size: 18px !important; }
+    .highlighted-text b { font-size: 19px !important; }
     
-    /* ZMENŠENIE TLAČIDLA VYNULUJ DISKUSIU V PRAVOM STĹPCI */
+    /* ZMENŠENIE TLAČIDLA VYNULUJ DISKUSIU */
     div[data-testid="column"]:nth-of-type(2) div[data-testid="stButton"] p {
         font-size: 14px !important;
     }
@@ -111,7 +118,7 @@ def generate_explanation(para_text):
     except Exception as e:
         error_msg = str(e)
         if "ResourceExhausted" in error_msg or "429" in error_msg:
-            return "⏳ **Tútor je preťažený (Bol dosiahnutý denný alebo minútový limit pre bezplatný API kľúč).**"
+            return "⏳ **Tútor je preťažený (Bol dosiahnutý dočasný limit Googlu pre tento API kľúč).** Skúste neskôr."
         return f"❌ Chyba modelu: {error_msg}"
 
 # --- 6. HLAVNÉ ROZLOŽENIE STRÁNKY ---
@@ -122,7 +129,6 @@ with col1:
     st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
     st.info("👈 **Kliknutím na text dostaneš vysvetlenie danej pasáže.**")
 
-    # ZNÍŽENIE VÝŠKY OKNA (Z 650 na 550), ABY NEZASAHovalo DO WINDOWS LIŠTY
     book_container = st.container(height=550, border=False)
     with book_container:
         for para in st.session_state.text_data:
@@ -136,14 +142,12 @@ with col1:
                         st.session_state.explanation = generate_explanation(para['text'])
                     st.rerun()
         
-        # Zarážka na úplnom spodku
         st.markdown("<div style='height: 150px; width: 100%;'></div>", unsafe_allow_html=True)
 
 # PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
 with col2:
     col_title, col_btn = st.columns([1.5, 1])
     with col_title:
-        # ZMENŠENÝ NADPIS (zo 3 krížikov ### na 4 ####)
         st.markdown(f"#### 💬 Diskusia ({st.session_state.prompt_count} / 20)")
     with col_btn:
         if st.button("🔄 Vynuluj diskusiu", use_container_width=True):
@@ -164,7 +168,6 @@ with col2:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
 
-    # ZNÍŽENÁ VÝŠKA AJ PRE CHAT
     chat_height = 200 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 420
     chat_container = st.container(height=chat_height, border=True)
 
@@ -203,7 +206,7 @@ with col2:
                         except Exception as e:
                             error_msg = str(e)
                             if "ResourceExhausted" in error_msg or "429" in error_msg:
-                                response_text = "⏳ **Tútor je preťažený.** (Denný alebo minútový limit Googlu bol vyčerpaný)."
+                                response_text = "⏳ **Tútor je preťažený.** (Limity bezplatného API kľúča pre dnešok boli vyčerpané)."
                             else:
                                  response_text = f"❌ Chyba modelu: {error_msg}"
                             
