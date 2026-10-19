@@ -9,11 +9,20 @@ st.set_page_config(page_title="Analytický Tútor", layout="wide")
 # --- CSS ÚPRAVA PRE KLIKACÍ TEXT ---
 st.markdown("""
     <style>
-    /* Zabezpečí, že dlhý text v ľavom stĺpci sa nezreže, ale zalomí sa ako v knihe */
+    /* Agresívnejšie CSS pre zalomenie textu a prispôsobenie výšky tlačidla */
     [data-testid="column"]:nth-of-type(1) div.stButton > button {
         white-space: normal !important;
         text-align: left !important;
-        padding: 10px !important;
+        height: auto !important;
+        min-height: 40px !important;
+        display: block !important;
+        padding: 15px 10px !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Vynútenie zalomenia aj pre vnútorné elementy (odseky) v Streamlit tlačidle */
+    [data-testid="column"]:nth-of-type(1) div.stButton > button * {
+        white-space: normal !important;
     }
     </style>
 """, unsafe_allow_html=True)
