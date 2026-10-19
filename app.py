@@ -12,23 +12,23 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE KRAJŠÍ DIZAJN (Opravené) ---
+# --- 2. CSS PRE KRAJŠÍ DIZAJN ---
 st.markdown("""
     <style>
-    /* 5. SKRYTIE HORNEJ LIŠTY (Aby nezakrývala tlačidlo Vynulovať) */
+    /* Skrytie hornej lišty a zbytočných medzier */
     header {visibility: hidden !important;}
     .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
     
-    /* 1. VÝRAZNÝ TMAVÝ POSUVNÍK (Aby ho bolo jasne vidieť) */
+    /* VÝRAZNÝ TMAVÝ POSUVNÍK */
     ::-webkit-scrollbar {
-        width: 16px !important;
+        width: 14px !important;
     }
     ::-webkit-scrollbar-track {
         background: #e0e0e0 !important; 
         border-radius: 8px !important;
     }
     ::-webkit-scrollbar-thumb {
-        background-color: #4a4a4a !important; /* Výrazná tmavosivá farba */
+        background-color: #4a4a4a !important; 
         border-radius: 8px !important;
         border: 3px solid #e0e0e0 !important;
     }
@@ -36,7 +36,7 @@ st.markdown("""
         background-color: #2b2b2b !important; 
     }
 
-    /* 6. ELEGANTNÝ DIZAJN TEXTU */
+    /* ELEGANTNÝ DIZAJN TEXTU */
     .book-title {
         color: #2c3e50;
         border-bottom: 2px solid #e9ecef;
@@ -44,7 +44,7 @@ st.markdown("""
         margin-bottom: 10px;
     }
     
-    /* Úprava tlačidiel (už bez problému s formátovaním) */
+    /* Úprava tlačidiel textu */
     [data-testid="column"]:nth-of-type(1) button {
         white-space: normal !important;
         text-align: left !important;
@@ -137,32 +137,33 @@ col1, col2 = st.columns([2.2, 1])
 with col1:
     st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
     
-    # 2. RIEŠENIE POSÚVANIA - Samotné okno knihy má fixnú výšku a roluje sa zvnútra! Pravý stĺpec stojí na mieste.
-    book_container = st.container(height=800, border=False)
+    # NÁVOD PRE ŠTUDENTOV
+    st.info("👈 **Kliknutím na text dostaneš vysvetlenie danej pasáže.**")
+    
+    # Kniha má menšiu fixnú výšku, aby sa bezpečne zmestila aj na menší monitor a správne rolovala zvnútra
+    book_container = st.container(height=650, border=False)
     with book_container:
         for para in st.session_state.text_data:
             
             if st.session_state.selected_paragraph == para['id']:
-                # V žltom rámčeku vykreslíme ID tučne cez HTML pre bezchybný vzhľad
                 st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
             else:
-                # V klasickom tlačidle použijeme Markdown tučné písmo, čím sme odstránili <b> glitch
                 para_display = f"**{para['id']}** {para['text']}"
                 if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
                     st.session_state.selected_paragraph = para['id']
-                    st.session_state.show_explanation = True # Zapne vysvetlenie pri kliknutí
+                    st.session_state.show_explanation = True 
                     with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
                         st.session_state.explanation = generate_explanation(para['text'])
                     st.rerun()
 
 # PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
 with col2:
-    # 3. FUNKCIA VYNULOVANIA (Odkazy vpravo hore sú skryté, tlačidlo je dokonale prístupné)
-    col_title, col_btn = st.columns([2, 1])
+    # TLAČIDLO NA VYNULOVANIE
+    col_title, col_btn = st.columns([1.5, 1])
     with col_title:
         st.markdown(f"### 💬 Diskusia ({st.session_state.prompt_count} / 20)")
     with col_btn:
-        if st.button("🔄 Vynulovať", use_container_width=True):
+        if st.button("🔄 Vynuluj diskusiu", use_container_width=True):
             st.session_state.messages = []
             st.session_state.prompt_count = 0
             st.session_state.chat_locked = False
@@ -171,7 +172,7 @@ with col2:
             
     st.markdown("<hr style='margin: 0px 0 10px 0;'>", unsafe_allow_html=True)
 
-    # 4. NEZÁVISLOSŤ VYSVETLENIA (Zobrazí sa len vtedy, ak platí show_explanation)
+    # ZOBRAZENIE VYSVETLENIA
     if st.session_state.selected_paragraph and st.session_state.show_explanation:
         st.markdown(f"**💡 Výklad (Odsek {st.session_state.selected_paragraph})**")
         if "preťažený" in st.session_state.explanation:
@@ -180,8 +181,8 @@ with col2:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
     
-    # Výška chatu sa mení, aby sa prispôsobil voľnému miestu
-    chat_height = 350 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 650
+    # RADIKÁLNE ZMENŠENÁ VÝŠKA CHATU - pole na písanie zostane nad spodným okrajom obrazovky
+    chat_height = 250 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 450
     chat_container = st.container(height=chat_height, border=True)
     
     with chat_container:
@@ -192,14 +193,13 @@ with col2:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
     
+    # POLÍČKO NA PÍSANIE CHATU (teraz ho už bude vidno bez scrollovania nadol)
     if st.session_state.chat_locked:
         st.error("Dosiahli ste limit 20 správ.")
     else:
         user_msg = st.chat_input("Položte otázku alebo napíšte svoju úvahu...")
         if user_msg:
-            # 5. AK ZAČNEM DISKUSIU, VYSVETLENIE ZMIZNE (Uvoľní miesto pre chat)
             st.session_state.show_explanation = False 
-            
             st.session_state.prompt_count += 1
             st.session_state.messages.append({"role": "user", "content": user_msg})
             
@@ -212,7 +212,6 @@ with col2:
                 
                 with st.chat_message("assistant"):
                     with st.spinner("Tútor premýšľa..."):
-                        # Tútor v chate vysvetlenie vôbec nevidí
                         selected_text_raw = next((p['text'] for p in st.session_state.text_data if p['id'] == st.session_state.selected_paragraph), "") if st.session_state.selected_paragraph else ""
                         context_str = f"[Tichý kontext: Študent sa zameriava na odsek {st.session_state.selected_paragraph}: '{selected_text_raw}']\n\n" if selected_text_raw else ""
                         full_context_msg = f"{context_str}Otázka študenta: {user_msg}"
