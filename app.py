@@ -12,41 +12,35 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE KRAJŠÍ DIZAJN (OPRAVENÉ SCROLLOVANIE) ---
+# --- 2. CSS PRE KRAJŠÍ DIZAJN (DVA NEZÁVISLÉ POSUVNÍKY A VEĽKÉ PÍSMO) ---
 st.markdown("""
     <style>
-    /* Skrytie hornej lišty a zbytočných medzier */
+    /* Skrytie hornej lišty a zbytočných medzier (Stránka sa takmer nebude dať celá rolovať, všetko sa zmestí na obrazovku) */
     header {visibility: hidden !important;}
     .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
     
-    /* SCROLLBAR PRE CHROME, EDGE, SAFARI */
+    /* VÝRAZNÝ TMAVÝ POSUVNÍK PRE VŠETKY VNÚTORNÉ OKNÁ (Chrome, Safari, Edge) */
     ::-webkit-scrollbar {
-        width: 16px !important;
+        width: 14px !important;
     }
     ::-webkit-scrollbar-track {
-        background: #e0e0e0 !important; 
+        background: #f1f1f1 !important; 
         border-radius: 8px !important;
+        border-left: 1px solid #cccccc; /* Oddelovacia čiara */
     }
     ::-webkit-scrollbar-thumb {
-        background-color: #4a4a4a !important; 
+        background-color: #666666 !important; /* Výrazná tmavosivá farba */
         border-radius: 8px !important;
-        border: 3px solid #e0e0e0 !important;
+        border: 2px solid #f1f1f1 !important;
     }
     ::-webkit-scrollbar-thumb:hover {
-        background-color: #2b2b2b !important; 
-    }
-    
-    /* SCROLLBAR PRE FIREFOX (Univerzálne riešenie) */
-    * {
-        scrollbar-width: auto;
-        scrollbar-color: #4a4a4a #e0e0e0;
+        background-color: #333333 !important; 
     }
 
-    /* ĽAVÝ STĹPEC BUDE ROLOVATEĽNÝ CELÝ (Najúčinnejšie riešenie pre Streamlit) */
-    div[data-testid="column"]:nth-of-type(1) {
-        height: 85vh !important;
-        overflow-y: auto !important;
-        padding-right: 15px !important;
+    /* POSUVNÍK PRE FIREFOX */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #666666 #f1f1f1;
     }
 
     /* ELEGANTNÝ DIZAJN TEXTU */
@@ -57,7 +51,7 @@ st.markdown("""
         margin-bottom: 10px;
     }
     
-    /* Úprava tlačidiel textu */
+    /* Úprava tlačidiel textu - ROVNAKO VEĽKÉ PÍSMO AKO PRI VYSVIETENÍ */
     [data-testid="column"]:nth-of-type(1) button {
         white-space: normal !important;
         text-align: left !important;
@@ -73,15 +67,15 @@ st.markdown("""
     }
     [data-testid="column"]:nth-of-type(1) button p {
         white-space: normal !important;
-        font-size: 18px !important;
-        line-height: 1.7 !important;
+        font-size: 20px !important; /* ZVÄČŠENÉ PÍSMO */
+        line-height: 1.8 !important; /* ZVÄČŠENÉ RIADKOVANIE */
         margin: 0 !important;
     }
     [data-testid="column"]:nth-of-type(1) button:hover {
         background-color: #f8f9fa !important;
     }
     
-    /* Zvýraznený odsek po kliknutí */
+    /* Zvýraznený odsek po kliknutí - ROVNAKO VEĽKÉ PÍSMO */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
@@ -89,8 +83,8 @@ st.markdown("""
         border-radius: 5px;
         border-left: 5px solid #ffc107;
         margin-bottom: 10px;
-        font-size: 18px;
-        line-height: 1.7;
+        font-size: 20px; /* ZVÄČŠENÉ PÍSMO */
+        line-height: 1.8; /* ZVÄČŠENÉ RIADKOVANIE */
     }
     </style>
 """, unsafe_allow_html=True)
@@ -151,19 +145,21 @@ with col1:
     st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
     st.info("👈 **Kliknutím na text dostaneš vysvetlenie danej pasáže.**")
     
-    # Texty sa generujú priamo do rolovacieho stĺpca (bez zbytočných vnútorných okien)
-    for para in st.session_state.text_data:
-        
-        if st.session_state.selected_paragraph == para['id']:
-            st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
-        else:
-            para_display = f"**{para['id']}** {para['text']}"
-            if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
-                st.session_state.selected_paragraph = para['id']
-                st.session_state.show_explanation = True 
-                with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
-                    st.session_state.explanation = generate_explanation(para['text'])
-                st.rerun()
+    # 1. OKNO S POSUVNÍKOM: Toto okno sa roluje úplne nezávisle zvnútra, má fixnú výšku
+    book_container = st.container(height=750, border=False)
+    with book_container:
+        for para in st.session_state.text_data:
+            
+            if st.session_state.selected_paragraph == para['id']:
+                st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
+            else:
+                para_display = f"**{para['id']}** {para['text']}"
+                if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
+                    st.session_state.selected_paragraph = para['id']
+                    st.session_state.show_explanation = True 
+                    with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
+                        st.session_state.explanation = generate_explanation(para['text'])
+                    st.rerun()
 
 # PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
 with col2:
@@ -190,8 +186,8 @@ with col2:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
     
-    # DISKUSNÉ OKNO
-    chat_height = 250 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 450
+    # 2. OKNO S POSUVNÍKOM: Toto okno je tiež nezávislé. 
+    chat_height = 250 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 600
     chat_container = st.container(height=chat_height, border=True)
     
     with chat_container:
@@ -234,13 +230,10 @@ with col2:
                             else:
                                  response_text = f"❌ Chyba: {e}"
                             
-                            # NEVYMAŽEME históriu, takže odpoveď zostane na obrazovke. 
-                            # Iba študentovi znížime počítadlo, aby nebol o túto otázku ukrátený.
                             st.session_state.prompt_count -= 1 
                                  
                         st.markdown(response_text)
             
-            # Zapísanie asistenta do pamäte obrazovky
             st.session_state.messages.append({"role": "assistant", "content": response_text})
             st.rerun()
 
