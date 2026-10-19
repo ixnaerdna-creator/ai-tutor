@@ -1,5 +1,6 @@
 import streamlit as st
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import json
 
 # --- 1. KONFIGURÁCIA STRÁNKY ---
@@ -7,10 +8,24 @@ st.set_page_config(page_title="Tractatus - Sokratovský Tútor", layout="wide")
 
 try:
     api_key = st.secrets["GEMINI_API_KEY"]
-    genai.configure(api_key=api_key)
 except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
+
+@st.cache_resource
+def get_client():
+    return genai.Client(api_key=api_key)
+
+client = get_client()
+
+# Kaskáda modelov z vášho zoznamu: ak má prvý vyčerpanú kvótu, okamžite zaskočí ďalší
+MODEL_CASCADE = [
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite",
+    "gemini-3.8-flash",
+    "gemini-3.1-flash-lite",
+    "gemini-flash-latest"
+]
 
 # --- 2. CSS PRE DIZAJN, BEZ RÁMČEKOV A S MINIMÁLNYMI ROZOSTUPMI ---
 st.markdown("""
@@ -43,7 +58,7 @@ st.markdown("""
         box-shadow: none !important;
         background: transparent !important;
         background-color: transparent !important;
-        padding: 3px 25px 3px 6px !important; /* Minimálne horné/dolné odsadenie + miesto pre posuvník vpravo */
+        padding: 3px 25px 3px 6px !important;
         margin: 0px !important;
         text-align: left !important;
         justify-content: flex-start !important;
@@ -52,7 +67,6 @@ st.markdown("""
         height: auto !important;
     }
 
-    /* Žiadny rámček ani pri prejdení myšou alebo kliknutí */
     div.stButton > button[kind="tertiary"]:hover,
     div.stButton > button[kind="tertiary"]:focus,
     div.stButton > button[kind="tertiary"]:active,
@@ -66,13 +80,12 @@ st.markdown("""
         background-color: transparent !important;
     }
 
-    /* Jemné zmodranie textu pri ukázaní myšou (aby študent vedel, že sa dá kliknúť) */
     div[data-testid="stButton"] > button:hover p,
     div[data-testid="stButton"] > button:hover span {
         color: #0056b3 !important;
     }
 
-    /* ZVÄČŠENIE PÍSMA PRED VYSVIETENÍM NA 19px (O 1 bod menšie ako 20px po vysvietení) */
+    /* PÍSMO PRED VYSVIETENÍM (19px) */
     div[data-testid="stButton"] button p,
     div[data-testid="stButton"] button span,
     div[data-testid="stButton"] button div {
@@ -100,7 +113,7 @@ st.markdown("""
         font-size: 20px !important;
     }
 
-    /* Špeciálna úprava len pre tlačidlo Vynuluj diskusiu (menšie písmo a jemný obrys) */
+    /* Tlačidlo Vynuluj diskusiu */
     div[data-testid="stButton"] > button[kind="secondary"] {
         border: 1px solid #ced4da !important;
         background-color: #f8f9fa !important;
@@ -132,31 +145,66 @@ if "prompt_count" not in st.session_state: st.session_state.prompt_count = 0
 if "chat_locked" not in st.session_state: st.session_state.chat_locked = False
 if "show_explanation" not in st.session_state: st.session_state.show_explanation = False
 
-# --- 4. INICIALIZÁCIA MODELU ---
+# --- 4. SYSTÉMOVÉ INŠTRUKCIE A KASKÁDOVÉ VOLANIE API ---
 system_instruction = """
 Si sokratovský tútor vyučujúci analytickú filozofiu, konkrétne Wittgensteinov Tractatus Logico-Philosophicus.
 Tvojou úlohou je pomáhať študentovi porozumieť textu, ale NIKDY mu nedáš priamu a úplnú odpoveď.
 Veď s ním kritický dialóg, pýtaj sa analytické otázky a naviguj ho k tomu, aby na filozofické dôsledky prišiel sám.
 Ak sa študent spýta na niečo mimo filozofie alebo textu, zdvorilo ho vráť k danej téme.
 """
-if "chat_session" not in st.session_state or st.session_state.chat_session is None:
-    model = genai.GenerativeModel(model_name="gemini-3.8-flash", system_instruction=system_instruction)
-    st.session_state.chat_session = model.start_chat(history=[])
 
-# --- 5. FUNKCIA GENERÁCIE VYSVETLENIA ---
 @st.cache_data(show_spinner=False, ttl=86400)
 def generate_explanation(para_text):
-    model_exp = genai.GenerativeModel("gemini-3.8-flash")
     prompt = f"Vysvetli odborne, jasne a zrozumiteľne pre vysokoškolského študenta hlavnú myšlienku tohto odseku z Wittgensteinovho Tractatus Logico-Philosophicus. Buď vecný a nezačínaj dialóg:\n\n'{para_text}'"
-    try:
-        return model_exp.generate_content(prompt).text
-    except Exception as e:
-        error_msg = str(e)
-        if "ResourceExhausted" in error_msg or "429" in error_msg:
-            return "⏳ **Tútor je preťažený (Bol dosiahnutý dočasný limit Googlu pre tento API kľúč).** Skúste neskôr."
-        return f"❌ Chyba modelu: {error_msg}"
+    last_error = ""
+    for model_name in MODEL_CASCADE:
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt
+            )
+            return response.text
+        except Exception as e:
+            last_error = str(e)
+            if "429" in last_error or "RESOURCE_EXHAUSTED" in last_error.upper() or "QUOTA" in last_error.upper() or "404" in last_error:
+                continue
+            else:
+                return f"❌ Chyba modelu ({model_name}): {last_error}"
+    return f"⏳ **Všetky záložné modely sú momentálne vyčerpané.** Posledná správa: {last_error}"
 
-# --- 6. HLAVNÉ ROZLOŽENIE STRÁNKY ---
+def send_chat_with_fallback(messages_history, current_context_msg):
+    # Zostavenie celej histórie konverzácie pre nové SDK google-genai
+    contents = []
+    for m in messages_history[:-1]:
+        role = "user" if m["role"] == "user" else "model"
+        contents.append(types.Content(role=role, parts=[types.Part.from_text(text=m["content"])]))
+    
+    # Pridanie najnovšej otázky študenta vrátane tichého kontextu vybraného odseku
+    contents.append(types.Content(role="user", parts=[types.Part.from_text(text=current_context_msg)]))
+    
+    config = types.GenerateContentConfig(
+        system_instruction=system_instruction,
+        temperature=0.7
+    )
+    
+    last_error = ""
+    for model_name in MODEL_CASCADE:
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=contents,
+                config=config
+            )
+            return response.text, True
+        except Exception as e:
+            last_error = str(e)
+            if "429" in last_error or "RESOURCE_EXHAUSTED" in last_error.upper() or "QUOTA" in last_error.upper() or "404" in last_error:
+                continue
+            else:
+                return f"❌ Chyba modelu ({model_name}): {last_error}", False
+    return "⏳ **Tútor je preťažený.** (Všetky záložné modely vyčerpali aktuálny limit). Skúste otázku zopakovať o minútu.", False
+
+# --- 5. HLAVNÉ ROZLOŽENIE STRÁNKY ---
 col1, col2 = st.columns([2.2, 1])
 
 # ĽAVÝ STĹPEC: TEXT KNIHY
@@ -170,7 +218,6 @@ with col1:
             if st.session_state.selected_paragraph == para['id']:
                 st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
             else:
-                # Pridaný parameter type="tertiary" pre natívne zrušenie rámčeka okolo tlačidla
                 try:
                     clicked = st.button(f"**{para['id']}** {para['text']}", key=f"btn_{para['id']}", type="tertiary", use_container_width=True)
                 except TypeError:
@@ -195,15 +242,13 @@ with col2:
             st.session_state.messages = []
             st.session_state.prompt_count = 0
             st.session_state.chat_locked = False
-            model_new = genai.GenerativeModel(model_name="gemini-3.8-flash", system_instruction=system_instruction)
-            st.session_state.chat_session = model_new.start_chat(history=[])
             st.rerun()
 
     st.markdown("<hr style='margin: 0px 0 10px 0;'>", unsafe_allow_html=True)
 
     if st.session_state.selected_paragraph and st.session_state.show_explanation:
         st.markdown(f"**💡 Výklad (Odsek {st.session_state.selected_paragraph})**")
-        if "preťažený" in st.session_state.explanation or "❌" in st.session_state.explanation:
+        if "vyčerpané" in st.session_state.explanation or "❌" in st.session_state.explanation:
             st.error(st.session_state.explanation)
         else:
             st.info(st.session_state.explanation)
@@ -241,16 +286,8 @@ with col2:
                         context_str = f"[Zameranie na odsek {st.session_state.selected_paragraph}: '{selected_text_raw}']\n\n" if selected_text_raw else ""
                         full_context_msg = f"{context_str}Otázka študenta: {user_msg}"
 
-                        try:
-                            response = st.session_state.chat_session.send_message(full_context_msg)
-                            response_text = response.text
-                        except Exception as e:
-                            error_msg = str(e)
-                            if "ResourceExhausted" in error_msg or "429" in error_msg:
-                                response_text = "⏳ **Tútor je preťažený.** (Limity bezplatného API kľúča pre dnešok boli vyčerpané)."
-                            else:
-                                 response_text = f"❌ Chyba modelu: {error_msg}"
-                            
+                        response_text, success = send_chat_with_fallback(st.session_state.messages, full_context_msg)
+                        if not success:
                             st.session_state.prompt_count -= 1
                             
                         st.markdown(response_text)
