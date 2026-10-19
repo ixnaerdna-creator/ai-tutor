@@ -12,42 +12,39 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE KRAJŠÍ DIZAJN A ROZLOŽENIE ---
+# --- 2. CSS PRE KRAJŠÍ DIZAJN (Opravené) ---
 st.markdown("""
     <style>
-    /* ODSTRÁNENIE MEDZIER A SKRYTIE FOOTERA */
-    .block-container { padding-top: 1.5rem !important; padding-bottom: 0rem !important; }
-    footer {visibility: hidden;}
+    /* 5. SKRYTIE HORNEJ LIŠTY (Aby nezakrývala tlačidlo Vynulovať) */
+    header {visibility: hidden !important;}
+    .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
     
-    /* 1. VÝRAZNEJŠÍ POSUVNÍK (SCROLLBAR) */
+    /* 1. VÝRAZNÝ TMAVÝ POSUVNÍK (Aby ho bolo jasne vidieť) */
     ::-webkit-scrollbar {
         width: 16px !important;
-        height: 16px !important;
     }
     ::-webkit-scrollbar-track {
-        background: #e9ecef !important; 
+        background: #e0e0e0 !important; 
         border-radius: 8px !important;
-        border: 1px solid #dee2e6 !important;
     }
     ::-webkit-scrollbar-thumb {
-        background: #6c757d !important; 
+        background-color: #4a4a4a !important; /* Výrazná tmavosivá farba */
         border-radius: 8px !important;
-        border: 3px solid #e9ecef !important;
+        border: 3px solid #e0e0e0 !important;
     }
     ::-webkit-scrollbar-thumb:hover {
-        background: #495057 !important; 
+        background-color: #2b2b2b !important; 
     }
 
-    /* 6. ELEGANTNEJŠÍ DIZAJN KNIHY (Pätkové písmo, tieňovanie) */
+    /* 6. ELEGANTNÝ DIZAJN TEXTU */
     .book-title {
-        font-family: 'Georgia', serif;
         color: #2c3e50;
         border-bottom: 2px solid #e9ecef;
         padding-bottom: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     
-    /* Úprava tlačidiel v ĽAVOM stĺpci (maskovanie za text knihy) */
+    /* Úprava tlačidiel (už bez problému s formátovaním) */
     [data-testid="column"]:nth-of-type(1) button {
         white-space: normal !important;
         text-align: left !important;
@@ -57,25 +54,21 @@ st.markdown("""
         width: 100% !important;
         border: none !important;
         background: transparent !important;
-        box-shadow: none !important;
         color: #1a1a1a !important;
-        transition: background-color 0.2s;
         border-radius: 5px !important;
-        margin-bottom: 5px !important;
+        margin-bottom: 2px !important;
     }
     [data-testid="column"]:nth-of-type(1) button p {
         white-space: normal !important;
-        font-family: 'Georgia', serif !important;
-        font-size: 19px !important;
-        line-height: 1.8 !important;
+        font-size: 18px !important;
+        line-height: 1.7 !important;
         margin: 0 !important;
     }
     [data-testid="column"]:nth-of-type(1) button:hover {
         background-color: #f8f9fa !important;
-        border-left: 4px solid #ced4da !important;
     }
     
-    /* Zvýraznený odsek po kliknutí (krajšia žltá knižná farba) */
+    /* Zvýraznený odsek po kliknutí */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
@@ -83,30 +76,8 @@ st.markdown("""
         border-radius: 5px;
         border-left: 5px solid #ffc107;
         margin-bottom: 10px;
-        font-family: 'Georgia', serif;
-        font-size: 19px;
-        line-height: 1.8;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    /* 2. ZAMRAZENIE PRAVÉHO PANELU (Sticky stĺpec) */
-    [data-testid="column"]:nth-of-type(2) {
-        position: sticky !important;
-        top: 2rem !important;
-        height: max-content;
-        align-self: flex-start;
-        background-color: #ffffff;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        border: 1px solid #f1f3f5;
-    }
-    
-    /* Zabezpečenie rolovania vo vnútri ľavého stĺpca */
-    div[data-testid="column"]:nth-of-type(1) div[data-testid="stVerticalBlock"]:first-of-type {
-        height: 88vh !important;
-        overflow-y: auto !important;
-        padding-right: 15px !important;
+        font-size: 18px;
+        line-height: 1.7;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -164,41 +135,43 @@ col1, col2 = st.columns([2.2, 1])
 
 # ĽAVÝ STĹPEC: TEXT KNIHY
 with col1:
-    st.markdown("<h2 class='book-title'>📖 Tractatus Logico-Philosophicus</h2>", unsafe_allow_html=True)
+    st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
     
-    book_container = st.container(border=False)
+    # 2. RIEŠENIE POSÚVANIA - Samotné okno knihy má fixnú výšku a roluje sa zvnútra! Pravý stĺpec stojí na mieste.
+    book_container = st.container(height=800, border=False)
     with book_container:
         for para in st.session_state.text_data:
-            para_display = f"<b>{para['id']}</b> &nbsp; {para['text']}"
             
             if st.session_state.selected_paragraph == para['id']:
-                st.markdown(f"<div class='highlighted-text'>{para_display}</div>", unsafe_allow_html=True)
+                # V žltom rámčeku vykreslíme ID tučne cez HTML pre bezchybný vzhľad
+                st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
             else:
+                # V klasickom tlačidle použijeme Markdown tučné písmo, čím sme odstránili <b> glitch
+                para_display = f"**{para['id']}** {para['text']}"
                 if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
                     st.session_state.selected_paragraph = para['id']
-                    # 5. Keď sa klikne na text, zapne sa zobrazenie vysvetlenia (bez zrušenia chatu)
-                    st.session_state.show_explanation = True 
+                    st.session_state.show_explanation = True # Zapne vysvetlenie pri kliknutí
                     with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
                         st.session_state.explanation = generate_explanation(para['text'])
                     st.rerun()
 
 # PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
 with col2:
-    # 3. FUNKCIA VYNULOVANIA
+    # 3. FUNKCIA VYNULOVANIA (Odkazy vpravo hore sú skryté, tlačidlo je dokonale prístupné)
     col_title, col_btn = st.columns([2, 1])
     with col_title:
         st.markdown(f"### 💬 Diskusia ({st.session_state.prompt_count} / 20)")
     with col_btn:
-        if st.button("🔄 Vynulovať", help="Zmaže aktuálnu diskusiu a začne odznova", use_container_width=True):
+        if st.button("🔄 Vynulovať", use_container_width=True):
             st.session_state.messages = []
             st.session_state.prompt_count = 0
             st.session_state.chat_locked = False
             st.session_state.chat_session = model.start_chat(history=[])
             st.rerun()
             
-    st.markdown("<hr style='margin: 5px 0 15px 0;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='margin: 0px 0 10px 0;'>", unsafe_allow_html=True)
 
-    # 5. ZOBRAZENIE VYSVETLENIA (Len ak je aktívne show_explanation)
+    # 4. NEZÁVISLOSŤ VYSVETLENIA (Zobrazí sa len vtedy, ak platí show_explanation)
     if st.session_state.selected_paragraph and st.session_state.show_explanation:
         st.markdown(f"**💡 Výklad (Odsek {st.session_state.selected_paragraph})**")
         if "preťažený" in st.session_state.explanation:
@@ -207,15 +180,69 @@ with col2:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
     
-    # Výška chatu dynamicky podľa toho, či svieti vysvetlenie
-    chat_height_css = "30vh" if (st.session_state.selected_paragraph and st.session_state.show_explanation) else "65vh"
+    # Výška chatu sa mení, aby sa prispôsobil voľnému miestu
+    chat_height = 350 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 650
+    chat_container = st.container(height=chat_height, border=True)
     
-    st.markdown(f"""
-        <style>
-        div[data-testid="column"]:nth-of-type(2) div[data-testid="stVerticalBlock"]:nth-of-type(2) {{
-            height: {chat_height_css} !important;
-            overflow-y: auto !important;
-            padding: 10px;
-        }}
-        </style>
-    """, unsafe_allow_html=True)
+    with chat_container:
+        if len(st.session_state.messages) == 0:
+            st.write("Tu môžete začať diskusiu kedykoľvek...")
+            
+        for msg in st.session_state.messages:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+    
+    if st.session_state.chat_locked:
+        st.error("Dosiahli ste limit 20 správ.")
+    else:
+        user_msg = st.chat_input("Položte otázku alebo napíšte svoju úvahu...")
+        if user_msg:
+            # 5. AK ZAČNEM DISKUSIU, VYSVETLENIE ZMIZNE (Uvoľní miesto pre chat)
+            st.session_state.show_explanation = False 
+            
+            st.session_state.prompt_count += 1
+            st.session_state.messages.append({"role": "user", "content": user_msg})
+            
+            if st.session_state.prompt_count >= 20:
+                st.session_state.chat_locked = True
+                
+            with chat_container:
+                with st.chat_message("user"):
+                    st.markdown(user_msg)
+                
+                with st.chat_message("assistant"):
+                    with st.spinner("Tútor premýšľa..."):
+                        # Tútor v chate vysvetlenie vôbec nevidí
+                        selected_text_raw = next((p['text'] for p in st.session_state.text_data if p['id'] == st.session_state.selected_paragraph), "") if st.session_state.selected_paragraph else ""
+                        context_str = f"[Tichý kontext: Študent sa zameriava na odsek {st.session_state.selected_paragraph}: '{selected_text_raw}']\n\n" if selected_text_raw else ""
+                        full_context_msg = f"{context_str}Otázka študenta: {user_msg}"
+                        
+                        try:
+                            response = st.session_state.chat_session.send_message(full_context_msg)
+                            response_text = response.text
+                        except Exception as e:
+                            if "ResourceExhausted" in str(e) or "429" in str(e):
+                                response_text = "⏳ **Tútor je preťažený.** (Limit bol vyčerpaný). Počkajte pol minúty."
+                                st.session_state.prompt_count -= 1 
+                                st.session_state.messages.pop() 
+                            else:
+                                 response_text = f"❌ Chyba: {e}"
+                                 st.session_state.prompt_count -= 1
+                                 st.session_state.messages.pop()
+                                 
+                        st.markdown(response_text)
+            
+            if "preťažený" not in response_text and "Chyba" not in response_text:
+                st.session_state.messages.append({"role": "assistant", "content": response_text})
+                
+            st.rerun()
+
+    # --- 6. SŤAHOVANIE PREPISU ---
+    if len(st.session_state.messages) > 0:
+        chat_history_text = "Tractatus Logico-Philosophicus - Prepis diskusie\n"
+        chat_history_text += "="*50 + "\n\n"
+        for msg in st.session_state.messages:
+            role_name = "ŠTUDENT" if msg["role"] == "user" else "TÚTOR"
+            chat_history_text += f"{role_name}:\n{msg['content']}\n\n"
+            
+        st.download_button("📥 Stiahnuť prepis (TXT)", data=chat_history_text, file_name="wittgenstein_diskusia.txt", mime="text/plain", use_container_width=True)
