@@ -12,7 +12,7 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE ÚPLNÉ ZRUŠENIE RÁMČEKOV A ÚPRAVU ROZOSTUPOV ---
+# --- 2. CSS PRE DIZAJN, BEZ RÁMČEKOV A S MINIMÁLNYMI ROZOSTUPMI ---
 st.markdown("""
     <style>
     header {visibility: hidden !important;}
@@ -27,60 +27,91 @@ st.markdown("""
 
     .book-title { color: #2c3e50; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-bottom: 10px; }
 
-    /* KOĽAJNICA PRE POSUVNÍK VĽAVO */
-    div[data-testid="column"]:nth-of-type(1) div[data-testid="stVerticalBlock"] > div.element-container {
-        padding-right: 30px !important; 
+    /* STIAHNUTIE MEDZIER MEDZI ODSTAVCAMI NA MINIMUM */
+    div[data-testid="stVerticalBlock"] {
+        gap: 0.1rem !important;
+    }
+    div.element-container {
+        margin-bottom: 0px !important;
     }
 
-    /* RADIKÁLNE ODSTRÁNENIE VŠETKÝCH RÁMČEKOV, OBRYSOV A ROZOSTUPOV Z TLAČIDIEL */
-    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button {
-        text-align: left !important;
-        height: auto !important;
-        padding: 2px 5px !important; /* Minimálne odsadenie pre tesné pripnutie k sebe */
-        margin: 0px 0px 2px 0px !important; /* Minimálna medzera medzi odsekmi */
+    /* ÚPLNÉ ZRUŠENIE VŠETKÝCH RÁMČEKOV, OBRYSOV A POZADÍ PRE ODSTAVCE */
+    div.stButton > button[kind="tertiary"],
+    div[data-testid="stButton"] > button {
         border: none !important;
         outline: none !important;
+        box-shadow: none !important;
         background: transparent !important;
-        display: block !important;
+        background-color: transparent !important;
+        padding: 3px 25px 3px 6px !important; /* Minimálne horné/dolné odsadenie + miesto pre posuvník vpravo */
+        margin: 0px !important;
+        text-align: left !important;
+        justify-content: flex-start !important;
         width: 100% !important;
-        box-shadow: none !important;
-    }
-    
-    /* Úplné vymazanie efektov pozadia pri prejdení myšou, len jemná zmena farby textu */
-    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button:hover {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
-    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button:hover p {
-        color: #0056b3 !important;
-    }
-    
-    /* PÍSMO: Zväčšené na 19px (takmer zhodné s 20px po vysvietení) a tesné riadkovanie */
-    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] p {
-        font-size: 19px !important; 
-        line-height: 1.4 !important;
-        color: #1a1a1a !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        min-height: 0px !important;
+        height: auto !important;
     }
 
-    /* VYSVIETENÝ TEXT (Zladený na 19px s rovnakým tesným rozostupom) */
+    /* Žiadny rámček ani pri prejdení myšou alebo kliknutí */
+    div.stButton > button[kind="tertiary"]:hover,
+    div.stButton > button[kind="tertiary"]:focus,
+    div.stButton > button[kind="tertiary"]:active,
+    div[data-testid="stButton"] > button:hover,
+    div[data-testid="stButton"] > button:focus,
+    div[data-testid="stButton"] > button:active {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    /* Jemné zmodranie textu pri ukázaní myšou (aby študent vedel, že sa dá kliknúť) */
+    div[data-testid="stButton"] > button:hover p,
+    div[data-testid="stButton"] > button:hover span {
+        color: #0056b3 !important;
+    }
+
+    /* ZVÄČŠENIE PÍSMA PRED VYSVIETENÍM NA 19px (O 1 bod menšie ako 20px po vysvietení) */
+    div[data-testid="stButton"] button p,
+    div[data-testid="stButton"] button span,
+    div[data-testid="stButton"] button div {
+        font-size: 19px !important;
+        line-height: 1.45 !important;
+        color: #1a1a1a !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        white-space: normal !important;
+        text-align: left !important;
+    }
+
+    /* VYSVIETENÝ TEXT PO KLIKNUTÍ (20px) */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
-        padding: 6px 10px; 
+        padding: 6px 25px 6px 10px;
         border-radius: 4px;
         border-left: 4px solid #ffc107;
-        margin-bottom: 2px;
-        font-size: 19px !important;
-        line-height: 1.4 !important;
+        margin: 2px 0px;
+        font-size: 20px !important;
+        line-height: 1.45 !important;
     }
-    .highlighted-text b { font-size: 19px !important; }
-    
-    /* ZMENŠENIE TLAČIDLA VYNULUJ DISKUSIU */
-    div[data-testid="column"]:nth-of-type(2) div[data-testid="stButton"] p {
+    .highlighted-text b {
+        font-size: 20px !important;
+    }
+
+    /* Špeciálna úprava len pre tlačidlo Vynuluj diskusiu (menšie písmo a jemný obrys) */
+    div[data-testid="stButton"] > button[kind="secondary"] {
+        border: 1px solid #ced4da !important;
+        background-color: #f8f9fa !important;
+        padding: 4px 10px !important;
+        justify-content: center !important;
+        text-align: center !important;
+        border-radius: 5px !important;
+    }
+    div[data-testid="stButton"] > button[kind="secondary"] p {
         font-size: 14px !important;
+        text-align: center !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -139,7 +170,13 @@ with col1:
             if st.session_state.selected_paragraph == para['id']:
                 st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
             else:
-                if st.button(f"**{para['id']}** {para['text']}", key=f"btn_{para['id']}", use_container_width=True):
+                # Pridaný parameter type="tertiary" pre natívne zrušenie rámčeka okolo tlačidla
+                try:
+                    clicked = st.button(f"**{para['id']}** {para['text']}", key=f"btn_{para['id']}", type="tertiary", use_container_width=True)
+                except TypeError:
+                    clicked = st.button(f"**{para['id']}** {para['text']}", key=f"btn_{para['id']}", use_container_width=True)
+                
+                if clicked:
                     st.session_state.selected_paragraph = para['id']
                     st.session_state.show_explanation = True
                     with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
@@ -154,7 +191,7 @@ with col2:
     with col_title:
         st.markdown(f"#### 💬 Diskusia ({st.session_state.prompt_count} / 20)")
     with col_btn:
-        if st.button("🔄 Vynuluj diskusiu", use_container_width=True):
+        if st.button("🔄 Vynuluj diskusiu", type="secondary", use_container_width=True):
             st.session_state.messages = []
             st.session_state.prompt_count = 0
             st.session_state.chat_locked = False
