@@ -126,12 +126,18 @@ if "chat_session" not in st.session_state or st.session_state.chat_session is No
     )
     st.session_state.chat_session = model.start_chat(history=[])
 
-# --- 4. FUNKCIA NA GENERÁCIU PASÍVNEHO VYSVETLENIA ---
+# --- 4. FUNKCIA NA GENERÁCIU PASÍVNEHO VYSVETLENIA (s ošetrením preťaženia) ---
 def generate_explanation(para_text):
     model = genai.GenerativeModel("gemini-3.8-flash")
     prompt = f"Vysvetli odborne, jasne a zrozumiteľne pre vysokoškolského študenta hlavnú myšlienku tohto odseku z Wittgensteinovho Tractatus Logico-Philosophicus. Buď vecný a nezačínaj dialóg:\n\n'{para_text}'"
-    response = model.generate_content(prompt)
-    return response.text
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        if "ResourceExhausted" in str(e) or "429" in str(e):
+            return "⏳ **Tútor je momentálne preťažený otázkami.** Systém Googlu povolil na tomto bezplatnom účte len 15 odpovedí za minútu. **Počkajte, prosím, približne 30 sekúnd a potom kliknite na tento odsek znova.**"
+        else:
+             return f"❌ Vyskytla sa neočakávaná chyba pri generovaní vysvetlenia: {e}"
 
 # --- 5. HLAVNÉ ROZLOŽENIE STRÁNKY ---
 col1, col2 = st.columns([2.2, 1])
@@ -141,7 +147,6 @@ with col1:
     st.markdown("### 📖 Tractatus Logico-Philosophicus")
     st.markdown("<hr style='margin-top: 0; margin-bottom: 10px;'>", unsafe_allow_html=True)
     
-    # CSS pre vynútenie relatívnej výšky pre ľavý blok bez vyvolania chyby
     st.markdown("""
         <style>
         div[data-testid="column"]:nth-of-type(1) div[data-testid="stVerticalBlock"]:first-of-type {
@@ -151,7 +156,6 @@ with col1:
         </style>
     """, unsafe_allow_html=True)
     
-    # Prázdny kontajner bez chybného parametra 'height=None'
     book_container = st.container(border=False)
     
     with book_container:
@@ -172,12 +176,17 @@ with col1:
 with col2:
     if st.session_state.selected_paragraph:
         st.markdown(f"### 💡 Výklad (Odsek {st.session_state.selected_paragraph})")
-        st.info(st.session_state.explanation)
+        
+        # Ak došlo k preťaženiu, zobrazíme to ako varovanie, nie ako bežné info
+        if "Tútor je momentálne preťažený" in st.session_state.explanation:
+            st.warning(st.session_state.explanation)
+        else:
+            st.info(st.session_state.explanation)
+            
         st.markdown("<br>", unsafe_allow_html=True)
     
     st.markdown(f"### 💬 Diskusia k textu ({st.session_state.prompt_count} / 20)")
     
-    # Dynamická výška pravého panelu podľa toho, či je zobrazený výklad
     chat_container_css_height = "35vh" if st.session_state.selected_paragraph else "75vh"
     
     st.markdown(f"""
@@ -222,12 +231,29 @@ with col2:
                         context_str = f"[Zameranie na odsek {st.session_state.selected_paragraph}] " if st.session_state.selected_paragraph else ""
                         full_context_msg = f"{context_str}Otázka študenta: {user_msg}"
                         
-                        response = st.session_state.chat_session.send_message(full_context_msg)
-                        st.markdown(response.text)
+                        try:
+                            response = st.session_state.chat_session.send_message(full_context_msg)
+                            response_text = response.text
+                        except Exception as e:
+                            if "ResourceExhausted" in str(e) or "429" in str(e):
+                                response_text = "⏳ **Tútor je momentálne preťažený.** (Limit 15 správ/minútu bol vyčerpaný). Počkajte pol minúty a skúste svoju otázku položiť znova."
+                                # Ak sa vyskytne chyba, prompt sa študentovi neodráta z limitu 20
+                                st.session_state.prompt_count -= 1 
+                                st.session_state.messages.pop() 
+                            else:
+                                 response_text = f"❌ Neočakávaná chyba: {e}"
+                                 st.session_state.prompt_count -= 1
+                                 st.session_state.messages.pop()
+                                 
+                        st.markdown(response_text)
             
-            st.session_state.messages.append({"role": "assistant", "content": response.text})
+            # Správu od asistenta pridáme do histórie, len ak to nebola chyba
+            if "Tútor je momentálne preťažený" not in response_text and "Neočakávaná chyba" not in response_text:
+                st.session_state.messages.append({"role": "assistant", "content": response_text})
+                
             st.rerun()
 
+    # --- 6. SŤAHOVANIE PREPISU ---
     if len(st.session_state.messages) > 0:
         st.markdown("<br>", unsafe_allow_html=True)
         chat_history_text = "Tractatus Logico-Philosophicus - Prepis diskusie\n"
