@@ -12,16 +12,16 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE KRAJŠÍ DIZAJN ---
+# --- 2. CSS PRE KRAJŠÍ DIZAJN (OPRAVENÉ SCROLLOVANIE) ---
 st.markdown("""
     <style>
     /* Skrytie hornej lišty a zbytočných medzier */
     header {visibility: hidden !important;}
     .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
     
-    /* VÝRAZNÝ TMAVÝ POSUVNÍK */
+    /* SCROLLBAR PRE CHROME, EDGE, SAFARI */
     ::-webkit-scrollbar {
-        width: 14px !important;
+        width: 16px !important;
     }
     ::-webkit-scrollbar-track {
         background: #e0e0e0 !important; 
@@ -34,6 +34,19 @@ st.markdown("""
     }
     ::-webkit-scrollbar-thumb:hover {
         background-color: #2b2b2b !important; 
+    }
+    
+    /* SCROLLBAR PRE FIREFOX (Univerzálne riešenie) */
+    * {
+        scrollbar-width: auto;
+        scrollbar-color: #4a4a4a #e0e0e0;
+    }
+
+    /* ĽAVÝ STĹPEC BUDE ROLOVATEĽNÝ CELÝ (Najúčinnejšie riešenie pre Streamlit) */
+    div[data-testid="column"]:nth-of-type(1) {
+        height: 85vh !important;
+        overflow-y: auto !important;
+        padding-right: 15px !important;
     }
 
     /* ELEGANTNÝ DIZAJN TEXTU */
@@ -136,25 +149,21 @@ col1, col2 = st.columns([2.2, 1])
 # ĽAVÝ STĹPEC: TEXT KNIHY
 with col1:
     st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
-    
-    # NÁVOD PRE ŠTUDENTOV
     st.info("👈 **Kliknutím na text dostaneš vysvetlenie danej pasáže.**")
     
-    # Kniha má menšiu fixnú výšku, aby sa bezpečne zmestila aj na menší monitor a správne rolovala zvnútra
-    book_container = st.container(height=650, border=False)
-    with book_container:
-        for para in st.session_state.text_data:
-            
-            if st.session_state.selected_paragraph == para['id']:
-                st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
-            else:
-                para_display = f"**{para['id']}** {para['text']}"
-                if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
-                    st.session_state.selected_paragraph = para['id']
-                    st.session_state.show_explanation = True 
-                    with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
-                        st.session_state.explanation = generate_explanation(para['text'])
-                    st.rerun()
+    # Texty sa generujú priamo do rolovacieho stĺpca (bez zbytočných vnútorných okien)
+    for para in st.session_state.text_data:
+        
+        if st.session_state.selected_paragraph == para['id']:
+            st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
+        else:
+            para_display = f"**{para['id']}** {para['text']}"
+            if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
+                st.session_state.selected_paragraph = para['id']
+                st.session_state.show_explanation = True 
+                with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
+                    st.session_state.explanation = generate_explanation(para['text'])
+                st.rerun()
 
 # PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
 with col2:
@@ -181,7 +190,7 @@ with col2:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
     
-    # RADIKÁLNE ZMENŠENÁ VÝŠKA CHATU - pole na písanie zostane nad spodným okrajom obrazovky
+    # DISKUSNÉ OKNO
     chat_height = 250 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 450
     chat_container = st.container(height=chat_height, border=True)
     
@@ -193,7 +202,7 @@ with col2:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
     
-    # POLÍČKO NA PÍSANIE CHATU (teraz ho už bude vidno bez scrollovania nadol)
+    # POLÍČKO NA PÍSANIE
     if st.session_state.chat_locked:
         st.error("Dosiahli ste limit 20 správ.")
     else:
@@ -221,19 +230,18 @@ with col2:
                             response_text = response.text
                         except Exception as e:
                             if "ResourceExhausted" in str(e) or "429" in str(e):
-                                response_text = "⏳ **Tútor je preťažený.** (Limit bol vyčerpaný). Počkajte pol minúty."
-                                st.session_state.prompt_count -= 1 
-                                st.session_state.messages.pop() 
+                                response_text = "⏳ **Tútor je preťažený.** (Limit bol vyčerpaný). Zopakujte prosím otázku o pol minúty."
                             else:
                                  response_text = f"❌ Chyba: {e}"
-                                 st.session_state.prompt_count -= 1
-                                 st.session_state.messages.pop()
+                            
+                            # NEVYMAŽEME históriu, takže odpoveď zostane na obrazovke. 
+                            # Iba študentovi znížime počítadlo, aby nebol o túto otázku ukrátený.
+                            st.session_state.prompt_count -= 1 
                                  
                         st.markdown(response_text)
             
-            if "preťažený" not in response_text and "Chyba" not in response_text:
-                st.session_state.messages.append({"role": "assistant", "content": response_text})
-                
+            # Zapísanie asistenta do pamäte obrazovky
+            st.session_state.messages.append({"role": "assistant", "content": response_text})
             st.rerun()
 
     # --- 6. SŤAHOVANIE PREPISU ---
