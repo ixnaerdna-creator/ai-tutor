@@ -18,12 +18,16 @@ def get_client():
 
 client = get_client()
 
-# Kaskáda modelov z vášho zoznamu: ak má prvý vyčerpanú kvótu, okamžite zaskočí ďalší
+# Rozšírená kaskáda modelov z vášho zoznamu: pri chybe 429, 503 alebo 500 okamžite zaskočí ďalší
 MODEL_CASCADE = [
-    "gemini-3.5-flash",
     "gemini-3.5-flash-lite",
+    "gemini-3.7-flash",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
     "gemini-3.8-flash",
     "gemini-3.1-flash-lite",
+    "gemini-2.5-flash-lite",
+    "gemini-flash-lite-latest",
     "gemini-flash-latest"
 ]
 
@@ -145,7 +149,7 @@ if "prompt_count" not in st.session_state: st.session_state.prompt_count = 0
 if "chat_locked" not in st.session_state: st.session_state.chat_locked = False
 if "show_explanation" not in st.session_state: st.session_state.show_explanation = False
 
-# --- 4. SYSTÉMOVÉ INŠTRUKCIE A KASKÁDOVÉ VOLANIE API ---
+# --- 4. SYSTÉMOVÉ INŠTRUKCIE A NEPRIESTRELNÉ KASKÁDOVÉ VOLANIE API ---
 system_instruction = """
 Si sokratovský tútor vyučujúci analytickú filozofiu, konkrétne Wittgensteinov Tractatus Logico-Philosophicus.
 Tvojou úlohou je pomáhať študentovi porozumieť textu, ale NIKDY mu nedáš priamu a úplnú odpoveď.
@@ -153,8 +157,13 @@ Veď s ním kritický dialóg, pýtaj sa analytické otázky a naviguj ho k tomu
 Ak sa študent spýta na niečo mimo filozofie alebo textu, zdvorilo ho vráť k danej téme.
 """
 
-@st.cache_data(show_spinner=False, ttl=86400)
 def generate_explanation(para_text):
+    # Cache ukladáme manuálne do session_state len pre úspešné odpovede (aby sa nezacachovala chybová hláška)
+    if "exp_cache" not in st.session_state:
+        st.session_state.exp_cache = {}
+    if para_text in st.session_state.exp_cache:
+        return st.session_state.exp_cache[para_text]
+
     prompt = f"Vysvetli odborne, jasne a zrozumiteľne pre vysokoškolského študenta hlavnú myšlienku tohto odseku z Wittgensteinovho Tractatus Logico-Philosophicus. Buď vecný a nezačínaj dialóg:\n\n'{para_text}'"
     last_error = ""
     for model_name in MODEL_CASCADE:
@@ -163,23 +172,21 @@ def generate_explanation(para_text):
                 model=model_name,
                 contents=prompt
             )
-            return response.text
+            if response and response.text:
+                st.session_state.exp_cache[para_text] = response.text
+                return response.text
         except Exception as e:
-            last_error = str(e)
-            if "429" in last_error or "RESOURCE_EXHAUSTED" in last_error.upper() or "QUOTA" in last_error.upper() or "404" in last_error:
-                continue
-            else:
-                return f"❌ Chyba modelu ({model_name}): {last_error}"
-    return f"⏳ **Všetky záložné modely sú momentálne vyčerpané.** Posledná správa: {last_error}"
+            last_error = f"({model_name}): {str(e)}"
+            # Pri AKEJKOĽVEK chybe (429, 503, 500, 404) okamžite skúšame ďalší model v poradí
+            continue
+    return f"⏳ **Všetky záložné modely sú momentálne vyťažené.** Posledná správa: {last_error}"
 
 def send_chat_with_fallback(messages_history, current_context_msg):
-    # Zostavenie celej histórie konverzácie pre nové SDK google-genai
     contents = []
     for m in messages_history[:-1]:
         role = "user" if m["role"] == "user" else "model"
         contents.append(types.Content(role=role, parts=[types.Part.from_text(text=m["content"])]))
     
-    # Pridanie najnovšej otázky študenta vrátane tichého kontextu vybraného odseku
     contents.append(types.Content(role="user", parts=[types.Part.from_text(text=current_context_msg)]))
     
     config = types.GenerateContentConfig(
@@ -195,14 +202,12 @@ def send_chat_with_fallback(messages_history, current_context_msg):
                 contents=contents,
                 config=config
             )
-            return response.text, True
+            if response and response.text:
+                return response.text, True
         except Exception as e:
-            last_error = str(e)
-            if "429" in last_error or "RESOURCE_EXHAUSTED" in last_error.upper() or "QUOTA" in last_error.upper() or "404" in last_error:
-                continue
-            else:
-                return f"❌ Chyba modelu ({model_name}): {last_error}", False
-    return "⏳ **Tútor je preťažený.** (Všetky záložné modely vyčerpali aktuálny limit). Skúste otázku zopakovať o minútu.", False
+            last_error = f"({model_name}): {str(e)}"
+            continue
+    return f"⏳ **Tútor je preťažený.** Všetky modely v kaskáde sú dočasne obsadené ({last_error}). Skúste otázku zopakovať o malú chvíľu.", False
 
 # --- 5. HLAVNÉ ROZLOŽENIE STRÁNKY ---
 col1, col2 = st.columns([2.2, 1])
@@ -248,7 +253,7 @@ with col2:
 
     if st.session_state.selected_paragraph and st.session_state.show_explanation:
         st.markdown(f"**💡 Výklad (Odsek {st.session_state.selected_paragraph})**")
-        if "vyčerpané" in st.session_state.explanation or "❌" in st.session_state.explanation:
+        if "vyťažené" in st.session_state.explanation or "❌" in st.session_state.explanation:
             st.error(st.session_state.explanation)
         else:
             st.info(st.session_state.explanation)
