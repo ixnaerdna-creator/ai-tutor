@@ -12,7 +12,7 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE DIZAJN A PROPORCIE ---
+# --- 2. CSS PRE ÚPLNÉ ZRUŠENIE RÁMČEKOV A ÚPRAVU ROZOSTUPOV ---
 st.markdown("""
     <style>
     header {visibility: hidden !important;}
@@ -32,45 +32,49 @@ st.markdown("""
         padding-right: 30px !important; 
     }
 
-    /* ZRUŠENIE RÁMČEKOV A ZMENŠENIE ROZOSTUPOV */
+    /* RADIKÁLNE ODSTRÁNENIE VŠETKÝCH RÁMČEKOV, OBRYSOV A ROZOSTUPOV Z TLAČIDIEL */
     div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button {
         text-align: left !important;
         height: auto !important;
-        /* Zmenšené odsadenie, aby boli odstavce bližšie k sebe */
-        padding: 5px 10px !important;
+        padding: 2px 5px !important; /* Minimálne odsadenie pre tesné pripnutie k sebe */
+        margin: 0px 0px 2px 0px !important; /* Minimálna medzera medzi odsekmi */
         border: none !important;
+        outline: none !important;
         background: transparent !important;
         display: block !important;
         width: 100% !important;
-        box-shadow: none !important; /* Zrušenie akýchkoľvek tieňov/rámikov */
+        box-shadow: none !important;
     }
     
-    /* Jemné zvýraznenie textu pri prejdení myšou namiesto celého rámčeka */
+    /* Úplné vymazanie efektov pozadia pri prejdení myšou, len jemná zmena farby textu */
+    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button:hover {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
     div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button:hover p {
         color: #0056b3 !important;
     }
-    div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] > button:hover {
-        background: transparent !important; 
-    }
     
-    /* PÍSMO: Zväčšené na 19px a zmenšené riadkovanie medzi odstavcami */
+    /* PÍSMO: Zväčšené na 19px (takmer zhodné s 20px po vysvietení) a tesné riadkovanie */
     div[data-testid="column"]:nth-of-type(1) div[data-testid="stButton"] p {
         font-size: 19px !important; 
-        line-height: 1.5 !important;
+        line-height: 1.4 !important;
         color: #1a1a1a !important;
         margin: 0 !important;
+        padding: 0 !important;
     }
 
-    /* VYSVIETENÝ TEXT (Zladený na 19px) - Ponechaný len jemný podklad bez zbytočných okrajov */
+    /* VYSVIETENÝ TEXT (Zladený na 19px s rovnakým tesným rozostupom) */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
-        padding: 10px 10px; 
-        border-radius: 5px;
+        padding: 6px 10px; 
+        border-radius: 4px;
         border-left: 4px solid #ffc107;
         margin-bottom: 2px;
         font-size: 19px !important;
-        line-height: 1.5 !important;
+        line-height: 1.4 !important;
     }
     .highlighted-text b { font-size: 19px !important; }
     
