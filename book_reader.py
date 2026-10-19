@@ -1,14 +1,14 @@
-"""Samostatná interaktívna čítačka s korektnou výškou a navigáciou na koniec."""
+"""Súvislá čítačka s vlastným scrollovaním nezávislým od rozmerov Streamlitu."""
 import streamlit as st
 
 
 READER_CSS = r"""
-:host { display: block; width: 100%; height: 100%; min-height: 0; }
+:host { display: block; width: 100%; }
 *, *::before, *::after { box-sizing: border-box; }
 .tract-shell {
   display: flex; flex-direction: column;
   font-family: Georgia, 'Times New Roman', serif;
-  height: 100%; min-height: 0; width: 100%; overflow: hidden;
+  height: 650px; min-height: 650px; max-height: 650px; width: 100%; overflow: hidden;
   color: var(--st-text-color, #222);
 }
 .tract-toolbar {
@@ -31,8 +31,8 @@ READER_CSS = r"""
 .tract-toolbar button:hover { background: #e8e9eb; color: #222; }
 .tract-counter { font-size: 12px; white-space: nowrap; color: var(--st-text-color, #333); }
 .tract-scroll {
-  flex: 1 1 auto; min-height: 0; height: 100%;
-  overflow-y: auto; overflow-x: hidden;
+  flex: 1 1 0; min-height: 0; height: auto;
+  overflow-y: scroll; overflow-x: hidden;
   padding: 2px 12px 8px 0; scrollbar-gutter: stable;
   overscroll-behavior: contain; scrollbar-width: auto;
   scrollbar-color: #555c65 #e4e7ea;
@@ -89,6 +89,7 @@ READER_HTML = """
 # Text knihy vkladáme len cez textContent (nie innerHTML).
 READER_JS = r"""
 export default function({ parentElement, data, setTriggerValue }) {
+  const shell = parentElement.querySelector('.tract-shell');
   const scroll = parentElement.querySelector('#tract-reader');
   const area = parentElement.querySelector('#tract-entries');
   const end = parentElement.querySelector('#tract-end');
@@ -100,6 +101,15 @@ export default function({ parentElement, data, setTriggerValue }) {
   const last = parentElement.querySelector('#tract-last');
   const entries = Array.isArray(data?.paragraphs) ? data.paragraphs : [];
   const storedKey = 'tractatus.reader.' + (data?.bookKey ?? 'book');
+  // Dôležité: výška vnútorného panelu je pevná v px. Percentá sa pri
+  // Streamlit Components v2 môžu vzťahovať na obal bez určenej výšky.
+  // Vtedy neexistuje vnútorný posuvník a navigačné tlačidlá nič nerobia.
+  const requestedHeight = Number(data?.readerHeight);
+  const fixedHeight = Number.isFinite(requestedHeight)
+    ? Math.max(420, Math.min(900, requestedHeight)) : 650;
+  shell.style.height = `${fixedHeight}px`;
+  shell.style.minHeight = `${fixedHeight}px`;
+  shell.style.maxHeight = `${fixedHeight}px`;
   let savedScroll = 0;
   let searchValue = '';
   try {
@@ -136,8 +146,7 @@ export default function({ parentElement, data, setTriggerValue }) {
     area.appendChild(b);
     nodes.push({node: b, id: entry.id, content: normalize(entry.id + ' ' + entry.text)});
   }
-  const lastId = entries.length ? entries[entries.length - 1].id : '(žiadna)';
-  end.textContent = `KONIEC NAČÍTANÉHO TEXTU · posledná téza ${lastId} · spolu ${entries.length} téz`;
+  end.textContent = 'Koniec textu';
 
   let matches = [];
   let current = 0;
@@ -156,7 +165,7 @@ export default function({ parentElement, data, setTriggerValue }) {
   function updateCounter() {
     count.textContent = find.value.trim()
       ? (matches.length ? `${current + 1}/${matches.length}` : '0 nálezov')
-      : `${nodes.length} téz`;
+      : '';
   }
   function goToMatch(step) {
     if (!matches.length) return;
@@ -180,11 +189,25 @@ export default function({ parentElement, data, setTriggerValue }) {
   find.oninput = () => refreshSearch(true);
   previous.onclick = () => goToMatch(-1);
   next.onclick = () => goToMatch(1);
-  first.onclick = () => { scroll.scrollTo({top: 0, behavior: 'instant'}); save(); };
-  last.onclick = () => { scroll.scrollTo({top: scroll.scrollHeight, behavior: 'instant'}); save(); };
+  function jump(toEnd) {
+    // Nepoužívame scrollIntoView(): ten by posúval aj CELÚ Streamlit stránku.
+    // scrollTop funguje aj tam, kde scrollTo(..., behavior:'instant') nie.
+    const apply = () => {
+      const maximum = Math.max(0, scroll.scrollHeight - scroll.clientHeight);
+      scroll.scrollTop = toEnd ? maximum : 0;
+      save();
+    };
+    apply();
+    // Streamlit môže pri novom zobrazení ešte dokončovať rozloženie.
+    requestAnimationFrame(apply);
+  }
+  first.onclick = () => jump(false);
+  last.onclick = () => jump(true);
   refreshSearch(false);
-  // Po naplnení čítačky sa obnoví skutočná scrollTop, nie skorší rozmer obalu.
-  scroll.scrollTop = savedScroll;
+  // Obnovenie polohy pri ďalšom zobrazení komponentu (napr. po odpovedi AI).
+  const restore = () => { scroll.scrollTop = Math.min(savedScroll, Math.max(0, scroll.scrollHeight - scroll.clientHeight)); };
+  restore();
+  requestAnimationFrame(restore);
   const onScroll = () => save();
   scroll.addEventListener('scroll', onScroll, {passive: true});
   return () => scroll.removeEventListener('scroll', onScroll);
@@ -192,7 +215,7 @@ export default function({ parentElement, data, setTriggerValue }) {
 """
 
 book_reader = st.components.v2.component(
-    name="tractatus_continuous_book_reader_v3_scrollfix",
+    name="tractatus_continuous_book_reader_v4_fixedheight",
     html=READER_HTML,
     css=READER_CSS,
     js=READER_JS,

@@ -234,19 +234,17 @@ def process_pending():
 if st.session_state.pending is not None and not st.session_state.pending_failed:
     process_pending()
 
-st.title("Traktát · Filozofický AI tútor")
-st.caption("Čítanie a analytický výklad pôvodného textu | samostatný 20-krokový sokratovský dialóg")
+st.title("Ludwig Wittgenstein - Tractatus logico-philosophicus")
 left, right = st.columns([2, 1], gap="large", vertical_alignment="top")
 
 with left:
-    st.markdown("#### Ludwig Wittgenstein · Tractatus logico-philosophicus")
-    st.caption(f"Načítaných {len(book)} téz (posledná: {book[-1]['id']}). Kliknutie otvorí výklad bez spotrebovania diskusného kroku.")
+    st.caption("Kliknutím na text otvoríte výklad vybraného odseku.")
     reader_event = book_reader(
         data={"paragraphs": book, "selected": st.session_state.selected_id,
-              "bookKey": f"tractatus-{len(book)}"},
+              "bookKey": f"tractatus-{BOOK_DIGEST[:16]}", "readerHeight": 650},
         key="tractatus_main_reader",
         width="stretch",
-        height=680,  # Veľkosť obalu Streamlitu; vnútorná čítačka zaberá zvyšnú výšku.
+        height=674,  # Vnútorná čítačka má explicitných 650 px; rezerva 24 px pre obal.
         on_selected_change=lambda: None,
     )
     selected = reader_event.selected
@@ -280,8 +278,6 @@ with right:
         if st.button("Zavrieť výklad", key="close_expl", width="stretch"):
             st.session_state.show_explanation = False
             st.rerun()
-    else:
-        st.caption("Výklad je nezávislý od dialógu. Môžete začať otázkou aj bez kliknutia na text.")
 
     st.markdown("**Sokratovský dialóg**")
     chat_h = 270 if st.session_state.show_explanation else 455
@@ -337,8 +333,4 @@ with right:
             width="stretch",
         )
 
-st.caption(f"Aktívny model: {MODEL} (myslenie: {THINKING}). "
-           "Ak nastane chyba 429, ďalší model vyberte v Streamlit Secrets až po kontrole kvót projektu. "
-           "AI sa opiera o vyhľadané časti poskytnutého textu, nie o externé vyhľadávanie. "
-           "Jej interpretácie a odkazy na tézy treba pri akademickej práci overovať. "
-           "Konverzácia sa neprenáša medzi zariadeniami; prepis si priebežne sťahujte.")
+
