@@ -1,2 +1,2 @@
-streamlit
-google-genai
+streamlit>=1.66,<2
+google-genai>=1.50,<3

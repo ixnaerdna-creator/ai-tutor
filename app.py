@@ -1,309 +1,334 @@
+"""Traktát – sokratovský AI tútor pre vysoké školy.
+
+Vyžaduje plný a autorizovaný text diela v lokálnom text.json vedľa app.py.
+Gemini API kľúč patrí IBA do Streamlit Secrets, nie do GitHubu.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+from uuid import uuid4
+import os
 import streamlit as st
 from google import genai
 from google.genai import types
-import json
 
-# --- 1. KONFIGURÁCIA STRÁNKY ---
-st.set_page_config(page_title="Tractatus - Sokratovský Tútor", layout="wide")
+from book_reader import book_reader
+from tutor_core import (
+    MAX_TURNS, BookError, api_error_message, context_for_model,
+    format_transcript, read_book,
+)
 
-try:
-    api_key = st.secrets["GEMINI_API_KEY"]
-except KeyError:
-    st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
-    st.stop()
+st.set_page_config(page_title="Traktát | Filozofický AI tútor", page_icon="📖", layout="wide")
+BASE = Path(__file__).resolve().parent
+MODEL = "gemini-3.8-flash"
+THINKING = "low"  # Nízká latencia; pre náročnejšie odpovede možno použiť 'medium'.
 
-@st.cache_resource
-def get_client():
-    return genai.Client(api_key=api_key)
-
-client = get_client()
-
-# Rozšírená kaskáda modelov z vášho zoznamu: pri chybe 429, 503 alebo 500 okamžite zaskočí ďalší
-MODEL_CASCADE = [
-    "gemini-3.5-flash-lite",
-    "gemini-3.7-flash",
-    "gemini-3.6-flash",
-    "gemini-3.5-flash",
-    "gemini-3.8-flash",
-    "gemini-3.1-flash-lite",
-    "gemini-2.5-flash-lite",
-    "gemini-flash-lite-latest",
-    "gemini-flash-latest"
-]
-
-# --- 2. CSS PRE DIZAJN, BEZ RÁMČEKOV A S MINIMÁLNYMI ROZOSTUPMI ---
 st.markdown("""
-    <style>
-    header {visibility: hidden !important;}
-    .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
-
-    /* POSUVNÍKY */
-    ::-webkit-scrollbar { width: 14px !important; }
-    ::-webkit-scrollbar-track { background: #f1f1f1 !important; border-radius: 8px !important; border-left: 1px solid #cccccc; }
-    ::-webkit-scrollbar-thumb { background-color: #666666 !important; border-radius: 8px !important; border: 2px solid #f1f1f1 !important; }
-    ::-webkit-scrollbar-thumb:hover { background-color: #333333 !important; }
-    * { scrollbar-width: thin; scrollbar-color: #666666 #f1f1f1; }
-
-    .book-title { color: #2c3e50; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-bottom: 10px; }
-
-    /* STIAHNUTIE MEDZIER MEDZI ODSTAVCAMI NA MINIMUM */
-    div[data-testid="stVerticalBlock"] {
-        gap: 0.1rem !important;
-    }
-    div.element-container {
-        margin-bottom: 0px !important;
-    }
-
-    /* ÚPLNÉ ZRUŠENIE VŠETKÝCH RÁMČEKOV, OBRYSOV A POZADÍ PRE ODSTAVCE */
-    div.stButton > button[kind="tertiary"],
-    div[data-testid="stButton"] > button {
-        border: none !important;
-        outline: none !important;
-        box-shadow: none !important;
-        background: transparent !important;
-        background-color: transparent !important;
-        padding: 3px 25px 3px 6px !important;
-        margin: 0px !important;
-        text-align: left !important;
-        justify-content: flex-start !important;
-        width: 100% !important;
-        min-height: 0px !important;
-        height: auto !important;
-    }
-
-    div.stButton > button[kind="tertiary"]:hover,
-    div.stButton > button[kind="tertiary"]:focus,
-    div.stButton > button[kind="tertiary"]:active,
-    div[data-testid="stButton"] > button:hover,
-    div[data-testid="stButton"] > button:focus,
-    div[data-testid="stButton"] > button:active {
-        border: none !important;
-        outline: none !important;
-        box-shadow: none !important;
-        background: transparent !important;
-        background-color: transparent !important;
-    }
-
-    div[data-testid="stButton"] > button:hover p,
-    div[data-testid="stButton"] > button:hover span {
-        color: #0056b3 !important;
-    }
-
-    /* PÍSMO PRED VYSVIETENÍM (19px) */
-    div[data-testid="stButton"] button p,
-    div[data-testid="stButton"] button span,
-    div[data-testid="stButton"] button div {
-        font-size: 19px !important;
-        line-height: 1.45 !important;
-        color: #1a1a1a !important;
-        margin: 0px !important;
-        padding: 0px !important;
-        white-space: normal !important;
-        text-align: left !important;
-    }
-
-    /* VYSVIETENÝ TEXT PO KLIKNUTÍ (20px) */
-    .highlighted-text {
-        background-color: #fff3cd;
-        color: #212529;
-        padding: 6px 25px 6px 10px;
-        border-radius: 4px;
-        border-left: 4px solid #ffc107;
-        margin: 2px 0px;
-        font-size: 20px !important;
-        line-height: 1.45 !important;
-    }
-    .highlighted-text b {
-        font-size: 20px !important;
-    }
-
-    /* Tlačidlo Vynuluj diskusiu */
-    div[data-testid="stButton"] > button[kind="secondary"] {
-        border: 1px solid #ced4da !important;
-        background-color: #f8f9fa !important;
-        padding: 4px 10px !important;
-        justify-content: center !important;
-        text-align: center !important;
-        border-radius: 5px !important;
-    }
-    div[data-testid="stButton"] > button[kind="secondary"] p {
-        font-size: 14px !important;
-        text-align: center !important;
-    }
-    </style>
+<style>
+  .block-container { padding-top: 1.3rem; max-width: 98rem; }
+  h1, h2, h3 { font-family: Georgia, serif; }
+  .st-key-chat_reset button { font-size: .82rem; }
+  @media(max-width: 800px) { .block-container { padding-top: .75rem; } }
+</style>
 """, unsafe_allow_html=True)
 
-# --- 3. INICIALIZÁCIA SESSION STATE ---
-if "text_data" not in st.session_state:
+
+def secret(name: str, default=None):
     try:
-        with open("text.json", "r", encoding="utf-8") as file:
-            st.session_state.text_data = json.load(file)
-    except FileNotFoundError:
-        st.error("Chyba: Súbor 'text.json' sa nenašiel.")
-        st.session_state.text_data = []
+        return st.secrets.get(name, os.environ.get(name, default))
+    except Exception:
+        return os.environ.get(name, default)
 
-if "selected_paragraph" not in st.session_state: st.session_state.selected_paragraph = None
-if "explanation" not in st.session_state: st.session_state.explanation = ""
-if "messages" not in st.session_state: st.session_state.messages = []
-if "prompt_count" not in st.session_state: st.session_state.prompt_count = 0
-if "chat_locked" not in st.session_state: st.session_state.chat_locked = False
-if "show_explanation" not in st.session_state: st.session_state.show_explanation = False
 
-# --- 4. SYSTÉMOVÉ INŠTRUKCIE A NEPRIESTRELNÉ KASKÁDOVÉ VOLANIE API ---
-system_instruction = """
-Si sokratovský tútor vyučujúci analytickú filozofiu, konkrétne Wittgensteinov Tractatus Logico-Philosophicus.
-Tvojou úlohou je pomáhať študentovi porozumieť textu, ale NIKDY mu nedáš priamu a úplnú odpoveď.
-Veď s ním kritický dialóg, pýtaj sa analytické otázky a naviguj ho k tomu, aby na filozofické dôsledky prišiel sám.
-Ak sa študent spýta na niečo mimo filozofie alebo textu, zdvorilo ho vráť k danej téme.
+API_KEY = secret("GEMINI_API_KEY")
+MODEL = str(secret("GEMINI_MODEL", MODEL))
+THINKING = str(secret("GEMINI_THINKING_LEVEL", THINKING)).lower()
+if THINKING not in {"low", "medium", "high"}:
+    THINKING = "low"
+
+try:
+    book = read_book(BASE / "text.json")
+except BookError as exc:
+    st.error(str(exc))
+    st.info("Priložte svoj pôvodný súbor `text.json` do rovnakého priečinka ako `app.py`. ")
+    st.stop()
+
+if not API_KEY:
+    st.error("V aplikácii chýba GEMINI_API_KEY. Nastavte ho v Streamlit Community Cloud → Settings → Secrets.")
+    st.stop()
+
+
+@st.cache_resource(show_spinner=False)
+def get_client(api_key: str):
+    return genai.Client(
+        api_key=api_key,
+        http_options=types.HttpOptions(timeout=35000, retry_options=types.HttpRetryOptions(attempts=1)),
+    )
+
+
+client = get_client(API_KEY)
+
+
+def call_gemini(system: str, text: str, final: bool = False) -> str:
+    # Žiadne nástroje pre vyhľadávanie na webe, žiadne ďalšie súbory či sekundárna literatúra.
+    result = client.models.generate_content(
+        model=MODEL,
+        contents=text,
+        config=types.GenerateContentConfig(
+            system_instruction=system,
+            thinking_config=types.ThinkingConfig(thinking_level=THINKING),
+            max_output_tokens=(4600 if final else 3400),
+        ),
+    )
+    response = (result.text or "").strip()
+    if not response:
+        raise RuntimeError("Model vrátil prázdnu odpoveď.")
+    return response
+
+
+EXPLANATION_RULES = """Si vysokoškolský vyučujúci analytickej filozofie. Vysvetľuješ
+výhradne Wittgensteinov Tractatus logico-philosophicus podľa doložených pasáží.
+Zdrojom nesmú byť iné knihy, komentáre, web ani všeobecné vedomosti modelu.
+Rozlišuj medzi explicitnou tézou a interpretatívnou rekonštrukciou ('Z textu možno usudzovať...').
+Odvolávaj sa na skutočné čísla téz z kontextu v hranatých zátvorkách [napr. 2.01].
+Neuvádzaj čísla téz, ku ktorým nemáš doslovnú pasáž v podkladoch.
+Píš po slovensky, vecne a odborne, no zrozumiteľne; rozsah približne 130–240 slov.
+Uveď (1) význam tvrdenia, (2) filozofické väzby, (3) medze výkladu.
+Neklaď otázku a nepokračuj v diskusii. Ak podklady nestačia, povedz to.
 """
 
-def generate_explanation(para_text):
-    # Cache ukladáme manuálne do session_state len pre úspešné odpovede (aby sa nezacachovala chybová hláška)
-    if "exp_cache" not in st.session_state:
-        st.session_state.exp_cache = {}
-    if para_text in st.session_state.exp_cache:
-        return st.session_state.exp_cache[para_text]
+DIALOGUE_RULES = """Si sokratovský tútor analytickej filozofie. Študent číta
+Wittgensteinov Tractatus logico-philosophicus. Jediným autorizovaným
+filozofickým zdrojom sú pasáže z text.json uvedené v aktuálnej požiadavke.
+Zákaz: vonkajšie filozofické interpretácie, iné diela a web. Podklady neprikrášľuj.
+Snaž sa korektne argumentovať, rekonštruovať implikácie, identifikovať
+predpoklady a prípadné napätia medzi tézami; používaj aj protipríklady,
+ak ich možno podať ako analytické hypotézy (označ ich za hypotézy).
+Odlišuj, čo autor priamo tvrdí, od toho, čo z tvrdení môže vyplývať.
+Nevkladaj študentovi do úst názory. Odpovedz na skutočný obsah jeho otázky,
+nie na posledné automatické vysvetlenie odseku – to NIE JE súčasť rozhovoru.
+Odpovedaj po slovensky, približne 100–220 slov; odkazuj na dokladované [čísla téz].
+Spravidla odpoveď ukonči jednou presnou analytickou otázkou študentovi.
+Ak podklady na otázku nestačia, priznaj limit a navrhni konkrétny textový krok.
+Pri záverečnom 20. kroku sa riad osobitnou inštrukciou v požiadavke:
+po odpovedi pridaj záverečné kritické zhodnotenie (silné stránky, slabiny,
+posun porozumenia, otvorené otázky), už nekladúc ďalšiu otázku.
+"""
 
-    prompt = f"Vysvetli odborne, jasne a zrozumiteľne pre vysokoškolského študenta hlavnú myšlienku tohto odseku z Wittgensteinovho Tractatus Logico-Philosophicus. Buď vecný a nezačínaj dialóg:\n\n'{para_text}'"
-    last_error = ""
-    for model_name in MODEL_CASCADE:
-        try:
-            response = client.models.generate_content(
-                model=model_name,
-                contents=prompt
-            )
-            if response and response.text:
-                st.session_state.exp_cache[para_text] = response.text
-                return response.text
-        except Exception as e:
-            last_error = f"({model_name}): {str(e)}"
-            # Pri AKEJKOĽVEK chybe (429, 503, 500, 404) okamžite skúšame ďalší model v poradí
-            continue
-    return f"⏳ **Všetky záložné modely sú momentálne vyťažené.** Posledná správa: {last_error}"
 
-def send_chat_with_fallback(messages_history, current_context_msg):
-    contents = []
-    for m in messages_history[:-1]:
-        role = "user" if m["role"] == "user" else "model"
-        contents.append(types.Content(role=role, parts=[types.Part.from_text(text=m["content"])]))
-    
-    contents.append(types.Content(role="user", parts=[types.Part.from_text(text=current_context_msg)]))
-    
-    config = types.GenerateContentConfig(
-        system_instruction=system_instruction,
-        temperature=0.7
+def initialize_state():
+    defaults = {
+        "selected_id": None,
+        "explanation": "",
+        "explanation_error": "",
+        "show_explanation": False,
+        "explanation_cache": {},
+        "messages": [],
+        "count": 0,
+        "pending": None,
+        "pending_failed": False,
+        "pending_error": "",
+        "session_id": str(uuid4())[:12],
+        "student_name": "",
+    }
+    for key, default in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = default
+
+
+initialize_state()
+book_by_id = {entry["id"]: entry for entry in book}
+BOOK_DIGEST = hashlib.sha256(json.dumps(book, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
+
+
+def reset_dialogue():
+    st.session_state.messages = []
+    st.session_state.count = 0
+    st.session_state.pending = None
+    st.session_state.pending_failed = False
+    st.session_state.pending_error = ""
+    st.session_state.show_explanation = False
+    st.session_state.session_id = str(uuid4())[:12]
+
+
+@st.cache_data(show_spinner=False, ttl=604800, max_entries=1200)
+def get_shared_explanation(identifier: str, book_digest: str, model_name: str, thinking: str):
+    """Bez osobných údajov: opakovane použiteľné výklady pre všetkých študentov."""
+    paragraph = book_by_id[identifier]
+    sources = context_for_model(book, paragraph["text"], identifier)
+    prompt = f"VYBRANÁ TÉZA: [{identifier}] {paragraph['text']}\n\n{sources}\n\nVysvetli vybranú tézu."
+    return call_gemini(EXPLANATION_RULES, prompt)
+
+
+def generate_explanation(identifier: str):
+    if identifier in st.session_state.explanation_cache:
+        st.session_state.explanation = st.session_state.explanation_cache[identifier]
+        st.session_state.explanation_error = ""
+        st.session_state.show_explanation = True
+        return
+    try:
+        with st.spinner("Pripravujem výklad odseku…"):
+            explanation = get_shared_explanation(identifier, BOOK_DIGEST, MODEL, THINKING)
+    except Exception as exc:
+        st.session_state.explanation = ""
+        st.session_state.explanation_error = api_error_message(exc)
+        st.session_state.show_explanation = False
+        # Chyba sa nekeshuje – ďalší výber/klik môže opakovať požiadavku.
+        print(f"[explanation error] {type(exc).__name__}: {exc}")
+    else:
+        st.session_state.explanation_cache[identifier] = explanation
+        st.session_state.explanation = explanation
+        st.session_state.explanation_error = ""
+        st.session_state.show_explanation = True
+
+
+def process_pending():
+    pending = st.session_state.pending
+    if not pending or st.session_state.count >= MAX_TURNS:
+        return
+    query = pending["text"]
+    # Výber pasáží zo SKUTOČNEJ knihy. Nie z vopred naučených interpretácií modelu.
+    recent = " ".join(m["content"] for m in st.session_state.messages if m["role"] == "user")[-3000:]
+    # Diskusia je obsahovo nezávislá od kliknutého odseku; ten sa používa iba vo výklade.
+    excerpts = context_for_model(book, f"{query}\n{recent}", None, 16)
+    history = "\n\n".join(
+        f"{'ŠTUDENT' if item['role'] == 'user' else 'TÚTOR'}: {item['content']}"
+        for item in st.session_state.messages
+    )[-30000:]
+    last = st.session_state.count == MAX_TURNS - 1
+    closing = (
+        "\n\nTOTO JE 20. A POSLEDNÝ ŠTUDENTSKÝ VSTUP. Odpovedz na otázku a pridaj "
+        "samostatné ZÁVEREČNÉ HODNOTENIE celej diskusie. Nerob ďalší krok "
+        "a nepýtaj sa ďalšiu otázku. Nepredstieraj, že vieš, čo sa študent naučil "
+        "mimo viditeľného prepisu."
+        if last else "\n\nToto nie je posledný krok, ukonči odpoveď jednou analytickou otázkou."
     )
-    
-    last_error = ""
-    for model_name in MODEL_CASCADE:
-        try:
-            response = client.models.generate_content(
-                model=model_name,
-                contents=contents,
-                config=config
-            )
-            if response and response.text:
-                return response.text, True
-        except Exception as e:
-            last_error = f"({model_name}): {str(e)}"
-            continue
-    return f"⏳ **Tútor je preťažený.** Všetky modely v kaskáde sú dočasne obsadené ({last_error}). Skúste otázku zopakovať o malú chvíľu.", False
+    input_text = (
+        f"ZDROJOVÝ PODKLAD:\n{excerpts}\n\n"
+        f"DOSLOVNÁ HISTÓRIA DIALÓGU (bez automatických výkladov):\n{history or '(začiatok)'}\n\n"
+        f"AKTUÁLNY VSTUP ŠTUDENTA (krok {st.session_state.count + 1} z 20):\n{query}{closing}"
+    )
+    try:
+        with st.spinner("Tútor pripravuje odpoveď…"):
+            reply = call_gemini(DIALOGUE_RULES, input_text, final=last)
+    except Exception as exc:
+        st.session_state.pending_error = api_error_message(exc)
+        st.session_state.pending_failed = True
+        print(f"[dialogue error] {type(exc).__name__}: {exc}")
+    else:
+        st.session_state.messages.extend([
+            {"role": "user", "content": query},
+            {"role": "assistant", "content": reply},
+        ])
+        st.session_state.count += 1
+        st.session_state.pending = None
+        st.session_state.pending_failed = False
+        st.session_state.pending_error = ""
 
-# --- 5. HLAVNÉ ROZLOŽENIE STRÁNKY ---
-col1, col2 = st.columns([2.2, 1])
 
-# ĽAVÝ STĹPEC: TEXT KNIHY
-with col1:
-    st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
-    st.info("👈 **Kliknutím na text dostaneš vysvetlenie danej pasáže.**")
+# Znovupokúšanie nikdy neprebieha automaticky. Pri chybe API sa zachová obsah vstupu.
+if st.session_state.pending is not None and not st.session_state.pending_failed:
+    process_pending()
 
-    book_container = st.container(height=550, border=False)
-    with book_container:
-        for para in st.session_state.text_data:
-            if st.session_state.selected_paragraph == para['id']:
-                st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
-            else:
-                try:
-                    clicked = st.button(f"**{para['id']}** {para['text']}", key=f"btn_{para['id']}", type="tertiary", use_container_width=True)
-                except TypeError:
-                    clicked = st.button(f"**{para['id']}** {para['text']}", key=f"btn_{para['id']}", use_container_width=True)
-                
-                if clicked:
-                    st.session_state.selected_paragraph = para['id']
-                    st.session_state.show_explanation = True
-                    with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
-                        st.session_state.explanation = generate_explanation(para['text'])
-                    st.rerun()
-        
-        st.markdown("<div style='height: 150px; width: 100%;'></div>", unsafe_allow_html=True)
+st.title("Traktát · Filozofický AI tútor")
+st.caption("Čítanie a analytický výklad pôvodného textu | samostatný 20-krokový sokratovský dialóg")
+left, right = st.columns([2, 1], gap="large", vertical_alignment="top")
 
-# PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
-with col2:
-    col_title, col_btn = st.columns([1.5, 1])
-    with col_title:
-        st.markdown(f"#### 💬 Diskusia ({st.session_state.prompt_count} / 20)")
-    with col_btn:
-        if st.button("🔄 Vynuluj diskusiu", type="secondary", use_container_width=True):
-            st.session_state.messages = []
-            st.session_state.prompt_count = 0
-            st.session_state.chat_locked = False
+with left:
+    st.markdown("#### Ludwig Wittgenstein · Tractatus logico-philosophicus")
+    st.caption(f"Úplný zdrojový text ({len(book)} očíslovaných odsekov). Kliknutie na odsek ho zvýrazní a otvorí výklad; diskusný limit sa nemení.")
+    reader_event = book_reader(
+        data={"paragraphs": book, "selected": st.session_state.selected_id,
+              "bookKey": f"tractatus-{len(book)}"},
+        key="tractatus_main_reader",
+        on_selected_change=lambda: None,
+    )
+    selected = reader_event.selected
+    if selected and selected in book_by_id:
+        st.session_state.selected_id = selected
+        generate_explanation(selected)
+        st.rerun()
+
+with right:
+    htitle, hreset = st.columns([1.45, 1], vertical_alignment="center")
+    with htitle:
+        st.markdown(f"#### Diskusia · {st.session_state.count}/{MAX_TURNS}")
+    with hreset:
+        if st.button("Vynulovať diskusiu", key="chat_reset", width="stretch"):
+            reset_dialogue()
+            st.rerun()
+    st.progress(st.session_state.count / MAX_TURNS)
+
+    if st.session_state.explanation_error and st.session_state.selected_id:
+        st.error(st.session_state.explanation_error)
+        if st.button("Skúsiť výklad znova", key="retry_explanation", width="stretch"):
+            generate_explanation(st.session_state.selected_id)
             st.rerun()
 
-    st.markdown("<hr style='margin: 0px 0 10px 0;'>", unsafe_allow_html=True)
+    if st.session_state.show_explanation and st.session_state.selected_id:
+        st.markdown(f"**Výklad tézy {st.session_state.selected_id}**")
+        with st.container(height=180, border=False):
+            st.markdown(st.session_state.explanation)
+        if st.button("Zavrieť výklad", key="close_expl", width="stretch"):
+            st.session_state.show_explanation = False
+            st.rerun()
+    else:
+        st.caption("Výklad je nezávislý od dialógu. Môžete začať otázkou aj bez kliknutia na text.")
 
-    if st.session_state.selected_paragraph and st.session_state.show_explanation:
-        st.markdown(f"**💡 Výklad (Odsek {st.session_state.selected_paragraph})**")
-        if "vyťažené" in st.session_state.explanation or "❌" in st.session_state.explanation:
-            st.error(st.session_state.explanation)
-        else:
-            st.info(st.session_state.explanation)
-        st.markdown("<br>", unsafe_allow_html=True)
-
-    chat_height = 200 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 420
-    chat_container = st.container(height=chat_height, border=True)
-
-    with chat_container:
-        if len(st.session_state.messages) == 0:
-            st.write("Tu môžete začať diskusiu kedykoľvek...")
-
+    st.markdown("**Sokratovský dialóg**")
+    chat_h = 270 if st.session_state.show_explanation else 455
+    with st.container(height=chat_h, border=True, autoscroll=True):
+        if not st.session_state.messages:
+            st.caption("Začnite vlastnou otázkou, námietkou alebo pokusom o rekonštrukciu argumentu.")
         for msg in st.session_state.messages:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
-        
-        st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)
 
-    if st.session_state.chat_locked:
-        st.error("Dosiahli ste limit 20 správ.")
+    if st.session_state.pending_failed:
+        st.error(st.session_state.pending_error)
+        st.info("Vaša otázka zostala uložená. Nezapočítala sa do limitu.")
+        r1, r2 = st.columns(2)
+        with r1:
+            if st.button("Skúsiť znova", key="tryagain"):
+                st.session_state.pending_failed = False
+                st.rerun()
+        with r2:
+            if st.button("Zrušiť otázku", key="cancelpending"):
+                st.session_state.pending = None
+                st.session_state.pending_failed = False
+                st.session_state.pending_error = ""
+                st.rerun()
+
+    elif st.session_state.count < MAX_TURNS:
+        with st.form("ask_question", clear_on_submit=True, border=False):
+            question = st.text_area("Vaša otázka alebo argument", height=74, max_chars=3000,
+                                    placeholder="Čo podľa Traktátu znamená…?", label_visibility="collapsed")
+            submitted = st.form_submit_button("Odoslať tútorovi", type="primary", width="stretch")
+        if submitted:
+            if question.strip():
+                st.session_state.pending = {"text": question.strip()}
+                st.session_state.show_explanation = False  # Na začiatku diskusie ukryť starý výklad.
+                st.session_state.pending_failed = False
+                st.rerun()
+            else:
+                st.warning("Najprv napíšte otázku alebo argument.")
     else:
-        user_msg = st.chat_input("Položte otázku alebo napíšte svoju úvahu...")
-        if user_msg:
-            st.session_state.show_explanation = False
-            st.session_state.prompt_count += 1
-            st.session_state.messages.append({"role": "user", "content": user_msg})
+        st.success("Dokončili ste 20 krokov. Dialóg je uzavretý; môžete ho exportovať.")
 
-            with chat_container:
-                with st.chat_message("user"):
-                    st.markdown(user_msg)
+    if st.session_state.messages:
+        st.session_state.student_name = st.text_input("Meno študenta/študentky (voliteľné)",
+                                                       value=st.session_state.student_name,
+                                                       placeholder="Na účely odovzdania v Moodle")
+        transcript = format_transcript(st.session_state.messages, st.session_state.student_name,
+                                       len(book), MODEL, st.session_state.session_id)
+        st.download_button(
+            "Stiahnuť celý prepis (TXT)", data=transcript.encode("utf-8-sig"),
+            file_name=f"tractatus_dialog_{st.session_state.session_id}.txt", mime="text/plain",
+            width="stretch",
+        )
 
-                with st.chat_message("assistant"):
-                    with st.spinner("Tútor premýšľa..."):
-                        selected_text_raw = next((p['text'] for p in st.session_state.text_data if p['id'] == st.session_state.selected_paragraph), "") if st.session_state.selected_paragraph else ""
-                        context_str = f"[Zameranie na odsek {st.session_state.selected_paragraph}: '{selected_text_raw}']\n\n" if selected_text_raw else ""
-                        full_context_msg = f"{context_str}Otázka študenta: {user_msg}"
-
-                        response_text, success = send_chat_with_fallback(st.session_state.messages, full_context_msg)
-                        if not success:
-                            st.session_state.prompt_count -= 1
-                            
-                        st.markdown(response_text)
-
-            st.session_state.messages.append({"role": "assistant", "content": response_text})
-            st.rerun()
-
-    if len(st.session_state.messages) > 0:
-        chat_history_text = "Tractatus Logico-Philosophicus - Prepis diskusie\n" + "="*50 + "\n\n"
-        for msg in st.session_state.messages:
-            role_name = "ŠTUDENT" if msg["role"] == "user" else "TÚTOR"
-            chat_history_text += f"{role_name}:\n{msg['content']}\n\n"
-
-        st.download_button("📥 Stiahnuť prepis (TXT)", data=chat_history_text, file_name="wittgenstein_diskusia.txt", mime="text/plain", use_container_width=True)
+st.caption("AI sa opiera o vyhľadané časti poskytnutého textu, nie o externé vyhľadávanie. "
+           "Jej interpretácie a odkazy na tézy treba pri akademickej práci overovať. "
+           "Konverzácia sa neprenáša medzi zariadeniami; prepis si priebežne sťahujte.")
