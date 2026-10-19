@@ -12,63 +12,40 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE KRAJŠÍ DIZAJN ---
+# --- 2. CSS PRE ČISTÝ DIZAJN (Bez fixných výšok) ---
 st.markdown("""
     <style>
-    /* Skrytie hornej lišty a zbytočných medzier */
     header {visibility: hidden !important;}
-    .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
-    
-    /* VÝRAZNÝ TMAVÝ POSUVNÍK PRE OBOJE OKNÁ */
-    ::-webkit-scrollbar {
-        width: 14px !important;
-    }
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1 !important; 
-        border-radius: 8px !important;
-        border-left: 1px solid #cccccc; 
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: #666666 !important; 
-        border-radius: 8px !important;
-        border: 2px solid #f1f1f1 !important;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background-color: #333333 !important; 
-    }
+    .block-container { padding-top: 1rem !important; padding-bottom: 2rem !important; max-width: 95%; }
 
-    * {
-        scrollbar-width: thin;
-        scrollbar-color: #666666 #f1f1f1;
-    }
-
+    /* Elegantný nadpis knihy */
     .book-title {
         color: #2c3e50;
         border-bottom: 2px solid #e9ecef;
         padding-bottom: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     
-    /* ÚPRAVA ZÁKLADNÉHO TEXTU - Veľké písmo a odsadenie od posuvníka */
+    /* Zväčšený a elegantný text knihy (ako tlačidlá) */
     [data-testid="column"]:nth-of-type(1) button {
         white-space: normal !important;
         text-align: left !important;
         height: auto !important;
-        padding: 15px 25px 15px 15px !important; /* Pridaná medzera vpravo od posuvníka */
+        padding: 15px 20px !important;
         display: block !important;
-        width: 96% !important; /* Zúženie textu, aby nenarážal do posuvníka */
+        width: 100% !important;
         border: none !important;
         background: transparent !important;
+        color: #1a1a1a !important;
         border-radius: 5px !important;
-        margin-bottom: 2px !important;
+        margin-bottom: 5px !important;
     }
     
-    /* Hrubá sila na zväčšenie všetkých textov vnútri základného tlačidla */
     [data-testid="column"]:nth-of-type(1) button p,
     [data-testid="column"]:nth-of-type(1) button div,
     [data-testid="column"]:nth-of-type(1) button span {
-        font-size: 20px !important; /* Zväčšené písmo */
-        line-height: 1.6 !important; /* Vzdušnejšie riadkovanie */
+        font-size: 20px !important; 
+        line-height: 1.6 !important; 
         color: #1a1a1a !important;
         margin: 0 !important;
     }
@@ -77,20 +54,29 @@ st.markdown("""
         background-color: #f8f9fa !important;
     }
     
-    /* ÚPRAVA VYSVIETENÉHO TEXTU - Zhodná veľkosť a odsadenie */
+    /* Vysvietený odsek */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
-        padding: 15px 25px 15px 15px; /* Rovnaké odsadenie ako tlačidlo */
+        padding: 15px 20px; 
         border-radius: 5px;
         border-left: 5px solid #ffc107;
         margin-bottom: 10px;
-        width: 96%; /* Rovnaká šírka ako tlačidlo */
-        font-size: 20px !important; /* Zväčšené písmo */
+        width: 100%; 
+        font-size: 20px !important; 
         line-height: 1.6 !important;
     }
     .highlighted-text b {
         font-size: 20px !important;
+    }
+
+    /* Zabezpečenie, aby pravý stĺpec stál na mieste, zatiaľ čo rolujeme celú stránku s knihou */
+    [data-testid="column"]:nth-of-type(2) {
+        position: sticky;
+        top: 2rem;
+        height: 90vh; /* Zastaví sa tak, aby nepresiahol monitor */
+        overflow-y: auto;
+        padding-right: 10px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -117,7 +103,7 @@ if "chat_locked" not in st.session_state:
 if "show_explanation" not in st.session_state:
     st.session_state.show_explanation = False
 
-# Inicializácia modelu (Chat)
+# Inicializácia modelu (Zmena na verziu 1.5 pre stabilitu pri free limitoch)
 if "chat_session" not in st.session_state or st.session_state.chat_session is None:
     system_instruction = """
     Si sokratovský tútor vyučujúci analytickú filozofiu, konkrétne Wittgensteinov Tractatus Logico-Philosophicus. 
@@ -126,7 +112,7 @@ if "chat_session" not in st.session_state or st.session_state.chat_session is No
     Ak sa študent spýta na niečo mimo filozofie alebo textu, zdvorilo ho vráť k danej téme.
     """
     model = genai.GenerativeModel(
-        model_name="gemini-3.8-flash",
+        model_name="gemini-1.5-flash",
         system_instruction=system_instruction
     )
     st.session_state.chat_session = model.start_chat(history=[])
@@ -134,40 +120,37 @@ if "chat_session" not in st.session_state or st.session_state.chat_session is No
 # --- 4. FUNKCIA NA GENERÁCIU PASÍVNEHO VYSVETLENIA ---
 @st.cache_data(show_spinner=False, ttl=86400)
 def generate_explanation(para_text):
-    model = genai.GenerativeModel("gemini-3.8-flash")
+    # Zmena modelu aj pre vysvetlenia
+    model_exp = genai.GenerativeModel("gemini-1.5-flash")
     prompt = f"Vysvetli odborne, jasne a zrozumiteľne pre vysokoškolského študenta hlavnú myšlienku tohto odseku z Wittgensteinovho Tractatus Logico-Philosophicus. Buď vecný a nezačínaj dialóg:\n\n'{para_text}'"
     try:
-        return model.generate_content(prompt).text
+        return model_exp.generate_content(prompt).text
     except Exception as e:
         if "ResourceExhausted" in str(e) or "429" in str(e):
-            return "⏳ **Tútor je momentálne preťažený.** Počkajte 30 sekúnd a skúste odsek vybrať znova."
-        return f"❌ Neočakávaná chyba: {e}"
+            return "⏳ **Tútor je momentálne preťažený.** (Príliš veľa požiadaviek za minútu). Počkajte minútu a skúste znova."
+        return f"❌ Neočakávaná chyba API: {e}"
 
 # --- 5. HLAVNÉ ROZLOŽENIE STRÁNKY ---
-col1, col2 = st.columns([2.2, 1])
+col1, col2 = st.columns([2.3, 1])
 
-# ĽAVÝ STĹPEC: TEXT KNIHY
+# ĽAVÝ STĹPEC: TEXT KNIHY (Voľne položený na stránke, bez kontajnera s fixnou výškou)
 with col1:
     st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
     st.info("👈 **Kliknutím na text dostaneš vysvetlenie danej pasáže.**")
     
-    # Kniha má zmenšenú výšku pre notebookové obrazovky
-    book_container = st.container(height=650, border=False)
-    with book_container:
-        for para in st.session_state.text_data:
-            
-            if st.session_state.selected_paragraph == para['id']:
-                st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
-            else:
-                para_display = f"**{para['id']}** {para['text']}"
-                if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
-                    st.session_state.selected_paragraph = para['id']
-                    st.session_state.show_explanation = True 
-                    with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
-                        st.session_state.explanation = generate_explanation(para['text'])
-                    st.rerun()
+    for para in st.session_state.text_data:
+        if st.session_state.selected_paragraph == para['id']:
+            st.markdown(f"<div class='highlighted-text'><b>{para['id']}</b> &nbsp; {para['text']}</div>", unsafe_allow_html=True)
+        else:
+            para_display = f"**{para['id']}** {para['text']}"
+            if st.button(para_display, key=f"btn_{para['id']}", use_container_width=True):
+                st.session_state.selected_paragraph = para['id']
+                st.session_state.show_explanation = True 
+                with st.spinner("Tútor pripravuje výklad k tomuto odseku..."):
+                    st.session_state.explanation = generate_explanation(para['text'])
+                st.rerun()
 
-# PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
+# PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA (Prilepený - sticky)
 with col2:
     col_title, col_btn = st.columns([1.5, 1])
     with col_title:
@@ -177,7 +160,9 @@ with col2:
             st.session_state.messages = []
             st.session_state.prompt_count = 0
             st.session_state.chat_locked = False
-            st.session_state.chat_session = model.start_chat(history=[])
+            # Zmena modelu pri reštarte
+            model_new = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=system_instruction)
+            st.session_state.chat_session = model_new.start_chat(history=[])
             st.rerun()
             
     st.markdown("<hr style='margin: 0px 0 10px 0;'>", unsafe_allow_html=True)
@@ -190,8 +175,8 @@ with col2:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
     
-    # DISKUSNÉ OKNO JE ZMENŠENÉ (Aby nepresahovalo monitor)
-    chat_height = 250 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 450
+    # Kontajner pre chat (Teraz už môže byť vyšší, lebo celý pravý stĺpec nepresiahne výšku obrazovky vďaka CSS 90vh)
+    chat_height = 300 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 500
     chat_container = st.container(height=chat_height, border=True)
     
     with chat_container:
@@ -229,9 +214,9 @@ with col2:
                             response_text = response.text
                         except Exception as e:
                             if "ResourceExhausted" in str(e) or "429" in str(e):
-                                response_text = "⏳ **Tútor je preťažený.** (Limit bol vyčerpaný). Zopakujte prosím otázku o pol minúty."
+                                response_text = "⏳ **Tútor je preťažený.** Zopakujte prosím otázku za malú chvíľu."
                             else:
-                                 response_text = f"❌ Chyba: {e}"
+                                 response_text = f"❌ Chyba API: {e}"
                             
                             st.session_state.prompt_count -= 1 
                                  
