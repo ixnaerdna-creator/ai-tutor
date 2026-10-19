@@ -126,7 +126,8 @@ if "chat_session" not in st.session_state or st.session_state.chat_session is No
     )
     st.session_state.chat_session = model.start_chat(history=[])
 
-# --- 4. FUNKCIA NA GENERÁCIU PASÍVNEHO VYSVETLENIA (s ošetrením preťaženia) ---
+# --- 4. FUNKCIA NA GENERÁCIU PASÍVNEHO VYSVETLENIA (s ošetrením preťaženia a pamäťou) ---
+@st.cache_data(show_spinner=False, ttl=86400)
 def generate_explanation(para_text):
     model = genai.GenerativeModel("gemini-3.8-flash")
     prompt = f"Vysvetli odborne, jasne a zrozumiteľne pre vysokoškolského študenta hlavnú myšlienku tohto odseku z Wittgensteinovho Tractatus Logico-Philosophicus. Buď vecný a nezačínaj dialóg:\n\n'{para_text}'"
