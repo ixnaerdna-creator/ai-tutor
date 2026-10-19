@@ -131,13 +131,20 @@ def context_for_model(book: list[dict[str, str]], question: str, selected_id: st
     )
 
 
-def api_error_message(exc: Exception) -> str:
+def api_error_message(exc: Exception, model: str = "") -> str:
     code = getattr(exc, "code", None)
     message = str(exc)
+    lowered = message.lower()
+    model_label = f" pre model {model}" if model else ""
     if code == 429 or "429" in message or "RESOURCE_EXHAUSTED" in message.upper():
-        if "limit: 0" in message or "limit=0" in message:
-            return "Gemini API v tomto projekte nemá pre zvolený model dostupnú kvótu (limit 0). Potrebná je zmena modelu alebo účtovania v Google AI Studio."
-        return "Google Gemini API odmietlo požiadavku kvôli kvóte (429). Skontrolujte limity RPM/TPM/RPD v Google AI Studio a skúste to neskôr."
+        if any(word in lowered for word in ("limit: 0", "limit=0", "limit' : 0", "\"limit\": 0", "quota_value: 0")):
+            return (f"Gemini API má{model_label} v tomto Google projekte nulovú kvótu (429; limit 0). "
+                    "Čakanie nepomôže. V Google AI Studio overte kvótu daného modelu a "
+                    "v Streamlit Secrets nastavte GEMINI_MODEL na model s dostupnou kvótou.")
+        return (f"Google Gemini API odmietlo požiadavku{model_label} (429). "
+                "Možný je denný limit, limit RPM/TPM alebo nulová kapacita. "
+                "Skontrolujte presný limit a používanie vo svojom projekte v Google AI Studio. "
+                "Ak má iný model voľnú kvótu, zmeňte GEMINI_MODEL v Streamlit Secrets.")
     if code == 404 or "404" in message or "NOT_FOUND" in message.upper():
         return "Zvolený model nie je dostupný pre daný projekt/verziu API (404). Overte názov a zoznam dostupných modelov."
     if code in (401, 403) or "403" in message or "401" in message:

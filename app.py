@@ -22,8 +22,8 @@ from tutor_core import (
 
 st.set_page_config(page_title="Traktát | Filozofický AI tútor", page_icon="📖", layout="wide")
 BASE = Path(__file__).resolve().parent
-MODEL = "gemini-3.8-flash"
-THINKING = "low"  # Nízká latencia; pre náročnejšie odpovede možno použiť 'medium'.
+MODEL = "gemini-3.8-flash"  # Nastavte dostupný model cez GEMINI_MODEL v Secrets.
+THINKING = "low"  # Náročnejšie úlohy: medium; pre Flash-Lite možno použiť minimal.
 
 st.markdown("""
 <style>
@@ -45,8 +45,10 @@ def secret(name: str, default=None):
 API_KEY = secret("GEMINI_API_KEY")
 MODEL = str(secret("GEMINI_MODEL", MODEL))
 THINKING = str(secret("GEMINI_THINKING_LEVEL", THINKING)).lower()
-if THINKING not in {"low", "medium", "high"}:
+if THINKING not in {"minimal", "low", "medium", "high"}:
     THINKING = "low"
+if MODEL == "gemini-3.8-flash" and THINKING == "minimal":
+    THINKING = "low"  # Gemini 3.8 Flash nepodporuje minimal.
 
 try:
     book = read_book(BASE / "text.json")
@@ -79,7 +81,7 @@ def call_gemini(system: str, text: str, final: bool = False) -> str:
         config=types.GenerateContentConfig(
             system_instruction=system,
             thinking_config=types.ThinkingConfig(thinking_level=THINKING),
-            max_output_tokens=(4600 if final else 3400),
+            max_output_tokens=(3300 if final else 2400),  # Menej výstupných tokenov = šetrnejšia prevádzka.
         ),
     )
     response = (result.text or "").strip()
@@ -173,7 +175,7 @@ def generate_explanation(identifier: str):
             explanation = get_shared_explanation(identifier, BOOK_DIGEST, MODEL, THINKING)
     except Exception as exc:
         st.session_state.explanation = ""
-        st.session_state.explanation_error = api_error_message(exc)
+        st.session_state.explanation_error = api_error_message(exc, MODEL)
         st.session_state.show_explanation = False
         # Chyba sa nekeshuje – ďalší výber/klik môže opakovať požiadavku.
         print(f"[explanation error] {type(exc).__name__}: {exc}")
@@ -214,7 +216,7 @@ def process_pending():
         with st.spinner("Tútor pripravuje odpoveď…"):
             reply = call_gemini(DIALOGUE_RULES, input_text, final=last)
     except Exception as exc:
-        st.session_state.pending_error = api_error_message(exc)
+        st.session_state.pending_error = api_error_message(exc, MODEL)
         st.session_state.pending_failed = True
         print(f"[dialogue error] {type(exc).__name__}: {exc}")
     else:
@@ -238,11 +240,13 @@ left, right = st.columns([2, 1], gap="large", vertical_alignment="top")
 
 with left:
     st.markdown("#### Ludwig Wittgenstein · Tractatus logico-philosophicus")
-    st.caption(f"Úplný zdrojový text ({len(book)} očíslovaných odsekov). Kliknutie na odsek ho zvýrazní a otvorí výklad; diskusný limit sa nemení.")
+    st.caption(f"Načítaných {len(book)} téz (posledná: {book[-1]['id']}). Kliknutie otvorí výklad bez spotrebovania diskusného kroku.")
     reader_event = book_reader(
         data={"paragraphs": book, "selected": st.session_state.selected_id,
               "bookKey": f"tractatus-{len(book)}"},
         key="tractatus_main_reader",
+        width="stretch",
+        height=680,  # Veľkosť obalu Streamlitu; vnútorná čítačka zaberá zvyšnú výšku.
         on_selected_change=lambda: None,
     )
     selected = reader_event.selected
@@ -263,6 +267,8 @@ with right:
 
     if st.session_state.explanation_error and st.session_state.selected_id:
         st.error(st.session_state.explanation_error)
+        if "429" in st.session_state.explanation_error:
+            st.markdown("[Skontrolovať kvóty Gemini v Google AI Studio](https://aistudio.google.com/rate-limit)")
         if st.button("Skúsiť výklad znova", key="retry_explanation", width="stretch"):
             generate_explanation(st.session_state.selected_id)
             st.rerun()
@@ -288,6 +294,8 @@ with right:
 
     if st.session_state.pending_failed:
         st.error(st.session_state.pending_error)
+        if "429" in st.session_state.pending_error:
+            st.markdown("[Skontrolovať kvóty Gemini v Google AI Studio](https://aistudio.google.com/rate-limit)")
         st.info("Vaša otázka zostala uložená. Nezapočítala sa do limitu.")
         r1, r2 = st.columns(2)
         with r1:
@@ -329,6 +337,8 @@ with right:
             width="stretch",
         )
 
-st.caption("AI sa opiera o vyhľadané časti poskytnutého textu, nie o externé vyhľadávanie. "
+st.caption(f"Aktívny model: {MODEL} (myslenie: {THINKING}). "
+           "Ak nastane chyba 429, ďalší model vyberte v Streamlit Secrets až po kontrole kvót projektu. "
+           "AI sa opiera o vyhľadané časti poskytnutého textu, nie o externé vyhľadávanie. "
            "Jej interpretácie a odkazy na tézy treba pri akademickej práci overovať. "
            "Konverzácia sa neprenáša medzi zariadeniami; prepis si priebežne sťahujte.")
