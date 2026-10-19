@@ -12,24 +12,24 @@ except KeyError:
     st.error("Chyba: API kľúč nie je nastavený v Streamlit Secrets.")
     st.stop()
 
-# --- 2. CSS PRE KRAJŠÍ DIZAJN (DVA NEZÁVISLÉ POSUVNÍKY A VEĽKÉ PÍSMO) ---
+# --- 2. CSS PRE KRAJŠÍ DIZAJN ---
 st.markdown("""
     <style>
-    /* Skrytie hornej lišty a zbytočných medzier (Stránka sa takmer nebude dať celá rolovať, všetko sa zmestí na obrazovku) */
+    /* Skrytie hornej lišty a zbytočných medzier */
     header {visibility: hidden !important;}
     .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; }
     
-    /* VÝRAZNÝ TMAVÝ POSUVNÍK PRE VŠETKY VNÚTORNÉ OKNÁ (Chrome, Safari, Edge) */
+    /* VÝRAZNÝ TMAVÝ POSUVNÍK PRE OBOJE OKNÁ */
     ::-webkit-scrollbar {
         width: 14px !important;
     }
     ::-webkit-scrollbar-track {
         background: #f1f1f1 !important; 
         border-radius: 8px !important;
-        border-left: 1px solid #cccccc; /* Oddelovacia čiara */
+        border-left: 1px solid #cccccc; 
     }
     ::-webkit-scrollbar-thumb {
-        background-color: #666666 !important; /* Výrazná tmavosivá farba */
+        background-color: #666666 !important; 
         border-radius: 8px !important;
         border: 2px solid #f1f1f1 !important;
     }
@@ -37,13 +37,11 @@ st.markdown("""
         background-color: #333333 !important; 
     }
 
-    /* POSUVNÍK PRE FIREFOX */
     * {
         scrollbar-width: thin;
         scrollbar-color: #666666 #f1f1f1;
     }
 
-    /* ELEGANTNÝ DIZAJN TEXTU */
     .book-title {
         color: #2c3e50;
         border-bottom: 2px solid #e9ecef;
@@ -51,40 +49,48 @@ st.markdown("""
         margin-bottom: 10px;
     }
     
-    /* Úprava tlačidiel textu - ROVNAKO VEĽKÉ PÍSMO AKO PRI VYSVIETENÍ */
+    /* ÚPRAVA ZÁKLADNÉHO TEXTU - Veľké písmo a odsadenie od posuvníka */
     [data-testid="column"]:nth-of-type(1) button {
         white-space: normal !important;
         text-align: left !important;
         height: auto !important;
-        padding: 10px 15px !important;
+        padding: 15px 25px 15px 15px !important; /* Pridaná medzera vpravo od posuvníka */
         display: block !important;
-        width: 100% !important;
+        width: 96% !important; /* Zúženie textu, aby nenarážal do posuvníka */
         border: none !important;
         background: transparent !important;
-        color: #1a1a1a !important;
         border-radius: 5px !important;
         margin-bottom: 2px !important;
     }
-    [data-testid="column"]:nth-of-type(1) button p {
-        white-space: normal !important;
-        font-size: 20px !important; /* ZVÄČŠENÉ PÍSMO */
-        line-height: 1.8 !important; /* ZVÄČŠENÉ RIADKOVANIE */
+    
+    /* Hrubá sila na zväčšenie všetkých textov vnútri základného tlačidla */
+    [data-testid="column"]:nth-of-type(1) button p,
+    [data-testid="column"]:nth-of-type(1) button div,
+    [data-testid="column"]:nth-of-type(1) button span {
+        font-size: 20px !important; /* Zväčšené písmo */
+        line-height: 1.6 !important; /* Vzdušnejšie riadkovanie */
+        color: #1a1a1a !important;
         margin: 0 !important;
     }
+    
     [data-testid="column"]:nth-of-type(1) button:hover {
         background-color: #f8f9fa !important;
     }
     
-    /* Zvýraznený odsek po kliknutí - ROVNAKO VEĽKÉ PÍSMO */
+    /* ÚPRAVA VYSVIETENÉHO TEXTU - Zhodná veľkosť a odsadenie */
     .highlighted-text {
         background-color: #fff3cd;
         color: #212529;
-        padding: 15px;
+        padding: 15px 25px 15px 15px; /* Rovnaké odsadenie ako tlačidlo */
         border-radius: 5px;
         border-left: 5px solid #ffc107;
         margin-bottom: 10px;
-        font-size: 20px; /* ZVÄČŠENÉ PÍSMO */
-        line-height: 1.8; /* ZVÄČŠENÉ RIADKOVANIE */
+        width: 96%; /* Rovnaká šírka ako tlačidlo */
+        font-size: 20px !important; /* Zväčšené písmo */
+        line-height: 1.6 !important;
+    }
+    .highlighted-text b {
+        font-size: 20px !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -145,8 +151,8 @@ with col1:
     st.markdown("<h3 class='book-title'>📖 Tractatus Logico-Philosophicus</h3>", unsafe_allow_html=True)
     st.info("👈 **Kliknutím na text dostaneš vysvetlenie danej pasáže.**")
     
-    # 1. OKNO S POSUVNÍKOM: Toto okno sa roluje úplne nezávisle zvnútra, má fixnú výšku
-    book_container = st.container(height=750, border=False)
+    # Kniha má zmenšenú výšku pre notebookové obrazovky
+    book_container = st.container(height=650, border=False)
     with book_container:
         for para in st.session_state.text_data:
             
@@ -163,7 +169,6 @@ with col1:
 
 # PRAVÝ STĹPEC: VYSVETLENIE A DISKUSIA
 with col2:
-    # TLAČIDLO NA VYNULOVANIE
     col_title, col_btn = st.columns([1.5, 1])
     with col_title:
         st.markdown(f"### 💬 Diskusia ({st.session_state.prompt_count} / 20)")
@@ -177,7 +182,6 @@ with col2:
             
     st.markdown("<hr style='margin: 0px 0 10px 0;'>", unsafe_allow_html=True)
 
-    # ZOBRAZENIE VYSVETLENIA
     if st.session_state.selected_paragraph and st.session_state.show_explanation:
         st.markdown(f"**💡 Výklad (Odsek {st.session_state.selected_paragraph})**")
         if "preťažený" in st.session_state.explanation:
@@ -186,8 +190,8 @@ with col2:
             st.info(st.session_state.explanation)
         st.markdown("<br>", unsafe_allow_html=True)
     
-    # 2. OKNO S POSUVNÍKOM: Toto okno je tiež nezávislé. 
-    chat_height = 250 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 600
+    # DISKUSNÉ OKNO JE ZMENŠENÉ (Aby nepresahovalo monitor)
+    chat_height = 250 if (st.session_state.selected_paragraph and st.session_state.show_explanation) else 450
     chat_container = st.container(height=chat_height, border=True)
     
     with chat_container:
@@ -198,7 +202,6 @@ with col2:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
     
-    # POLÍČKO NA PÍSANIE
     if st.session_state.chat_locked:
         st.error("Dosiahli ste limit 20 správ.")
     else:
@@ -237,7 +240,6 @@ with col2:
             st.session_state.messages.append({"role": "assistant", "content": response_text})
             st.rerun()
 
-    # --- 6. SŤAHOVANIE PREPISU ---
     if len(st.session_state.messages) > 0:
         chat_history_text = "Tractatus Logico-Philosophicus - Prepis diskusie\n"
         chat_history_text += "="*50 + "\n\n"
