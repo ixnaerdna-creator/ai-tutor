@@ -1,0 +1,2098 @@
+[
+  {
+    "id": "1",
+    "text": "Svet je všetko, čo je faktom."
+  },
+  {
+    "id": "1.1",
+    "text": "Svet je súhrn faktov, nie vecí."
+  },
+  {
+    "id": "1.11",
+    "text": "Svet je určený faktmi a tým, že sú to všetky fakty."
+  },
+  {
+    "id": "1.12",
+    "text": "Lebo súhrn faktov určuje, čo je faktom, a tiež, čo všetko nie je faktom."
+  },
+  {
+    "id": "1.13",
+    "text": "Fakty v logickom priestore sú svetom."
+  },
+  {
+    "id": "1.2",
+    "text": "Svet sa rozpadá na fakty."
+  },
+  {
+    "id": "1.21",
+    "text": "Niečo môže byť faktom alebo nebyť faktom a všetko ostatné môže ostať také isté."
+  },
+  {
+    "id": "2",
+    "text": "To, čo je faktom, fakt, je existencia stavov vecí."
+  },
+  {
+    "id": "2.01",
+    "text": "Stav vecí je spojenie predmetov (vecí)."
+  },
+  {
+    "id": "2.011",
+    "text": "Pre vec je podstatné, že môže byť súčasťou stavu vecí."
+  },
+  {
+    "id": "2.012",
+    "text": "V logike nie je nič náhodné: ak sa vec môže v určitom stave vecí vyskytovať, tak táto možnosť stavu vecí už musí byť v tejto veci prejudikovaná."
+  },
+  {
+    "id": "2.0121",
+    "text": "Javilo sa by sa to takpovediac ako náhoda, ak by vec, ktorá by mohla existovať sama pre seba, dodatočne zapadala do nejakej situácie. Ak sa veci môžu vyskytovať v stavoch vecí, tak to musí tkvieť už v nich. (Niečo logické nemôže byť iba možné. Logika sa zaoberá každou možnosťou a všetky možnosti sú jej fakty.) Ako si priestorové predmety vôbec nemôžeme myslieť mimo priestoru, časové mimo času, tak si nijaký predmet nemôžeme myslieť mimo možnosti jeho spojenia s inými predmetmi. Ak si predmet môžem myslieť vo väzbe určitého stavu vecí, tak ho nemôžem myslieť mimo možnosti tejto väzby."
+  },
+  {
+    "id": "2.0122",
+    "text": "Vec je samostatná, pokiaľ sa môže vyskytovať vo všetkých možných situáciách; no táto forma samostatnosti je formou spätosti so stavom vecí, formou nesamostatnosti. (Je nemožné, aby slová vystupovali dvoma odlišnými spôsobmi, osamote a vo vete.)"
+  },
+  {
+    "id": "2.0123",
+    "text": "Ak poznám predmet, tak poznám tiež všetky možnosti jeho výskytu v stavoch vecí. (Každá takáto možnosť musí tkvieť v povahe predmetu.) Nemožno dodatočne nájsť nejakú novú možnosť."
+  },
+  {
+    "id": "2.01231",
+    "text": "Aby som predmet poznal, nemusím síce poznať jeho externé vlastnosti - musím však poznať všetky jeho interné vlastnosti."
+  },
+  {
+    "id": "2.0124",
+    "text": "Ak sú dané všetky predmety, tak sú tým dané tiež všetky možné stavy vecí."
+  },
+  {
+    "id": "2.013",
+    "text": "Každá vec je akoby v priestore možných stavov vecí. Tento priestor si môžem myslieť prázdny, nie však vec bez tohto priestoru."
+  },
+  {
+    "id": "2.0131",
+    "text": "Priestorový predmet musí ležať v nekonečnom priestore. (Priestorový bod je miestom pre argument.)"
+  },
+  {
+    "id": "2.014",
+    "text": "Predmety obsahujú možnosť všetkých situácií."
+  },
+  {
+    "id": "2.0141",
+    "text": "Možnosť jeho výskytu v stavoch vecí je formou predmetu."
+  },
+  {
+    "id": "2.02",
+    "text": "Predmet je jednoduchý."
+  },
+  {
+    "id": "2.0201",
+    "text": "Každá výpoveď o komplexoch sa dá rozložiť na výpoveď o ich súčastiach a na tie vety, ktoré komplexy úplne opisujú."
+  },
+  {
+    "id": "2.021",
+    "text": "Predmety tvoria substanciu sveta. Preto nemôžu byť zložené."
+  },
+  {
+    "id": "2.0211",
+    "text": "Ak by svet nemal nijakú substanciu, tak by to, či má veta zmysel, záviselo od toho, či je pravdivá nejaká iná veta."
+  },
+  {
+    "id": "2.0212",
+    "text": "Bolo by potom nemožné načrtnúť nejaký obraz sveta (pravdivý alebo nepravdivý)."
+  },
+  {
+    "id": "2.022",
+    "text": "Je zrejmé, že aj svet, ktorý je myslený akokoľvek odlišne od skutočného sveta, musí mať so skutočným svetom niečo spoločné - formu."
+  },
+  {
+    "id": "2.023",
+    "text": "Táto pevná forma pozostáva práve z predmetov."
+  },
+  {
+    "id": "2.0231",
+    "text": "Substancia sveta môže určovať len formu, a nie materiálne vlastnosti. Pretože tieto vlastnosti reprezentujú až vety - tvorí ich až konfigurácia predmetov."
+  },
+  {
+    "id": "2.0232",
+    "text": "Dalo by sa povedať: predmety sú bezfarebné."
+  },
+  {
+    "id": "2.0233",
+    "text": "Dva predmety majúce tú istú logickú formu sa od seba odlišujú  odhliadnuc od ich externých vlastností – len tým, že sú rôzne."
+  },
+  {
+    "id": "2.02331",
+    "text": "Buď vec má vlastnosti, ktoré nemá nijaká iná vec; potom ju jednoducho možno pomocou opisu spomedzi iných vecí vyčleniť a poukázať na ňu. Alebo existuje viacero vecí, ktoré majú všetky svoje vlastnosti spoločné; potom vôbec nemožno ukázať na jednu z nich."
+  },
+  {
+    "id": "2.024",
+    "text": "Substancia je to, čo existuje nezávisle od toho, čo je faktom."
+  },
+  {
+    "id": "2.025",
+    "text": "Je formou a obsahom."
+  },
+  {
+    "id": "2.0251",
+    "text": "Priestor, čas a farba (farebnosť) sú formami predmetov."
+  },
+  {
+    "id": "2.026",
+    "text": "Len ak existujú predmety, môže existovať pevná forma sveta."
+  },
+  {
+    "id": "2.027",
+    "text": "To pevné, trvalé a predmet sú jedno."
+  },
+  {
+    "id": "2.0271",
+    "text": "Predmet je to pevné, trvalé; konfigurácia je to premenlivé, nestále."
+  },
+  {
+    "id": "2.0272",
+    "text": "Konfigurácia predmetov tvorí stav vecí."
+  },
+  {
+    "id": "2.03",
+    "text": "V stave vecí predmety väzia jeden v druhom ako články reťaze."
+  },
+  {
+    "id": "2.031",
+    "text": "V stave vecí sa predmety majú k sebe navzájom určitým spôsobom."
+  },
+  {
+    "id": "2.032",
+    "text": "Spôsob, akým sú predmety v stave vecí späté, je štruktúrou stavu vecí."
+  },
+  {
+    "id": "2.033",
+    "text": "Forma je možnosť štruktúry."
+  },
+  {
+    "id": "2.034",
+    "text": "Štruktúra faktu pozostáva zo štruktúr stavov vecí."
+  },
+  {
+    "id": "2.04",
+    "text": "Súhrn existujúcich stavov vecí je svet."
+  },
+  {
+    "id": "2.05",
+    "text": "Súhrn existujúcich stavov vecí určuje tiež to, ktoré stavy vecí neexistujú."
+  },
+  {
+    "id": "2.06",
+    "text": "Existencia a neexistencia stavov vecí je skutočnosť. (Existenciu stavov vecí nazývame tiež pozitívnym faktom, ich neexistenciu negatívnym faktom.)"
+  },
+  {
+    "id": "2.061",
+    "text": "Stavy vecí sú od seba nezávislé."
+  },
+  {
+    "id": "2.062",
+    "text": "Z existencie alebo neexistencie nejakého stavu vecí nemožno usúdiť na existenciu alebo neexistenciu iného stavu vecí."
+  },
+  {
+    "id": "2.063",
+    "text": "Súhrnná skutočnosť je svet."
+  },
+  {
+    "id": "2.1",
+    "text": "Robíme si obrazy faktov."
+  },
+  {
+    "id": "2.11",
+    "text": "Obraz predstavuje situáciu v logickom priestore, existenciu a neexistenciu stavov vecí."
+  },
+  {
+    "id": "2.12",
+    "text": "Obraz je modelom skutočnosti."
+  },
+  {
+    "id": "2.13",
+    "text": "Predmetom zodpovedajú v obraze elementy obrazu."
+  },
+  {
+    "id": "2.131",
+    "text": "Elementy obrazu zastupujú v obraze predmety."
+  },
+  {
+    "id": "2.14",
+    "text": "Obraz spočíva v tom, že sa jeho elementy majú k sebe určitým spôsobom."
+  },
+  {
+    "id": "2.141",
+    "text": "Obraz je fakt."
+  },
+  {
+    "id": "2.15",
+    "text": "To, že sa elementy obrazu majú k sebe určitým spôsobom, predstavuje, že sa tak majú k sebe veci. Túto spätosť elementov obrazu nazvime jeho štruktúrou a možnosť tejto štruktúry jeho formou zobrazenia."
+  },
+  {
+    "id": "2.151",
+    "text": "Forma zobrazenia je možnosť, že sa veci majú k sebe tak ako elementy obrazu."
+  },
+  {
+    "id": "2.1511",
+    "text": "Obraz je takto spätý so skutočnosťou; siaha až k nej."
+  },
+  {
+    "id": "2.1512",
+    "text": "Je priložený ku skutočnosti ako meradlo."
+  },
+  {
+    "id": "2.15121",
+    "text": "Len najkrajnejšie body rysiek na stupnici sa dotýkajú meraného predmetu."
+  },
+  {
+    "id": "2.1513",
+    "text": "Podľa tohto chápania patrí teda k obrazu ešte aj zobrazujúci vzťah, ktorý ho robí obrazom."
+  },
+  {
+    "id": "2.1514",
+    "text": "Zobrazujúci vzťah pozostáva z priradení elementov obrazu a vecí."
+  },
+  {
+    "id": "2.1515",
+    "text": "Tieto priradenia sú akoby tykadlami elementov obrazu, ktorými sa obraz dotýka skutočnosti."
+  },
+  {
+    "id": "2.16",
+    "text": "Aby bol fakt obrazom, musí mať so zobrazeným niečo spoločné."
+  },
+  {
+    "id": "2.161",
+    "text": "V obraze a zobrazenom musí byť niečo identické, aby jedno vôbec mohlo byť obrazom druhého."
+  },
+  {
+    "id": "2.17",
+    "text": "To, čo obraz musí mať spoločné so skutočnosťou, aby ju mohol svojím spôsobom - správne alebo nesprávne - zobrazovať, je jeho forma zobrazenia."
+  },
+  {
+    "id": "2.171",
+    "text": "Obraz môže zobrazovať každú skutočnosť, ktorej formu má. Priestorový obraz všetko priestorové, farebný obraz všetko farebné, atď."
+  },
+  {
+    "id": "2.172",
+    "text": "Svoju formu zobrazenia však obraz nemôže zobraziť; ukazuje ju."
+  },
+  {
+    "id": "2.173",
+    "text": "Obraz reprezentuje svoj objekt zvonku (jeho stanoviskom je jeho forma reprezentácie), preto obraz reprezentuje svoj objekt správne alebo nesprávne."
+  },
+  {
+    "id": "2.174",
+    "text": "Obraz sa však nemôže postaviť mimo svojej formy reprezentácie."
+  },
+  {
+    "id": "2.18",
+    "text": "To, čo musí mať každý obraz, nech je akejkoľvek formy, spoločné so skutočnosťou, aby ju vôbec mohol - správne alebo nesprávne - zobrazovať, je logická forma, to jest, forma skutočnosti."
+  },
+  {
+    "id": "2.181",
+    "text": "Ak je formou zobrazenia logická forma, tak sa obraz nazýva logickým obrazom."
+  },
+  {
+    "id": "2.182",
+    "text": "Každý obraz je tiež logickým obrazom. (Naproti tomu nie každý obraz je napr. priestorovým obrazom.)"
+  },
+  {
+    "id": "2.19",
+    "text": "Logický obraz môže zobrazovať svet."
+  },
+  {
+    "id": "2.2",
+    "text": "Obraz má so zobrazeným spoločnú logickú formu zobrazenia."
+  },
+  {
+    "id": "2.201",
+    "text": "Obraz zobrazuje skutočnosť tým, že reprezentuje možnosť existencie a neexistencie stavov vecí."
+  },
+  {
+    "id": "2.202",
+    "text": "Obraz reprezentuje možnú situáciu v logickom priestore."
+  },
+  {
+    "id": "2.203",
+    "text": "Obraz obsahuje možnosť situácie, ktorú reprezentuje."
+  },
+  {
+    "id": "2.21",
+    "text": "Obraz sa so skutočnosťou zhoduje alebo nezhoduje; je správny alebo nesprávny, pravdivý alebo nepravdivý."
+  },
+  {
+    "id": "2.22",
+    "text": "Obraz reprezentuje to, čo reprezentuje, nezávisle od svojej pravdivosti alebo nepravdivosti, prostredníctvom formy zobrazenia."
+  },
+  {
+    "id": "2.221",
+    "text": "Čo obraz reprezentuje, je jeho zmysel."
+  },
+  {
+    "id": "2.222",
+    "text": "V zhode alebo nezhode jeho zmyslu so skutočnosťou spočíva jeho pravdivosť alebo nepravdivosť."
+  },
+  {
+    "id": "2.223",
+    "text": "Aby sme zistili, či je obraz pravdivý alebo nepravdivý, musíme ho porovnať so skutočnosťou."
+  },
+  {
+    "id": "2.224",
+    "text": "Z obrazu samého nemožno poznať, či je pravdivý alebo nepravdivý."
+  },
+  {
+    "id": "2.225",
+    "text": "A priori pravdivý obraz neexistuje."
+  },
+  {
+    "id": "3",
+    "text": "Logický obraz faktov je myšlienka."
+  },
+  {
+    "id": "3.001",
+    "text": "„Istý stav vecí je mysliteľný“ znamená: môžeme si o ňom urobiť obraz."
+  },
+  {
+    "id": "3.01",
+    "text": "Súhrn pravdivých myšlienok je obrazom sveta."
+  },
+  {
+    "id": "3.02",
+    "text": "Myšlienka obsahuje možnosť situácie, ktorú myslí. Čo je mysliteľné, je tiež možné."
+  },
+  {
+    "id": "3.03",
+    "text": "Nemôžeme myslieť nič alogické, pretože inak by sme museli myslieť alogicky."
+  },
+  {
+    "id": "3.031",
+    "text": "Kedysi sa hovorilo, že Boh vraj môže stvoriť všetko, len nie to, čo by bolo v rozpore s logickými zákonmi. - O „alogickom“ svete by sme totiž nemohli povedať, ako by vyzeral."
+  },
+  {
+    "id": "3.032",
+    "text": "Niečo protirečiace logike možno v jazyku reprezentovať práve tak málo, ako možno v geometrii obrazec protirečiaci zákonom priestoru reprezentovať pomocou jeho súradníc; alebo udať súradnice bodu, ktorý neexistuje."
+  },
+  {
+    "id": "3.0321",
+    "text": "Môžeme priestorovo reprezentovať stav vecí, ktorý by odporoval zákonom fyziky, nie však stav vecí, ktorý by odporoval zákonom geometrie."
+  },
+  {
+    "id": "3.04",
+    "text": "A priori pravdivá by bola taká myšlienka, ktorej možnosť by zaručovala jej pravdivosť."
+  },
+  {
+    "id": "3.05",
+    "text": "Len tak by sme mohli vedieť a priori, že nejaká myšlienka je pravdivá, ak by sa z myšlienky samej (bez toho, že by sme ju s niečím porovnali) dala poznať jej pravdivosť."
+  },
+  {
+    "id": "3.1",
+    "text": "Vo vete sa myšlienka vyjadruje zmyslovo vnímateľným spôsobom."
+  },
+  {
+    "id": "3.11",
+    "text": "Používame zmyslovo vnímateľný znak (zvukový alebo písomný znak atď.) vety ako projekciu možnej situácie. Metóda projekcie je myslenie zmyslu vety."
+  },
+  {
+    "id": "3.12",
+    "text": "Znak, pomocou ktorého vyjadrujeme myšlienku, nazývam vetným znakom. A veta je vetný znak vo svojom projektívnom vzťahu k svetu."
+  },
+  {
+    "id": "3.13",
+    "text": "K vete patrí všetko, čo patrí k projekcii; nie však to, čo je projikované. Teda možnosť projikovaného, nie však toto samo. Vo vete teda ešte nie je obsiahnutý jej zmysel, zaiste však možnosť vyjadriť ho. („Obsah vety“ znamená obsah zmysluplnej vety.) Vo vete je obsiahnutá forma jej zmyslu, nie však jeho obsah."
+  },
+  {
+    "id": "3.14",
+    "text": "Vetný znak spočíva v tom, že sa v ňom jeho elementy, slová, majú k sebe určitým spôsobom."
+  },
+  {
+    "id": "3.141",
+    "text": "Vetný znak je fakt."
+  },
+  {
+    "id": "3.142",
+    "text": "Veta nie je zmes slov. - (Ako hudobná téma nie je zmes tónov.) Veta je artikulovaná."
+  },
+  {
+    "id": "3.143",
+    "text": "Len fakty môžu vyjadrovať zmysel, trieda mien ho vyjadrovať nemôže."
+  },
+  {
+    "id": "3.1431",
+    "text": "Podstata vetného znaku sa veľmi vyjasní, keď si ho, namiesto z písomných znakov, myslíme zložený z priestorových predmetov (povedzme stolov, stoličiek, kníh). Vzájomná priestorová poloha týchto vecí potom vyjadruje zmysel vety."
+  },
+  {
+    "id": "3.1432",
+    "text": "Nie: „zložený znak 'aRb' hovorí, že a je vo vzťahu R k b“, ale: to, že „a“ je v istom vzťahu k „b“, hovorí, že aRb."
+  },
+  {
+    "id": "3.144",
+    "text": "Situácie možno opisovať, nie pomenúvať. (Mená sa podobajú bodom, vety šípkam, vety majú zmysel.)"
+  },
+  {
+    "id": "3.2",
+    "text": "Vo vete môže byť myšlienka vyjadrená tak, že predmetom myšlienky zodpovedajú elementy vetného znaku."
+  },
+  {
+    "id": "3.201",
+    "text": "Tieto elementy nazývam „jednoduché znaky“ a takúto vetu „úplne analyzovaná“."
+  },
+  {
+    "id": "3.202",
+    "text": "Jednoduché znaky použité vo vete sa nazývajú mená."
+  },
+  {
+    "id": "3.203",
+    "text": "Meno znamená predmet. Predmet je jeho významom. („A“ je ten istý znak ako „A“.)"
+  },
+  {
+    "id": "3.21",
+    "text": "Konfigurácii jednoduchých znakov vo vetnom znaku zodpovedá konfigurácia predmetov v situácii."
+  },
+  {
+    "id": "3.22",
+    "text": "Meno zastupuje vo vete predmet."
+  },
+  {
+    "id": "3.221",
+    "text": "Predmety môžem len menovať. Znaky ich zastupujú. Môžem o nich len hovoriť, vysloviť ich nemôžem. Veta môže hovoriť len to, ako nejaká vec je, nie čo je."
+  },
+  {
+    "id": "3.23",
+    "text": "Požiadavka možnosti jednoduchých znakov je požiadavkou určitosti zmyslu."
+  },
+  {
+    "id": "3.24",
+    "text": "Veta, ktorá hovorí o komplexe, je v internom vzťahu k vete, ktorá hovorí o jeho súčastiach. Komplex môže byť daný len svojim opisom a tento bude súhlasiť alebo nesúhlasiť. Veta, v ktorej je reč o komplexe, nebude, ak tento neexistuje, nezmyselná, ale jednoducho nepravdivá. To, že prvok vety označuje komplex, možno vidieť z neurčitosti vo vetách, v ktorých sa vyskytuje. Vieme, že touto vetou ešte nie je všetko určené. (Veď notácia pre všeobecnosť obsahuje pravzor.) Zhrnutie symbolu komplexu do jednoduchého symbolu možno vyjadriť definíciou."
+  },
+  {
+    "id": "3.25",
+    "text": "Existuje jedna a len jedna úplná analýza vety."
+  },
+  {
+    "id": "3.251",
+    "text": "Veta vyjadruje určitým, jasne udateľným spôsobom to, čo vyjadruje: veta je artikulovaná."
+  },
+  {
+    "id": "3.26",
+    "text": "Meno nemožno nijakou definíciou ďalej rozložiť: je to základný znak."
+  },
+  {
+    "id": "3.261",
+    "text": "Každý definovaný znak označuje cez tie znaky, pomocou ktorých bol definovaný; a definície ukazujú cestu. Dva znaky, základný znak a znak definovaný pomocou základných znakov, nemôžu označovať tým istým spôsobom. Mená nemožno rozložiť pomocou definícií. (Nemožno tak urobiť s nijakým znakom, ktorý má význam sám, samostatne.)"
+  },
+  {
+    "id": "3.262",
+    "text": "Čo sa v znakoch nevyjadruje, to ukazuje ich použitie. Čo znaky zamlčujú, to vypovedá ich použitie."
+  },
+  {
+    "id": "3.263",
+    "text": "Významy základných znakov možno vysvetliť pomocou objasnení. Objasnenia sú vety, ktoré obsahujú základné znaky. Možno im teda rozumieť len vtedy, keď sú významy týchto znakov už známe."
+  },
+  {
+    "id": "3.3",
+    "text": "Len veta má zmysel; len v kontexte vety má meno význam."
+  },
+  {
+    "id": "3.31",
+    "text": "Každú časť vety, ktorá charakterizuje jej zmysel, nazývam výrazom (symbolom). (Veta sama je výrazom.) Výraz je všetko pre zmysel vety podstatné, čo môžu mať vety navzájom spoločné. Výraz vyznačuje formu a obsah."
+  },
+  {
+    "id": "3.311",
+    "text": "Výraz predpokladá formy všetkých viet, v ktorých sa môže vyskytovať. Je spoločným charakteristickým rysom istej triedy viet."
+  },
+  {
+    "id": "3.312",
+    "text": "Je teda reprezentovaný všeobecnou formou viet, ktoré charakterizuje. A to tak, že v tejto forme bude výraz konštantný a všetko ostatné premenné."
+  },
+  {
+    "id": "3.313",
+    "text": "Výraz je teda reprezentovaný premennou, ktorej hodnotami sú vety, ktoré tento výraz obsahujú. (V hraničnom prípade sa premenná stáva konštantou, výraz vetou.) Takúto premennú nazývam „vetná premenná“."
+  },
+  {
+    "id": "3.314",
+    "text": "Výraz má význam len vo vete. Každá premenná sa dá chápať ako vetná premenná. (Tiež premenné meno.)"
+  },
+  {
+    "id": "3.315",
+    "text": "Ak zmeníme nejakú súčasť vety na premennú, tak existuje trieda viet, ktoré všetky sú hodnotami takto vzniknutej premennej vety. Táto trieda závisí vo všeobecnosti ešte od toho, čo mienime, podľa ľubovoľnej dohody, časťami onej vety."
+  },
+  {
+    "id": "3.316",
+    "text": "Ak však všetky znaky, ktorých význam bol určený ľubovoľne, zmeníme na premenné, tak tu ešte stále existuje takáto trieda. Táto však teraz nie je závislá od nijakej dohody, ale už len od povahy vety. Zodpovedá logickej forme - logickému pravzoru."
+  },
+  {
+    "id": "3.317",
+    "text": "To, ktoré hodnoty smie vetná premenná nadobudnúť, sa stanovuje. Stanovenie týchto hodnôt je premenná. Stanovenie hodnôt vetnej premennej je udanie tých viet, ktorých spoločným rysom je táto premenná. Toto stanovenie je opisom týchto viet. Toto stanovenie bude teda hovoriť iba o symboloch, nie o ich význame. A pre toto stanovenie je podstatné len to, že je iba opisom symbolov a nič nevypovedá o označenom. To, ako sa opis viet udeje, je nepodstatné."
+  },
+  {
+    "id": "3.318",
+    "text": "Vetu chápem - ako Frege a Russell - ako funkciu výrazov, ktoré sú v nej obsiahnuté."
+  },
+  {
+    "id": "3.32",
+    "text": "Znak je to, čo je na symbole zmyslovo vnímateľné."
+  },
+  {
+    "id": "3.321",
+    "text": "Dva odlišné symboly teda môžu mať navzájom spoločný znak (písomný znak alebo znak pre hlásku atď.)  potom označujú odlišnými spôsobmi."
+  },
+  {
+    "id": "3.322",
+    "text": "Spoločný rys dvoch predmetov nikdy nemôže naznačovať to, že ich označujeme pomocou toho istého znaku, no dvoma odlišnými spôsobmi označenia. Lebo znak je predsa ľubovoľný. Mohli by sme teda zvoliť tiež dva odlišné znaky, a kde by potom ostalo to spoločné v označení?"
+  },
+  {
+    "id": "3.323",
+    "text": "V bežnom jazyku sa veľmi často stáva, že to isté slovo označuje odlišnými spôsobmi - teda prináleží odlišným symbolom, alebo, že dve slová, ktoré označujú odlišnými spôsobmi, sa vo vete použijú navonok tým istým spôsobom. Tak vystupuje slovo „je“ ako kopula, ako znak totožnosti a ako výraz existencie; „existovať“ ako neprechodné sloveso ako napr. „ísť“; „identický“ ako prídavné meno; hovoríme o niečom, ale aj o tom, že sa niečo deje. (Vo vete „Zelený je zelený“ - kde prvé slovo je osobné meno, posledné slovo prídavné meno - nemajú tieto slová jednoducho odlišný význam, ale sú to odlišné symboly.)"
+  },
+  {
+    "id": "3.324",
+    "text": "Tak ľahko vznikajú najfundamentálnejšie zámeny (ktorých je plná celá filozofia)."
+  },
+  {
+    "id": "3.325",
+    "text": "Aby sme sa vyhli týmto omylom, musíme používať znakový jazyk, ktorý ich vylučuje tým, že nepoužíva ten istý znak v odlišných symboloch, a znaky, ktoré označujú odlišným spôsobom, nepoužíva navonok tým istým spôsobom. Teda znakový jazyk, ktorý poslúcha logickú gramatiku - logickú syntax. (Fregeho a Russellovo pojmové písmo je takýmto jazykom, ktorý však ešte nevylučuje všetky chyby.)"
+  },
+  {
+    "id": "3.326",
+    "text": "Aby sme na znaku poznali symbol, musíme si všímať jeho zmysluplné používanie."
+  },
+  {
+    "id": "3.327",
+    "text": "Znak určuje logickú formu až spolu so svojím logicko-syntaktickým použitím."
+  },
+  {
+    "id": "3.328",
+    "text": "Ak sa znak nepoužíva, tak nemá význam. To je zmysel Occamovej devízy. (Ak sa všetko má tak, akoby znak mal význam, potom aj má význam.)"
+  },
+  {
+    "id": "3.33",
+    "text": "V logickej syntaxi nesmie nikdy hrať rolu význam znaku; logická syntax sa musí dať zostaviť bez toho, že by pritom bola reč o význame znaku, smie predpokladať len opis výrazov."
+  },
+  {
+    "id": "3.331",
+    "text": "Z hľadiska tejto poznámky sa pozrieme do Russellovej „Theory of Types“: Russellov omyl sa ukazuje v tom, že pri zostavovaní pravidiel pre znaky musel hovoriť o význame znakov."
+  },
+  {
+    "id": "3.332",
+    "text": "Nijaká veta nemôže vypovedať niečo o sebe samej, pretože vetný znak nemôže byť obsiahnutý v sebe samom (to je celá „Theory of Types“)."
+  },
+  {
+    "id": "3.333",
+    "text": "Funkcia nemôže byť svojím vlastným argumentom preto, lebo znak pre funkciu už obsahuje pravzor svojho argumentu a nemôže obsahovať sám seba. Predpokladajme totiž, že funkcia F(fx) by mohla byť svojím vlastným argumentom; potom by teda existovala veta: „F(F(fx))“ a v tejto vete musia mať vonkajšia funkcia F a vnútorná funkcia F odlišné významy, pretože vnútorná má formu φ(fx), vonkajšia formu Ψ(φ(fx)). Spoločné je pre obidve funkcie iba písmeno „F“, ktoré však samo nič neoznačuje. To bude zaraz jasné, ak namiesto „F(Fu)“ napíšeme „(∃φ):F(φu) . φu=Fu“. Týmto je vybavený Russellov paradox."
+  },
+  {
+    "id": "3.334",
+    "text": "Pravidlá logickej syntaxe sa musia rozumieť samy sebou, ak len vieme, ako každý znak označuje."
+  },
+  {
+    "id": "3.34",
+    "text": "Veta má podstatné a náhodné črty. Náhodné sú tie črty, ktoré pochádzajú z osobitého spôsobu vytvorenia vetného znaku. Podstatné sú tie, ktoré výlučne uspôsobujú vetu na to, aby vyjadrovala svoj zmysel."
+  },
+  {
+    "id": "3.341",
+    "text": "Podstatné na vete je teda to, čo je spoločné pre všetky vety, ktoré môžu vyjadrovať ten istý zmysel. A práve tak je všeobecne na symbole podstatné to, čo majú spoločné všetky symboly, ktoré môžu spĺňať ten istý účel."
+  },
+  {
+    "id": "3.3411",
+    "text": "Mohli by sme teda povedať: pravé meno je to, čo majú spoločné všetky symboly, ktoré označujú predmet. Tak by postupne vyplynulo, že nijaké zloženie nie je pre meno podstatné."
+  },
+  {
+    "id": "3.342",
+    "text": "Na našich notáciách je síce niečo ľubovoľné, ale toto ľubovoľné nie je: ak sme niečo ľubovoľne určili, potom niečo iné byť musí. (Toto závisí od podstaty notácie.)"
+  },
+  {
+    "id": "3.3421",
+    "text": "Konkrétny spôsob označovania môže byť nedôležitý, vždy je však dôležité, že je to možný spôsob označovania. A tak je to vo filozofii vôbec: jednotlivé sa vždy znovu ukazuje ako nedôležité, ale možnosť každého jednotlivého nám odhaľuje niečo z podstaty sveta."
+  },
+  {
+    "id": "3.343",
+    "text": "Definície sú pravidlá prekladania z jedného jazyka do iného jazyka. Každý správny znakový jazyk sa musí dať preložiť do každého iného podľa takýchto pravidiel: toto je to, čo majú všetky spoločné."
+  },
+  {
+    "id": "3.344",
+    "text": "To, čo na symbole označuje, je to, čo je spoločné pre všetky tie symboly, ktorými ho možno podľa pravidiel logickej syntaxe nahradiť."
+  },
+  {
+    "id": "3.3441",
+    "text": "Napr. to spoločné pre všetky notácie pravdivostných funkcií môžeme vyjadriť takto: je pre ne spoločné, že sa všetky dajú nahradiť - napr. notáciou „~p“ („nie p“) a „pvq“ („p alebo q“). (Tým je vyznačený spôsob, ako nám špeciálna možná notácia môže odhaliť niečo všeobecné.)"
+  },
+  {
+    "id": "3.3442",
+    "text": "Znak komplexu sa ani pri analýze nerozkladá ľubovoľne, takže by azda bol jeho rozklad v každej vete iný."
+  },
+  {
+    "id": "3.4",
+    "text": "Veta určuje miesto v logickom priestore. Existencia tohto logického miesta je zaručená výlučne existenciou súčastí, existenciou zmysluplnej vety."
+  },
+  {
+    "id": "3.41",
+    "text": "Vetný znak a logické súradnice: to je logické miesto."
+  },
+  {
+    "id": "3.411",
+    "text": "Geometrické a logické miesto sa zhodujú v tom, že obidve sú možnosťou existencie."
+  },
+  {
+    "id": "3.42",
+    "text": "Hoci veta môže určovať len jedno miesto logického priestoru, predsa už ňou musí byť daný celý logický priestor. (Inak by sa negáciou, logickým súčtom, logickým súčinom, atď. zavádzali - v koordinácii - stále nové elementy.) (Logické lešenie okolo obrazu určuje logický priestor. Veta preniká celým logickým priestorom.)"
+  },
+  {
+    "id": "3.5",
+    "text": "Použitý, myslený, vetný znak je myšlienka."
+  },
+  {
+    "id": "4",
+    "text": "Myšlienka je zmysluplná veta."
+  },
+  {
+    "id": "4.001",
+    "text": "Súhrn viet je jazyk."
+  },
+  {
+    "id": "4.002",
+    "text": "Človek má schopnosť budovať jazyky, pomocou ktorých sa dá vyjadriť každý zmysel, bez toho, že by mal tušenie o tom, ako a čo každé slovo znamená. - Tak, ako tiež hovorí bez toho, že by vedel, ako sa vytvárajú jednotlivé hlásky. Bežný jazyk je časťou ľudského organizmu a je nemenej komplikovaný ako tento organizmus. Pre človeka je nemožné vyčítať z neho logiku jazyka bezprostredne. Jazyk myšlienku zahaľuje. A to tak, že podľa vonkajšej formy šatu nemožno usúdiť na formu ošatenej myšlienky; pretože vonkajšia forma šatu je vytvorená na celkom iné účely ako na to, aby sa z nej dala poznať forma tela. Tiché dohody na porozumenie bežnému jazyku sú nesmierne komplikované."
+  },
+  {
+    "id": "4.003",
+    "text": "Väčšina viet a otázok, ktoré boli napísané o filozofických veciach, nie je nepravdivá, ale nezmyselná. Preto otázky tohto druhu nemôžeme vôbec zodpovedať, ale len zistiť ich nezmyselnosť. Väčšina otázok a viet filozofov spočíva na tom, že nerozumieme logike nášho jazyka. (Sú takého druhu ako otázka, či je dobro viac alebo menej identické ako krásno.) A niet sa čo diviť, že najhlbšie problémy nie sú vlastne nijakými problémami."
+  },
+  {
+    "id": "4.0031",
+    "text": "Celá filozofia je „kritikou jazyka“. (Nie však v Mauthnerovom zmysle.) Je Russellovou zásluhou, že ukázal, že zdanlivá logická forma vety nemusí byť jej skutočnou logickou formou."
+  },
+  {
+    "id": "4.01",
+    "text": "Veta je obrazom skutočnosti. Veta je modelom skutočnosti, tak ako si ju myslíme."
+  },
+  {
+    "id": "4.011",
+    "text": "Na prvý pohľad sa veta ako je povedzme vytlačená na papieri - nezdá obrazom skutočnosti, o ktorej hovorí. No ani notové písmo sa na prvý pohľad nezdá obrazom hudby, ani naše písmo zo znakov pre hlásky (písmenové písmo) obrazom nášho hláskového jazyka. A predsa sa tieto znakové jazyky preukazujú ako obrazy - aj v obvyklom zmysle slova - toho, čo reprezentujú."
+  },
+  {
+    "id": "4.012",
+    "text": "Je zrejmé, že vetu, ktorá má formu „aRb“, vnímame ako obraz. Znak je tu zjavne pripodobnením označeného."
+  },
+  {
+    "id": "4.013",
+    "text": "A ak vnikneme do podstaty tejto obrazovosti, tak uvidíme, že zdanlivé nepravidelnosti (ako používanie # a b v notovom písme) ju nenarúšajú. Lebo aj tieto nepravidelnosti zobrazujú to, čo majú vyjadrovať; lenže iným spôsobom."
+  },
+  {
+    "id": "4.014",
+    "text": "Gramofónová platňa, hudobná myšlienka, notové písmo, zvukové vlny sú všetky navzájom v tom zobrazujúcom internom vzťahu, ktorý existuje medzi jazykom a svetom. Všetkým je spoločná logická stavba. (Ako v rozprávke dvaja mládenci, ich dva kone a ich ľalie. To všetko je v istom zmysle jedným.)"
+  },
+  {
+    "id": "4.0141",
+    "text": "Práve v tom, že existuje všeobecné pravidlo, pomocou ktorého môže hudobník z partitúry vyčítať symfóniu, pomocou ktorého možno z drážky na gramofónovej platni odvodiť symfóniu a podľa toho prvého pravidla opäť partitúru, spočíva vnútorná podobnosť týchto zdanlivo tak úplne odlišných útvarov. A tým pravidlom je zákon projekcie, ktorý symfóniu projikuje do notového jazyka. Je to pravidlo prekladania notového jazyka do jazyka gramofónovej platne."
+  },
+  {
+    "id": "4.015",
+    "text": "Možnosť všetkých pripodobnení, celej obrazovosti nášho spôsobu vyjadrovania spočíva v logike zobrazenia."
+  },
+  {
+    "id": "4.016",
+    "text": "Aby sme porozumeli podstate vety, pomyslime na hieroglyfické písmo, ktoré zobrazuje fakty, ktoré opisuje. A z neho sa vyvinulo písmenové písmo bez toho, že by stratilo to, čo je podstatné pre zobrazovanie."
+  },
+  {
+    "id": "4.02",
+    "text": "To vidíme z toho, že zmyslu vetného znaku rozumieme bez toho, že by nám bol vysvetlený."
+  },
+  {
+    "id": "4.021",
+    "text": "Veta je obrazom skutočnosti: pretože, ak vete rozumiem, tak poznám situáciu, ktorú reprezentuje. A vete rozumiem bez toho, že by mi bol jej zmysel vysvetlený."
+  },
+  {
+    "id": "4.022",
+    "text": "Veta ukazuje svoj zmysel. Veta ukazuje, ako sa to má, ak je pravdivá. A hovorí, že sa to takto má."
+  },
+  {
+    "id": "4.023",
+    "text": "Skutočnosť musí byť vetou fixovaná na áno alebo nie. Na to ju veta musí opisovať úplne. Veta je opisom stavu vecí. Ako opis opisuje predmet podľa jeho externých vlastností, tak veta opisuje skutočnosť podľa jej interných vlastností."
+  },
+  {
+    "id": "4.024",
+    "text": "Rozumieť vete znamená vedieť, čo je faktom, ak je pravdivá. (Možno jej teda rozumieť bez toho, že by sme vedeli, či je pravdivá.) Rozumieme jej, ak rozumieme jej súčastiam."
+  },
+  {
+    "id": "4.025",
+    "text": "Prekladanie jedného jazyka do druhého jazyka sa nedeje tak, že sa každá veta jedného jazyka preloží do vety druhého jazyka, ale prekladajú sa iba súčasti vety. (A slovník prekladá nielen substantíva, ale tiež slovesá, prídavné mená a spojky atď.; a so všetkými zaobchádza rovnako.)"
+  },
+  {
+    "id": "4.026",
+    "text": "Významy jednoduchých znakov (slov) nám musia byť vysvetlené, aby sme im rozumeli. Pomocou viet sa však dorozumievame."
+  },
+  {
+    "id": "4.027",
+    "text": "V podstate vety tkvie, že nám môže zdeliť nový zmysel."
+  },
+  {
+    "id": "4.03",
+    "text": "Veta musí pomocou starých výrazov zdeliť nový zmysel. Veta nám zdeľuje istú situáciu, musí teda s touto situáciou podstatne súvisieť. A tou súvislosťou je práve to, že veta je jej logickým obrazom. Veta niečo vypovedá len potiaľ, pokiaľ je obrazom."
+  },
+  {
+    "id": "4.031",
+    "text": "Vo vete sa akoby pokusne zostavuje istá situácia. Namiesto: táto veta má ten a ten zmysel, možno rovno povedať: táto veta reprezentuje tú a tú situáciu."
+  },
+  {
+    "id": "4.0311",
+    "text": "Jedno meno zastupuje jednu vec, iné meno zastupuje inú vec a navzájom sú spojené; celok tak predstavuje - ako živý obraz - stav vecí."
+  },
+  {
+    "id": "4.0312",
+    "text": "Možnosť vety spočíva na princípe zastúpenia predmetov znakmi."
+  },
+  {
+    "id": "4.032",
+    "text": "Mojou základnou myšlienkou je, že „logické konštanty“ nezastupujú. Že logika faktov sa nedá zastúpiť."
+  },
+  {
+    "id": "4.04",
+    "text": "Veta je obrazom situácie len potiaľ, pokiaľ je logicky členená. (Aj veta: „Ambulo“, je zložená, pretože jej kmeň dáva s inou koncovkou - a jej koncovka s iným kmeňom - iný zmysel.) Na vete sa musí dať rozlíšiť práve toľko, ako na situácii, ktorú reprezentuje."
+  },
+  {
+    "id": "4.041",
+    "text": "Obe musia mať tú istú logickú (matematickú) rozmanitosť. (Porovnaj Hertzovu Mechanik, o dynamických modeloch.) Túto matematickú rozmanitosť už, prirodzene, zobraziť nemožno. Nemožno z nej pri zobrazovaní vystúpiť."
+  },
+  {
+    "id": "4.0411",
+    "text": "Ak by sme chceli napr. to, čo vyjadrujeme pomocou „(x).fx“, vyjadriť pomocou toho, že by sme pred „fx“ dali index - povedzme takto: „Všeob. fx“ - nestačilo by to - nevedeli by sme, čo sa zovšeobecnilo. Ak by sme to chceli naznačiť pomocou indexu „x“ - povedzme takto: „f(x_a)“ - tiež by to nestačilo - nepoznali by sme obor označenia všeobecnosti. Ak by sme sa o to pokúsili zavedením značky na miesta pre argumenty - povedzme takto: „(A,A).F(A,A)“ - nestačilo by to - nevedeli by sme zistiť identitu premenných. Atď. Všetky tieto spôsoby označovania nepostačujú, pretože nemajú nevyhnutnú matematickú rozmanitosť."
+  },
+  {
+    "id": "4.0412",
+    "text": "Z toho istého dôvodu nepostačuje idealistické vysvetlenie videnia priestorových vzťahov pomocou „priestorových okuliarov“, pretože nemôže vysvetliť rozmanitosť týchto vzťahov."
+  },
+  {
+    "id": "4.05",
+    "text": "Skutočnosť sa porovnáva s vetou."
+  },
+  {
+    "id": "4.06",
+    "text": "Veta môže byť pravdivá alebo nepravdivá len preto, že je obrazom skutočnosti."
+  },
+  {
+    "id": "4.061",
+    "text": "Ak si nevšímame, že veta má zmysel, ktorý je nezávislý od faktov, tak sa ľahko môžeme domnievať, že pravdivý a nepravdivý sú rovnoprávne vzťahy medzi znakom a označeným. Mohli by sme potom napr. povedať, že „p“ označuje pravdivým spôsobom to, čo „~p“ nepravdivým spôsobom, atď."
+  },
+  {
+    "id": "4.062",
+    "text": "Nemôžeme sa dorozumievať pomocou nepravdivých viet, ako doteraz pomocou pravdivých - pokiaľ len vieme, že sú mienené nepravdivo? Nie! Pretože veta je pravdivá, ak sa to má tak, ako to pomocou nej hovoríme; a ak pod „p“ mienime „~p“, a ak sa to má tak, ako to mienime, tak „p“ je v tomto novom chápaní pravdivé, a nie nepravdivé."
+  },
+  {
+    "id": "4.0621",
+    "text": "Je však dôležité, že znaky „p“ a „~p“ môžu hovoriť to isté. Pretože to ukazuje, že znaku „~“ v skutočnosti nič nezodpovedá. To, že sa vo vete vyskytuje negácia, nie je ešte rysom jej zmyslu (~~p=p). Vety „p“ a „~p“ majú protikladný zmysel, zodpovedá im však jedna a tá istá skutočnosť."
+  },
+  {
+    "id": "4.063",
+    "text": "Ilustrácia na vysvetlenie pojmu pravdivosti: čierna škvrna na bielom papieri; formu tejto škvrny môžeme opísať tým, že pre každý bod na ploche udáme, či je biely alebo čierny. Faktu, že bod je čierny, zodpovedá pozitívny fakt - faktu, že bod je biely (nie čierny), zodpovedá negatívny fakt. Ak označím nejaký bod na ploche (Fregeho pravdivostnú hodnotu), tak to zodpovedá predpokladu, ktorý sa predkladá na posúdenie, atď. atď."
+  },
+  {
+    "id": "4.064",
+    "text": "Aby som však mohol povedať, že nejaký bod je čierny alebo biely, musím najprv vedieť, kedy sa bod nazýva čiernym a kedy sa nazýva bielym; aby som mohol povedať: „p“ je pravdivé (alebo nepravdivé), musím mať určené, za akých okolností nazývam „p“ pravdivým, a tým určím zmysel tejto vety. Toto prirovnanie pokrivkáva v tomto bode: na bod na papieri môžeme ukázať aj bez toho, že by sme vedeli, čo je biele a čo je čierne; vete bez zmyslu však nezodpovedá vôbec nič, pretože neoznačuje nijakú vec (pravdivostnú hodnotu), ktorej vlastnosti by sa nazývali povedzme „nepravdivá“ alebo „pravdivá“; slovesom vo vete nie je „je pravdivé“ alebo „je nepravdivé“ - ako sa domnieval Frege, ale to, čo „je pravdivé“, musí sloveso už obsahovať."
+  },
+  {
+    "id": "4.0641",
+    "text": "Mohli by sme povedať: negácia sa už vzťahuje na logické miesto, ktoré určuje negovaná veta. Negujúca veta určuje iné logické miesto ako negovaná veta. Negujúca veta určuje logické miesto prostredníctvom logického miesta negovanej vety, a to tak, že túto vetu opisuje ako ležiacu mimo tohto miesta. Už to, že negovanú vetu možno opäť negovať, ukazuje, že to, čo je negované, je už veta, a nie iba príprava na vetu."
+  },
+  {
+    "id": "4.1",
+    "text": "Veta reprezentuje existenciu a neexistenciu stavov vecí."
+  },
+  {
+    "id": "4.11",
+    "text": "Súhrn pravdivých viet je súhrnná prírodná veda (alebo súhrn prírodných vied)."
+  },
+  {
+    "id": "4.111",
+    "text": "Filozofia nie je ani jednou z prírodných vied. (Slovo „filozofia“ musí znamenať čosi, čo stojí nad alebo pod, nie však vedľa prírodných vied.)"
+  },
+  {
+    "id": "4.112",
+    "text": "Účelom filozofie je logické vyjasnenie myšlienok. Filozofia nie je náuka, ale činnosť. Filozofické dielo bytostne pozostáva z objasnení. Výsledkom filozofie nie sú „filozofické vety“, ale to, že sa vety stanú jasnými. Filozofia má myšlienky, ktoré sú inak akoby matné a hmlisté, vyjasniť a ostro ohraničiť."
+  },
+  {
+    "id": "4.1121",
+    "text": "Psychológia nie je filozofii príbuznejšia než ktorákoľvek iná prírodná veda. Teória poznania je filozofia psychológie. Nezodpovedá moje štúdium znakového jazyka štúdiu procesov myslenia, ktoré filozofi pokladali za také podstatné pre filozofiu logiky? Ibaže sa väčšinou zaplietli do nepodstatných psychologických skúmaní a analogické nebezpečenstvo existuje aj pri mojej metóde."
+  },
+  {
+    "id": "4.1122",
+    "text": "Darwinova teória nemá s filozofiou do činenia viac než ktorákoľvek iná hypotéza prírodnej vedy."
+  },
+  {
+    "id": "4.113",
+    "text": "Filozofia ohraničuje diskutabilnú oblasť prírodnej vedy."
+  },
+  {
+    "id": "4.114",
+    "text": "Má ohraničiť mysliteľné a tým aj nemysliteľné. Má nemysliteľné ohraničiť zvnútra prostredníctvom mysliteľného."
+  },
+  {
+    "id": "4.115",
+    "text": "Naznačí nevypovedateľné tým, že jasne predstaví vypovedateľné."
+  },
+  {
+    "id": "4.116",
+    "text": "Všetko, čo vôbec možno myslieť, možno myslieť jasne. Všetko, čo sa dá vypovedať, dá sa vypovedať jasne."
+  },
+  {
+    "id": "4.12",
+    "text": "Veta môže reprezentovať súhrnnú skutočnosť, nemôže však reprezentovať to, čo musí mať so skutočnosťou spoločné, aby ju mohla reprezentovať - logickú formu. Aby sme mohli reprezentovať logickú formu, museli by sme byť schopní postaviť sa s vetou mimo logiku, to znamená mimo sveta."
+  },
+  {
+    "id": "4.121",
+    "text": "Veta logickú formu nemôže reprezentovať, tá sa vo vete zrkadlí. Čo sa v jazyku zrkadlí, nemôže tento reprezentovať. Čo sa v jazyku vyjadruje, nemôžeme my vyjadriť pomocou jazyka. Veta ukazuje logickú formu skutočnosti. Vykazuje ju."
+  },
+  {
+    "id": "4.1211",
+    "text": "Tak veta „fa“ ukazuje, že v jej zmysle sa vyskytuje predmet a, dve vety „fa“ a „ga“ ukazujú, že v oboch je reč o tom istom predmete. Ak si dve vety navzájom protirečia, tak to ukazuje ich štruktúru; rovnako ak jedna vyplýva z druhej. Atď."
+  },
+  {
+    "id": "4.1212",
+    "text": "Čo možno ukázať, nemožno povedať."
+  },
+  {
+    "id": "4.1213",
+    "text": "Teraz tiež rozumieme nášmu pocitu: že naše logické chápanie je správne, len čo v našom znakovom jazyku všetko súhlasí."
+  },
+  {
+    "id": "4.122",
+    "text": "V istom zmysle môžeme hovoriť o formálnych vlastnostiach predmetov a stavov vecí resp. o vlastnostiach štruktúry faktov, a v tom istom zmysle o formálnych reláciách a reláciách štruktúr."
+  },
+  {
+    "id": "4.1221",
+    "text": "(Namiesto vlastnosť štruktúry hovorím tiež „interná vlastnosť“; namiesto relácia štruktúr „interná relácia“. Zavádzam tieto výrazy preto, aby som ukázal dôvod zámeny medzi internými reláciami a vlastnými (externými) reláciami, ktorá je u filozofov veľmi rozšírená.) Existenciu takýchto interných vlastností a relácií však nemožno tvrdiť pomocou viet, ale táto sa ukazuje vo vetách, ktoré reprezentujú oné stavy vecí a ktoré hovoria o oných predmetoch."
+  },
+  {
+    "id": "4.123",
+    "text": "Vlastnosť je interná, ak je nemysliteľné, aby ju jej predmet nemal. (Táto modrá farba a tamtá sú v internej relácii svetlejšia a tmavšia eo ipso. Je nemysliteľné, aby tieto dva predmety v tejto relácii neboli.) (Kolísavému používaniu slov „vlastnosť“ a „relácia“ tu zodpovedá kolísavé používanie slova „predmet“.)"
+  },
+  {
+    "id": "4.124",
+    "text": "Existencia internej vlastnosti možnej situácie sa nevyjadruje prostredníctvom vety, ale sa vyjadruje vo vete - ktorá ju reprezentuje - prostredníctvom internej vlastnosti tejto vety. Bolo by rovnako nezmyselné vete formálnu vlastnosť prisúdiť, ako jej ju uprieť."
+  },
+  {
+    "id": "4.1241",
+    "text": "Formy nemožno od seba rozlíšiť tým, že povieme, že jedna má túto, druhá však onú vlastnosť; pretože to predpokladá, že má zmysel vypovedať obidve vlastnosti o obidvoch formách."
+  },
+  {
+    "id": "4.125",
+    "text": "Existencia internej relácie medzi možnými situáciami sa jazykovo vyjadruje prostredníctvom internej relácie medzi vetami, ktoré ich reprezentujú."
+  },
+  {
+    "id": "4.1251",
+    "text": "Tu sa teda rieši sporná otázka, „či sú všetky relácie interné alebo externé“."
+  },
+  {
+    "id": "4.1252",
+    "text": "Rady, ktoré sú usporiadané pomocou interných relácií, nazývam radmi foriem. Rad čísel nie je usporiadaný podľa externej, ale podľa internej relácie. Rovnako rad viet aRb, (∃x):aRx.xRb, (∃x,y):aRx.xRy.yRb, atď. (Ak je b v jednom z týchto vzťahov s a, tak b nazývam nasledovníkom a.)"
+  },
+  {
+    "id": "4.126",
+    "text": "V tom zmysle, v ktorom hovoríme o formálnych vlastnostiach, môžeme hovoriť aj o formálnych pojmoch. (Zavádzam tento výraz preto, aby som vyjasnil dôvod zámeny formálnych pojmov s vlastnými pojmami, ktorá sa tiahne celou starou logikou.) To, že niečo spadá pod formálny pojem ako jeho predmet, nemožno vyjadriť pomocou vety. Ale toto sa ukazuje na samom znaku tohto predmetu. (Meno ukazuje, že označuje predmet, číslica, že označuje číslo, atď.)"
+  },
+  {
+    "id": "4.127",
+    "text": "Formálne pojmy predsa nemôžu byť – tak ako vlastné pojmy - reprezentované pomocou funkcie. Pretože ich atribúty, formálne vlastnosti, nie sú vyjadrené pomocou funkcií. Výraz formálnej vlastnosti je črtou istých symbolov. Znak atribútov formálneho pojmu je teda charakteristickou črtou všetkých symbolov, ktorých významy spadajú pod tento pojem. Výraz formálneho pojmu, teda vetná premenná, v ktorej je konštantná len táto charakteristická črta. Vetná premenná označuje formálny pojem a jej hodnoty predmety, ktoré pod tento pojem spadajú."
+  },
+  {
+    "id": "4.1271",
+    "text": "Každá premenná je znakom nejakého formálneho pojmu. Pretože každá premenná reprezentuje nejakú konštantnú formu, ktorú majú všetky jej hodnoty a ktorú možno chápať ako formálnu vlastnosť týchto hodnôt."
+  },
+  {
+    "id": "4.1272",
+    "text": "Tak je premenné meno „x“ vlastným znakom zdanlivého pojmu predmet. Kdekoľvek sa slovo „predmet“ („vec“, atď.) používa správne, vyjadruje sa v pojmovom písme pomocou premenného mena. Napríklad vo vete „existujú 2 predmety, ktoré...“ pomocou „(∃x,y)...“. Kdekoľvek sa používa inak, teda ako vlastné pojmové slovo, vznikajú nezmyselné zdanlivé vety. Tak napr. nemožno povedať „existujú predmety“, ako sa povedzme hovorí: „existujú knihy“. A rovnako ani: „existuje 100 predmetov“ alebo „existuje \\aleph_0 predmetov“. A je nezmyselné hovoriť o počte všetkých predmetov. To isté platí o slovách „komplex“, „fakt“, „funkcia“, „číslo“, atď. Všetky označujú formálne pojmy a v pojmovom písme sú reprezentované pomocou premennej, nie pomocou funkcií alebo tried. (Ako sa domnievali Frege a Russell.) Výrazy ako „1 je číslo“, „existuje len jedna nula“ a všetky podobné sú nezmyselné. (Je rovnako nezmyselné povedať: „existuje len jedna 1“, ako by bolo nezmyselné povedať: „2+2 sa o tretej hodine rovná 4“.)"
+  },
+  {
+    "id": "4.12721",
+    "text": "Formálny pojem je daný už s predmetom, ktorý podeň spadá. Predmety formálneho pojmu a formálny pojem sám nemožno teda zaviesť ako základné pojmy. Nemožno teda zaviesť napr. pojem funkcie, a tiež špeciálne funkcie (ako Russell) ako základné pojmy; alebo pojem čísla a určité čísla."
+  },
+  {
+    "id": "4.1273",
+    "text": "Ak chceme všeobecnú vetu: „b je nasledovníkom a“ vyjadriť v pojmovom písme, tak na to potrebujeme výraz pre všeobecný člen radu foriem: aRb, (∃x):aRx.xRb, (∃x,y):aRx.xRy.yRb, ... Všeobecný člen radu foriem možno vyjadriť len pomocou premennej, pretože pojem: člen tohto radu foriem, je formálnym pojmom. (To Frege a Russell prehliadli; spôsob, akým chcú vyjadriť všeobecné vety - ako tú, ktorá je uvedená vyššie - je preto nesprávny; obsahuje circulus vitiosus.) Všeobecný člen radu foriem môžeme určiť tým, že udáme jeho prvý člen a všeobecnú formu operácie, ktorá nasledujúci člen vytvára z predchádzajúcej vety."
+  },
+  {
+    "id": "4.1274",
+    "text": "Otázka o existencii formálneho pojmu je nezmyselná. Pretože nijaká veta nemôže takúto otázku zodpovedať. (Nemožno sa teda napr. pýtať: „Existujú neanalyzovateľné subjekt-predikátové vety?“)"
+  },
+  {
+    "id": "4.128",
+    "text": "Logické formy sú bezčíselné. Preto v logike neexistujú význačné čísla a preto neexistuje filozofický monizmus alebo dualizmus, atď."
+  },
+  {
+    "id": "4.2",
+    "text": "Zmysel vety je jej zhoda a nezhoda s možnosťami existencie a neexistencie stavov vecí."
+  },
+  {
+    "id": "4.21",
+    "text": "Najjednoduchšia veta, elementárna veta, tvrdí existenciu istého stavu vecí."
+  },
+  {
+    "id": "4.211",
+    "text": "Znakom elementárnej vety je to, že nijaká elementárna veta jej nemôže protirečiť."
+  },
+  {
+    "id": "4.22",
+    "text": "Elementárna veta pozostáva z mien. Je spojením, zreťazením mien."
+  },
+  {
+    "id": "4.221",
+    "text": "Je zjavné, že pri analýze viet musíme dospieť k elementárnym vetám, ktoré pozostávajú z mien v bezprostrednom spojení. Tu vyvstáva otázka, ako vzniká vetná väzba."
+  },
+  {
+    "id": "4.2211",
+    "text": "Ak aj je svet tak nekonečne zložitý, že každý fakt pozostáva z nekonečne mnohých stavov vecí a každý stav vecí je zložený z nekonečne mnohých predmetov, aj potom by museli existovať predmety a stavy vecí."
+  },
+  {
+    "id": "4.23",
+    "text": "Meno sa vo vete vyskytuje len v kontexte elementárnej vety."
+  },
+  {
+    "id": "4.24",
+    "text": "Mená sú jednoduché symboly, naznačujem ich pomocou jednotlivých písmen („x“, „y“, „z“). Elementárnu vetu píšem ako funkciu mien vo forme: „fx“, „φ(x,y)“ atď. Alebo ju naznačujem pomocou písmen p, q, r."
+  },
+  {
+    "id": "4.241",
+    "text": "Ak používam dva znaky v jednom a tom istom význame, tak to vyjadrujem tým, že medzi oba kladiem znak „=“. „a=b“ teda znamená: znak „a“ je nahraditeľný znakom „b“. (Ak zavádzam pomocou rovnosti nový znak „b“, a to tak, že určím, že má nahradiť už známy znak „a“, tak túto rovnosť - definíciu – píšem (ako Russell) vo forme „a=b Def.“. Definícia je pravidlo pre znaky.)"
+  },
+  {
+    "id": "4.242",
+    "text": "Výrazy formy „a=b“ sú teda len pomôckami reprezentácie; nevypovedajú nič o význame znakov „a“, „b“."
+  },
+  {
+    "id": "4.243",
+    "text": "Môžeme rozumieť dvom menám bez toho, že by sme vedeli, či označujú tú istú vec alebo dve odlišné veci? – Môžeme vete, v ktorej sa vyskytujú dve mená, rozumieť bez toho, že by sme vedeli, či znamenajú to isté alebo niečo odlišné? Ak poznám povedzme význam nejakého anglického slova a význam nejakého nemeckého slova, ktoré znamená to isté, tak nie je možné, že by som nevedel, že obidve znamenajú to isté; nie je možné, že by som ich nevedel navzájom preložiť. Výrazy ako „a=a“ alebo výrazy z neho odvodené nie sú ani elementárne vety, ani inak zmysluplné znaky. (To sa ukáže neskôr.)"
+  },
+  {
+    "id": "4.25",
+    "text": "Ak je elementárna veta pravdivá, tak stav vecí existuje; ak je elementárna veta nepravdivá, tak stav vecí neexistuje."
+  },
+  {
+    "id": "4.26",
+    "text": "Udanie všetkých pravdivých elementárnych viet opisuje svet úplne. Svet je úplne opísaný udaním všetkých elementárnych viet plus udaním toho, ktoré z nich sú pravdivé a ktoré nepravdivé."
+  },
+  {
+    "id": "4.27",
+    "text": "Vo vzťahu k existencii a neexistencii n stavov vecí jestvuje K_n = \\sum_{\\nu=0}^n \\binom{n}{\\nu} možností. Je možné, aby všetky kombinácie stavov vecí existovali, a iné neexistovali."
+  },
+  {
+    "id": "4.28",
+    "text": "Týmto kombináciám zodpovedá práve toľko možností pravdivosti a nepravdivosti - n elementárnych viet."
+  },
+  {
+    "id": "4.3",
+    "text": "Pravdivostné možnosti elementárnych viet znamenajú možnosti existencie a neexistencie stavov vecí."
+  },
+  {
+    "id": "4.31",
+    "text": "Pravdivostné možnosti môžeme reprezentovať pomocou schém takéhoto druhu („P“ znamená „pravdivý“, „N“ „nepravdivý“. Rady „P“ a „N“ pod radom elementárnych viet znamenajú v ľahko zrozumiteľnej symbolike ich pravdivostné možnosti): p q r P P P N P P P N P P P N N N P N P N P N N N N N"
+  },
+  {
+    "id": "4.4",
+    "text": "Veta je výrazom zhody a nezhody s pravdivostnými možnosťami elementárnych viet."
+  },
+  {
+    "id": "4.41",
+    "text": "Pravdivostné možnosti elementárnych viet sú podmienkami pravdivosti a nepravdivosti viet."
+  },
+  {
+    "id": "4.411",
+    "text": "Hneď na prvý pohľad je pravdepodobné, že zavedenie elementárnych viet je základom pre porozumenie všetkým ostatným druhom viet. Vskutku, porozumenie všeobecným vetám citeľne závisí od porozumenia elementárnym vetám."
+  },
+  {
+    "id": "4.42",
+    "text": "Vo vzťahu k zhode a nezhode nejakej vety s pravdivostnými možnosťami n elementárnych viet existuje \\sum_{\\kappa=0}^{K_n} \\binom{K_n}{\\kappa} = L_n možností."
+  },
+  {
+    "id": "4.43",
+    "text": "Zhodu s pravdivostnými možnosťami môžeme vyjadriť tým, že im v schéme priradíme povedzme značku „P“ (pravdivý). Neprítomnosť tejto značky znamená nezhodu."
+  },
+  {
+    "id": "4.431",
+    "text": "Výraz zhody a nezhody s pravdivostnými možnosťami elementárnych viet vyjadruje pravdivostné podmienky vety. Veta je výrazom svojich pravdivostných podmienok. (Frege ich preto celkom správne predoslal ako vysvetlenie znakov svojho pojmového písma. Lenže vysvetlenie pojmu pravdivosti je u Fregeho nesprávne: ak by „Pravda“ a „Nepravda“ boli skutočne predmetmi a argumentmi v ~p atď., potom by podľa Fregeho určenia nebol zmysel „~p“ nijako určený.)"
+  },
+  {
+    "id": "4.44",
+    "text": "Znak, ktorý vznikne priradením oných značiek „P“ a pravdivostných možností, je vetným znakom."
+  },
+  {
+    "id": "4.441",
+    "text": "Je jasné, že komplexu znakov „N“ a „P“ nezodpovedá nijaký predmet (alebo komplex predmetov); práve tak ako vodorovným a zvislým čiarkam alebo zátvorkám. - „Logické predmety“ neexistujú. Analogicky to, prirodzene, platí pre všetky znaky, ktoré vyjadrujú to isté ako schémy „P“ a „N“."
+  },
+  {
+    "id": "4.442",
+    "text": "Napr.: p q P P P N P P P N N N N P je vetným znakom. (Fregeho „súdová čiarka“ „|-“ je logicky úplne bez významu; u Fregeho (a Russella) len naznačuje, že títo autori pokladajú takto označené vety za pravdivé. „|-“ patrí preto k skladbe vety práve tak málo, ako povedzme číslo vety. Veta nemôže vypovedať o sebe samej, že je pravdivá.) Ak je poradie pravdivostných možností v schéme raz a navždy stanovené kombinačným pravidlom, potom už sám posledný stĺpec je výrazom pravdivostných podmienok. Ak tento stĺpec napíšeme ako rad, tak z uvedeného vetného znaku sa stane „(PP-P) (p, q)“, alebo zreteľnejšie „(PPNP) (p,q)“ (Počet miest v ľavej zátvorke je určený počtom členov v pravej zátvorke.)"
+  },
+  {
+    "id": "4.45",
+    "text": "Pre n elementárnych viet existuje L_n možných skupín pravdivostných podmienok. Skupiny pravdivostných podmienok, ktoré patria k pravdivostným možnostiam istého počtu elementárnych viet, sa dajú usporiadať do radu."
+  },
+  {
+    "id": "4.46",
+    "text": "Medzi možnými skupinami pravdivostných podmienok existujú dva krajné prípady. V jednom prípade je veta pre všetky pravdivostné možnosti elementárnych viet pravdivá. Hovoríme, že pravdivostné podmienky sú tautologické. V druhom prípade je veta pre všetky pravdivostné možnosti nepravdivá: pravdivostné podmienky sú kontradiktorické."
+  },
+  {
+    "id": "4.461",
+    "text": "V prvom prípade nazývame vetu tautológiou, v druhom prípade kontradikciou."
+  },
+  {
+    "id": "4.4611",
+    "text": "Tautológia a kontradikcia však nie sú nezmyselné; patria k symbolizmu, a to podobne ako „0“ k symbolizmu aritmetiky."
+  },
+  {
+    "id": "4.462",
+    "text": "Tautológia a kontradikcia nie sú obrazmi skutočnosti. Nereprezentujú nijakú možnú situáciu. Pretože prvá pripúšťa každú možnú situáciu, druhá nijakú. V tautológii sa podmienky zhody so svetom - reprezentujúce vzťahy - navzájom rušia, takže tautológia nie je v nijakom reprezentujúcom vzťahu so skutočnosťou."
+  },
+  {
+    "id": "4.463",
+    "text": "Pravdivostné podmienky určujú voľný priestor, ktorý veta ponecháva faktom. (Veta, obraz, model sú v negatívnom zmysle ako pevné teleso, ktoré obmedzuje voľnosť pohybu iných telies; v pozitívnom zmysle ako priestor ohraničený pevnou substanciou, v ktorom je miesto pre teleso.) Tautológia ponecháva skutočnosti celý nekonečný logický priestor; kontradikcia vypĺňa celý logický priestor a skutočnosti neponecháva nijaký bod. Ani jedna z nich preto nemôže nijako určiť skutočnosť."
+  },
+  {
+    "id": "4.464",
+    "text": "Pravdivosť tautológie je istá, vety možná, kontradikcie nemožná."
+  },
+  {
+    "id": "4.465",
+    "text": "Logický súčin tautológie a nejakej vety hovorí to isté ako táto veta. Tento súčin je teda identický s touto vetou. Pretože to, čo je pre symbol podstatné, nemožno zmeniť bez toho, že by sa zmenil jeho zmysel."
+  },
+  {
+    "id": "4.466",
+    "text": "Určitému logickému spojeniu znakov zodpovedá určité logické spojenie ich významov; každé ľubovoľné spojenie zodpovedá len nespojeným znakom. To znamená, že vety, ktoré sú pravdivé pre každú situáciu, vôbec nemôžu byť spojeniami znakov, lebo inak by im mohli zodpovedať len určité spojenia predmetov. (A tomu, čo nie je logickým spojením, nezodpovedá nijaké spojenie predmetov.) Tautológia a kontradikcia sú hraničnými prípadmi spojenia znakov, totiž jeho zrušením."
+  },
+  {
+    "id": "4.4661",
+    "text": "Zaiste, aj v tautológii a kontradikcii sú znaky ešte navzájom spojené, tzn. sú vo vzájomných vzťahoch, no tieto vzťahy sú bez významu, sú pre symbol nepodstatné."
+  },
+  {
+    "id": "4.5",
+    "text": "Teraz sa zdá, že je možné udať najvšeobecnejšiu vetnú formu: to znamená, podať opis viet akéhokoľvek znakového jazyka tak, že každý možný zmysel možno vyjadriť pomocou symbolu, na ktorý sa hodí tento opis, a že každý symbol, na ktorý sa tento opis hodí, môže vyjadrovať zmysel, ak sa primerane zvolia významy mien. Je jasné, že pri opise najvšeobecnejšej vetnej formy možno opísať len to, čo je pre ňu podstatné, - inak by totiž nebola najvšeobecnejšou formou. To, že existuje všeobecná vetná forma, sa dokazuje tým, že nemôže existovať veta, ktorej formu by sme nemohli predvídať (tzn. skonštruovať). Všeobecná forma vety je: má sa to tak a tak."
+  },
+  {
+    "id": "4.51",
+    "text": "Predpokladajme, že by mi boli dané všetky elementárne vety: potom sa možno jednoducho opýtať: ktoré vety z nich môžem utvoriť? A toto sú všetky vety a takto sú ohraničené."
+  },
+  {
+    "id": "4.52",
+    "text": "Vety sú všetko, čo vyplýva zo súhrnu všetkých elementárnych viet (prirodzene aj z toho, že je to súhrn všetkých elementárnych viet). (Tak by sme v istom zmysle mohli povedať, že všetky vety sú zovšeobecneniami elementárnych viet.)"
+  },
+  {
+    "id": "4.53",
+    "text": "Všeobecná vetná forma je premennou."
+  },
+  {
+    "id": "5",
+    "text": "Veta je pravdivostnou funkciou elementárnych viet. (Elementárna veta je pravdivostnou funkciou seba samej.)"
+  },
+  {
+    "id": "5.01",
+    "text": "Elementárne vety sú pravdivostnými argumentmi vety."
+  },
+  {
+    "id": "5.02",
+    "text": "Je lákavé argumenty funkcií zameniť s indexmi mien. Tak na argumente, ako na indexe totiž poznávam význam znaku, ktorý ich obsahuje. V Russellovom „+c“ je napr. „c“ indexom, ktorý poukazuje na to, že celý tento znak je znakom sčítania pre kardinálne čísla. No toto označenie spočíva na ľubovoľnej dohode a namiesto „+c“ by sme mohli zvoliť aj nejaký jednoduchý znak; v „~p“ však „p“ nie je indexom, ale argumentom: zmyslu „~p“ nemôžeme porozumieť bez toho, že by sme predtým porozumeli zmyslu „p“. (V mene Iulius Caesar je „Iulius“ indexom. Index je vždy časťou opisu toho predmetu, ku ktorého menu ho pripájame. Napr. ten Caesar z rodu Iuliovcov.) Zámena argumentu a indexu je, ak sa nemýlim, základom Fregeho teórie o význame viet a funkcií. Pre Fregeho boli vety logiky menami a ich argumenty indexy týchto mien."
+  },
+  {
+    "id": "5.1",
+    "text": "Pravdivostné funkcie sa dajú usporiadať do radov. To je základ teórie pravdepodobnosti."
+  },
+  {
+    "id": "5.101",
+    "text": "Pravdivostné funkcie akéhokoľvek počtu elementárnych viet sa dajú napísať v schéme takéhoto druhu: (PPPP) (p, q) Tautológia (Ak p, tak p; a ak q, tak q.) (pp.qq) (NPPP) (p, q) slovami: Nie oboje p a q. (~(p.q)) (PNPP) (p, q) \" Ak q, tak p. (q⊃p) (PPNP) (p, q) \" Ak p, tak q. (p⊃q) (PPPN) (p, q) \" p alebo q. (pvq) (NNPP) (p, q) \" Nie q. (~q) (NPNP) (p, q) \" Nie p. (~p) (NPPN) (p, q) \" p, alebo q, nie však oboje. (p.~q:v:q.~p) (PNNP) (p, q) \" Ak p, tak q; a ak q, tak p. (p≡q) (PNPN) (p, q) \" p (PPNN) (p, q) \" q (NNNP) (p, q) \" Ani nie p, ani nie q. (~p.~q) alebo (p|q) (NNPN) (p, q) \" p a nie q. (p.~q) (NPNN) (p, q) \" q a nie p. (q.~p) (PNNN) (p, q) \" q a p. (q.p) (NNNN) (p, q) \" Kontradikcia (p a nie p; q a nie q.) (p.~p.q.~q)"
+  },
+  {
+    "id": "5.11",
+    "text": "Tie pravdivostné možnosti jej pravdivostných argumentov, ktoré vetu robia pravdivou, budem nazývať jej pravdivostnými dôvodmi."
+  },
+  {
+    "id": "5.12",
+    "text": "Ak sú všetky pravdivostné dôvody, ktoré sú spoločné pre istý počet viet, zároveň pravdivostnými dôvodmi určitej vety, tak hovoríme, že pravdivosť tejto vety vyplýva z pravdivosti oných viet."
+  },
+  {
+    "id": "5.121",
+    "text": "Pravdivosť nejakej vety „p“ vyplýva z pravdivosti inej vety „q“ najmä vtedy, ak sú všetky pravdivostné dôvody druhej vety pravdivostnými dôvodmi prvej vety."
+  },
+  {
+    "id": "5.122",
+    "text": "Pravdivostné dôvody jednej vety sú obsiahnuté v pravdivostných dôvodoch druhej vety; p vyplýva z q."
+  },
+  {
+    "id": "5.123",
+    "text": "Ak nejaký boh stvorí svet, v ktorom sú isté vety pravdivé, tak tým už stvorí aj svet, v ktorom súhlasia všetky ich dôsledky. A podobne, nemohol by stvoriť svet, v ktorom je veta „p“ pravdivá, bez toho, že by stvoril všetky jej predmety."
+  },
+  {
+    "id": "5.124",
+    "text": "Veta tvrdí každú vetu, ktorá z nej vyplýva."
+  },
+  {
+    "id": "5.1241",
+    "text": "„p.q“ je jedna z viet, ktoré tvrdia „p“, a zároveň jedna z viet, ktoré tvrdia „q“. Dve vety sú navzájom protikladné, ak neexistuje zmysluplná veta, ktorá ich obidve tvrdí. Každá veta, ktorá nejakej inej vete protirečí, ju neguje."
+  },
+  {
+    "id": "5.13",
+    "text": "To, že pravdivosť nejakej vety vyplýva z pravdivosti iných viet, vidíme zo štruktúry týchto viet."
+  },
+  {
+    "id": "5.131",
+    "text": "Ak pravdivosť nejakej vety vyplýva z pravdivosti iných viet, tak sa to vyjadruje vzťahmi, v ktorých sa navzájom nachádzajú formy týchto viet; a síce, nemusíme ich do týchto vzťahov uviesť až tým, že ich navzájom spojíme v jednej vete, ale tieto vzťahy sú interné a existujú, len čo a tým, že - existujú oné vety."
+  },
+  {
+    "id": "5.1311",
+    "text": "Ak z pvq a ~p usúdime na q, tak je tu týmto spôsobom označovania zastretý vzťah vetných foriem pvq a „~p“. Ak však napr. namiesto „pvq“ napíšeme „p|q .|. p|q“ a namiesto „~p“ „p|p“ (p|q = ani nie p, ani nie q), tak sa táto vnútorná súvislosť stane zjavnou. (To, že z (x).fx možno usúdiť na fa, ukazuje, že všeobecnosť je prítomná aj v symbole „(x).fx“.)"
+  },
+  {
+    "id": "5.132",
+    "text": "Ak p vyplýva z q, tak môžem z q usúdiť na p; p vyvodiť z q. Druh úsudku možno vyčítať len z týchto dvoch viet. Iba ony samy môžu tento úsudok zdôvodniť. „Zákony usudzovania“, ktoré - ako u Fregeho a Russella - majú zdôvodniť úsudky, sú bez zmyslu a boli by nadbytočné."
+  },
+  {
+    "id": "5.133",
+    "text": "Všetko vyvodzovanie sa deje a priori."
+  },
+  {
+    "id": "5.134",
+    "text": "Z elementárnej vety sa nedá vyvodiť nijaká iná elementárna veta."
+  },
+  {
+    "id": "5.135",
+    "text": "Z existencie istej situácie nemožno nijakým spôsobom usúdiť na existenciu nejakej od nej úplne odlišnej situácie."
+  },
+  {
+    "id": "5.136",
+    "text": "Neexistuje kauzálne spojenie, ktoré by zdôvodnilo takýto úsudok."
+  },
+  {
+    "id": "5.1361",
+    "text": "Budúce udalosti nemôžeme vyvodiť z prítomných udalostí. Povera je viera v kauzálne spojenie."
+  },
+  {
+    "id": "5.1362",
+    "text": "Sloboda vôle spočíva v tom, že teraz nemôžeme vedieť o budúcom konaní. Len vtedy by sme o ňom mohli vedieť, ak by kauzalita bola vnútornou nevyhnutnosťou, ako je ňou nevyhnutnosť logického úsudku. - Súvislosť medzi vedením a tým, čo vieme, je súvislosťou logickej nevyhnutnosti. („A vie, že p je faktom“ je bez zmyslu, ak p je tautológia.)"
+  },
+  {
+    "id": "5.1363",
+    "text": "Ak z toho, že je nám nejaká veta zrejmá, nevyplýva, že je pravdivá, tak táto zrejmosť nie je ani zdôvodnením pre našu vieru v jej pravdivosť."
+  },
+  {
+    "id": "5.14",
+    "text": "Ak nejaká veta vyplýva z druhej, tak druhá hovorí viac ako prvá, prvá menej ako druhá."
+  },
+  {
+    "id": "5.141",
+    "text": "Ak p vyplýva z q a q z p, tak sú jednou a tou istou vetou."
+  },
+  {
+    "id": "5.142",
+    "text": "Tautológia vyplýva zo všetkých viet: nehovorí nič."
+  },
+  {
+    "id": "5.143",
+    "text": "Kontradikcia je to spoločné pre vety, čo nemá nijaká veta spoločné s inou vetou. Tautológia je to spoločné pre všetky vety, ktoré nemajú navzájom nič spoločné. Kontradikcia mizne takpovediac mimo, tautológia vo vnútri všetkých viet. Kontradikcia je vonkajšou hranicou viet, tautológia je ich bezsubstančným stredobodom."
+  },
+  {
+    "id": "5.15",
+    "text": "Ak Pr je počet pravdivostných dôvodov vety „r“, Prs počet tých pravdivostných dôvodov vety „s“, ktoré sú zároveň pravdivostnými dôvodmi „r“, potom pomer: Prs:Pr nazývame mierou pravdepodobnosti, ktorú dáva veta „r“ vete „s“."
+  },
+  {
+    "id": "5.151",
+    "text": "Nech je v schéme, ako v tej, ktorá je uvedená v č. 5.101, Pr počet „P“ vo vete r; Prs počet tých „P“ vo vete s, ktoré sú v tých istých stĺpcoch s „P“ vety r. Veta r dáva potom vete s pravdepodobnosť: Prs:Pr."
+  },
+  {
+    "id": "5.1511",
+    "text": "Neexistuje nijaký zvláštny predmet, ktorý by bol vlastný pravdepodobnostným vetám."
+  },
+  {
+    "id": "5.152",
+    "text": "Vety, ktoré nemajú navzájom spoločné nijaké pravdivostné argumenty, nazývame navzájom nezávislé. Dve elementárne vety si navzájom dávajú pravdepodobnosť 1/2."
+  },
+  {
+    "id": "5.153",
+    "text": "Ak p vyplýva z q, tak veta „q“ dáva vete „p“ pravdepodobnosť 1. Istota logického úsudku je hraničným prípadom pravdepodobnosti. (Použitie na tautológiu a kontradikciu.)"
+  },
+  {
+    "id": "5.154",
+    "text": "Veta sama osebe nie je ani pravdepodobná, ani nepravdepodobná. Udalosť nastane, alebo nenastane, medzi tým nič neexistuje."
+  },
+  {
+    "id": "5.155",
+    "text": "Jednotkou pravdepodobnostnej vety je: okolnosti  ktoré inak ďalej nepoznám  dávajú nastaniu určitej udalosti ten a ten stupeň pravdepodobnosti. Pravdepodobnosť je takto zovšeobecnením. Zahŕňa v sebe všeobecný opis vetnej formy. Pravdepodobnosť používame len z nedostatku istoty. – Totiž vtedy, keď nejaký fakt nepoznáme úplne, vieme však niečo o jeho forme. (Veta síce môže byť neúplným obrazom istej situácie, no vždy je nejakým úplným obrazom.) Pravdepodobnostná veta je akoby výťahom z iných viet."
+  },
+  {
+    "id": "5.2",
+    "text": "Štruktúry viet sú navzájom v interných vzťahoch."
+  },
+  {
+    "id": "5.21",
+    "text": "Tieto interné vzťahy môžeme v našom spôsobe vyjadrenia zdôrazniť tým, že vetu reprezentujeme ako výsledok operácie, ktorá ju vytvára z iných viet (báz operácie)."
+  },
+  {
+    "id": "5.22",
+    "text": "Operácia je výrazom vzťahu medzi štruktúrami jej výsledku a jej báz."
+  },
+  {
+    "id": "5.23",
+    "text": "Operácia je to, čo sa s jednou vetou musí udiať, aby sa z nej urobila iná veta."
+  },
+  {
+    "id": "5.231",
+    "text": "A to bude, prirodzene, závisieť od ich formálnych vlastností, od internej podobnosti ich foriem."
+  },
+  {
+    "id": "5.232",
+    "text": "Interná relácia, ktorá usporadúva nejaký rad, je ekvivalentná s operáciou, prostredníctvom ktorej vzniká jeden člen z iného člena."
+  },
+  {
+    "id": "5.233",
+    "text": "Operácia sa môže vyskytnúť až tam, kde jedna veta vzniká z inej vety logicky zmysluplným spôsobom. Teda tam, kde sa začína logická konštrukcia vety."
+  },
+  {
+    "id": "5.234",
+    "text": "Pravdivostné funkcie elementárnych viet sú výsledkami operácií, ktoré majú ako bázy elementárne vety. (Tieto operácie nazývam pravdivostnými operáciami.)"
+  },
+  {
+    "id": "5.2341",
+    "text": "Zmysel pravdivostnej funkcie p je funkciou zmyslu p."
+  },
+  {
+    "id": "5.24",
+    "text": "Negácia, logické sčítanie, logické násobenie, atď., atď. sú operácie. (Negácia obracia zmysel vety.)"
+  },
+  {
+    "id": "5.241",
+    "text": "Operácia sa ukazuje v premennej; ukazuje, ako možno od jednej formy viet dospieť k inej forme viet. Vyjadruje rozdiel foriem. (A to spoločné medzi bázami a výsledkom operácie sú práve bázy.)"
+  },
+  {
+    "id": "5.242",
+    "text": "Operácia nevyznačuje formu, ale iba rozdiel foriem."
+  },
+  {
+    "id": "5.25",
+    "text": "Výskyt operácie necharakterizuje zmysel vety. Operácia predsa nič nevypovedá, iba jej výsledok, a ten závisí od báz operácie. (Operácia a funkcia sa nesmú navzájom zamieňať.)"
+  },
+  {
+    "id": "5.251",
+    "text": "Funkcia nemôže byť svojím vlastným argumentom, výsledok operácie sa však môže stať jej vlastnou bázou."
+  },
+  {
+    "id": "5.252",
+    "text": "Len tak je možný postup od člena k členu v rade foriem (od typu k typu v Russellových a Whiteheadových hierarchiách). (Russell a Whitehead možnosť tohto postupu nepripúšťali, ustavične ju však využívali.)"
+  },
+  {
+    "id": "5.2521",
+    "text": "Opakované použitie operácie na jej vlastný výsledok nazývam jej sukcesívnym použitím („O'O'O'a“ je výsledkom trojnásobného sukcesívneho použitia „O'ξ“ na „a“). V podobnom zmysle hovorím o sukcesívnom použití viacerých operácií na nejaký počet viet."
+  },
+  {
+    "id": "5.2522",
+    "text": "Všeobecný člen radu foriem a, O'a, O'O'a, ... píšem preto takto: „[a, x, O'x]“. Tento výraz v zátvorke je premenná."
+  },
+  {
+    "id": "5.2523",
+    "text": "Pojem sukcesívneho použitia operácie je ekvivalentný s pojmom „a tak ďalej“."
+  },
+  {
+    "id": "5.253",
+    "text": "Jedna operácia môže eliminovať účinok inej operácie. Operácie sa môžu navzájom rušiť."
+  },
+  {
+    "id": "5.254",
+    "text": "Operácia môže zmiznúť (napr. negácia v „~~p“ : ~~p = p)."
+  },
+  {
+    "id": "5.3",
+    "text": "Všetky vety sú výsledkami pravdivostných operácií s elementárnymi vetami."
+  },
+  {
+    "id": "5.31",
+    "text": "Schémy č. 4.31 majú význam aj vtedy, ak „p“, „q“, „r“, atď. nie sú elementárnymi vetami. A ľahko vidieť, že vetný znak v č. 4.442 vyjadruje jednu pravdivostnú funkciu elementárnych viet, aj keď „p“ a „q“ sú pravdivostnými funkciami elementárnych viet. Všetky pravdivostné funkcie sú výsledkami sukcesívneho použitia konečného počtu pravdivostných operácií na elementárne vety."
+  },
+  {
+    "id": "5.32",
+    "text": "Všetky pravdivostné funkcie sú výsledkami sukcesívneho použitia konečného počtu pravdivostných operácií na elementárne vety."
+  },
+  {
+    "id": "5.4",
+    "text": "Tu sa ukazuje, že „logické predmety“, „logické konštanty“ (vo Fregeho a Russellovom zmysle) neexistujú."
+  },
+  {
+    "id": "5.41",
+    "text": "Lebo: všetky výsledky pravdivostných operácií s pravdivostnými funkciami, ktoré sú jednou a tou istou pravdivostnou funkciou elementárnych viet, sú identické."
+  },
+  {
+    "id": "5.42",
+    "text": "Je zrejmé, že v, ⊃, atď. nie sú vzťahmi v zmysle napravo a naľavo atď. Už možnosť vzájomného definovania Fregeho a Russellových „základných znakov“ logiky ukazuje, že tieto nie sú základnými znakmi, a tým skôr, že neoznačujú nijaké relácie. A je zjavné, že „⊃“, ktorý definujeme prostredníctvom „~“ a „v“, je identický s tým, ktorým definujeme „v“ pomocou „~“, a že tento „v“ je identický s tým prvým. Atď."
+  },
+  {
+    "id": "5.43",
+    "text": "Už na prvý pohľad sa však sotva dá veriť tomu, že by z faktu p malo vyplývať nekonečne veľa iných faktov, a to ~~p, ~~~~p, atď. A nemenej pozoruhodné je, že nekonečný počet viet logiky (matematiky) vyplýva z pol tucta „základných zákonov“. Všetky vety logiky však hovoria to isté. Totiž nič."
+  },
+  {
+    "id": "5.44",
+    "text": "Pravdivostné funkcie nie sú materiálnymi funkciami. Ak napr. prostredníctvom dvojitej negácie možno vytvoriť tvrdenie, je potom negácia - v nejakom zmysle - obsiahnutá v tvrdení? Neguje „~~p“ ~p, alebo tvrdí p; alebo oboje? Veta „~~p“ nehovorí o negácii ako o nejakom predmete; možnosť negácie je však v tvrdení už prejudikovaná. A ak by existoval predmet, ktorý by sa nazýval „~“, tak „~~p“ by muselo hovoriť niečo iné ako „p“. Pretože jedna veta by potom hovorila o ~, druhá nie."
+  },
+  {
+    "id": "5.441",
+    "text": "Toto zmiznutie zdanlivých logických konštánt nastáva tiež vtedy, keď „~(∃x).~fx“ hovorí to isté ako „(x).fx“, alebo „(∃x).fx.x=a“ to isté ako „fa“."
+  },
+  {
+    "id": "5.442",
+    "text": "Ak je nám daná nejaká veta, tak sú s ňou dané už aj výsledky všetkých pravdivostných operácií, ktorých je bázou."
+  },
+  {
+    "id": "5.45",
+    "text": "Ak existujú základné logické znaky, tak správna logika musí vyjasniť ich vzájomné postavenie a zdôvodniť ich existenciu. Výstavba logiky z jej základných znakov sa musí stať jasnou."
+  },
+  {
+    "id": "5.451",
+    "text": "Ak má logika základné pojmy, tak musia byť navzájom nezávislé. Ak je základný pojem zavedený, tak musí byť zavedený vo všetkých spojeniach, v ktorých sa vôbec vyskytuje. Nemožno ho teda zaviesť najprv pre jedno spojenie, potom ešte raz pre iné. Napr.: ak je negácia zavedená, tak jej teraz musíme rozumieť vo vetách formy „~p“ rovnako, ako vo vetách ako „~(pvq)“, „(∃x).~fx“ ai. Nesmieme ju zaviesť najprv pre jednu triedu prípadov, potom pre inú triedu prípadov, pretože potom by ostalo pochybné, či by bol jej význam v obidvoch prípadoch ten istý a neexistoval by dôvod použiť v obidvoch prípadoch ten istý druh spojenia znakov. (Skrátka, pre zavádzanie základných znakov platí, mutatis mutandis, to isté, čo povedal Frege (Grundgesetze der Arithmetik) o zavádzaní znakov pomocou definícií.)"
+  },
+  {
+    "id": "5.452",
+    "text": "Zavedenie novej pomôcky do symbolizmu logiky musí byť vždy udalosťou s vážnymi dôsledkami. Nová pomôcka nesmie byť do logiky zavedená - takpovediac, s úplne nevinnou tvárou - v zátvorke alebo pod čiarou. (Tak sa v Russellových a Whiteheadových Principia Mathematica vyskytujú definície a základné zákony vyjadrené slovami. Prečo tu zrazu slová? To by si vyžadovalo zdôvodnenie. Toto chýba a chýbať musí, keďže tento postup je fakticky nedovolený.) Ak sa však zavedenie novej pomôcky preukázalo na nejakom mieste ako potrebné, tak sa musíme okamžite opýtať: kde sa teraz musí táto pomôcka vždy použiť? Treba vysvetliť jej postavenie v logike."
+  },
+  {
+    "id": "5.453",
+    "text": "Všetky čísla logiky sa musia dať zdôvodniť. Alebo skôr: musí vysvitnúť, že v logike neexistujú nijaké čísla. Neexistujú nijaké význačné čísla."
+  },
+  {
+    "id": "5.454",
+    "text": "V logike neexistuje nijaké vedľa seba, nemôže v nej existovať nijaká klasifikácia. V logike nemôže existovať všeobecnejšie a špeciálnejšie."
+  },
+  {
+    "id": "5.4541",
+    "text": "Riešenia logických problémov musia byť jednoduché, pretože určujú štandard jednoduchosti. Ľudia vždy tušili, že musí existovať oblasť otázok, kde sú odpovede a priori - symetricky prepojené a zjednotené do uzavretého, pravidelného útvaru. Oblasť, v ktorej platí veta: simplex sigillum veri."
+  },
+  {
+    "id": "5.46",
+    "text": "Ak by sa logické znaky zaviedli správne, tak by sa tým zaviedol už aj zmysel všetkých ich kombinácií; teda nielen „pvq“, ale už aj „~(pv~q)“ atď. atď. Zaviedlo by sa tým už aj pôsobenie všetkých čisto možných kombinácií zátvoriek. A tým by sa vyjasnilo, že vlastnými všeobecnými základnými znakmi nie sú znaky „pvq“, „(∃x).fx“, atď., ale najvšeobecnejšia forma ich kombinácií."
+  },
+  {
+    "id": "5.461",
+    "text": "Významným je zdanlivo nedôležitý fakt, že zdanlivé logické vzťahy, ako v a ⊃, si vyžadujú zátvorky v protiklade k skutočným vzťahom. Použitie zátvoriek s týmito zdanlivými základnými znakmi už predsa naznačuje, že tieto znaky nie sú skutočnými základnými znakmi. A nikto si predsa nebude myslieť, že zátvorky majú samostatný význam."
+  },
+  {
+    "id": "5.4611",
+    "text": "Znaky logických operácií sú interpunkciami."
+  },
+  {
+    "id": "5.47",
+    "text": "Je jasné, že všetko, čo sa vôbec dá vopred povedať o forme všetkých viet, musí sa dať povedať naraz. V elementárnej vete sú už predsa obsiahnuté všetky logické operácie. Pretože „fa“ hovorí to isté ako „(∃x).fx.x=a“. Kde je zloženosť, tam je argument a funkcia, a kde sú tieto, tam sú už všetky logické konštanty. Mohli by sme povedať: jedinou logickou konštantou je to, čo majú všetky vety, z hľadiska svojej povahy, navzájom spoločné. To je však všeobecná vetná forma."
+  },
+  {
+    "id": "5.471",
+    "text": "Všeobecná vetná forma je podstata vety."
+  },
+  {
+    "id": "5.4711",
+    "text": "Udať podstatu vety znamená udať podstatu každého opisu, teda podstatu sveta."
+  },
+  {
+    "id": "5.472",
+    "text": "Opis najvšeobecnejšej vetnej formy je opisom jedného a jediného všeobecného základného znaku logiky."
+  },
+  {
+    "id": "5.473",
+    "text": "Logika sa musí starať sama o seba."
+  },
+  {
+    "id": "5.4731",
+    "text": "Možný znak musí aj byť schopný označovať. Všetko, čo je v logike možné, je aj dovolené. („Sokrates je identický“ neznamená nič preto, lebo neexistuje nijaká vlastnosť, ktorá sa nazýva „identický“. Táto veta je nezmyselná, pretože sme neurobili nejaké ľubovoľné určenie, nie však preto, že by bol tento symbol sám osebe nedovolený.) V logike sa, v istom zmysle, nemôžeme mýliť."
+  },
+  {
+    "id": "5.4732",
+    "text": "Znaku nemôžeme dať nesprávny zmysel."
+  },
+  {
+    "id": "5.47321",
+    "text": "Occamova devíza nie je, prirodzene, nijaké ľubovoľné - alebo svojim praktickým úspechom zdôvodnené - pravidlo: hovorí, že nepotrebné znakové jednotky nič neznamenajú. Znaky, ktoré spĺňajú jeden účel, sú logicky ekvivalentné, znaky, ktoré nespĺňajú nijaký účel, sú logicky bez významu."
+  },
+  {
+    "id": "5.4733",
+    "text": "Frege hovorí: každá legitímne utvorená veta musí mať zmysel; a ja hovorím: každá možná veta je utvorená správne, a ak nemá zmysel, tak to môže byť zapríčinené len tým, že sme niektorým z jej súčastí nedali nijaký význam. (Aj keď si myslíme, že sme to urobili.) Tak „Sokrates je identický“ nehovorí nič preto, lebo sme slovu „identický“ ako prídavnému menu nedali nijaký význam. Pretože, ak toto slovo vystupuje ako znak totožnosti, tak symbolizuje úplne iným spôsobom - označujúci vzťah je iný, - teda aj symbol je v obidvoch prípadoch úplne odlišný; obidva symboly majú len náhodou navzájom spoločný znak."
+  },
+  {
+    "id": "5.474",
+    "text": "Počet potrebných základných operácií závisí len od našej notácie."
+  },
+  {
+    "id": "5.475",
+    "text": "Záleží len na tom, aby sme vytvorili znakový systém s určitým počtom dimenzií - s určitou matematickou rozmanitosťou."
+  },
+  {
+    "id": "5.476",
+    "text": "Je jasné, že tu nejde o počet základných pojmov, ktoré musia byť označené, ale o vyjadrenie pravidla."
+  },
+  {
+    "id": "5.5",
+    "text": "Každá pravdivostná funkcia je výsledkom sukcesívneho použitia operácie (-----P) (ξ, ....) na elementárne vety. Táto operácia neguje všetky vety v pravej zátvorke a nazývam ju negáciou týchto viet."
+  },
+  {
+    "id": "5.501",
+    "text": "Výraz v zátvorke, ktorého členmi sú vety, naznačujem - ak poradie členov v zátvorke nie je dôležité - pomocou znaku formy „(ξ)“. „ξ“ je premenná, ktorej hodnotami sú členy výrazu v zátvorke; a čiarka nad premennou naznačuje, že zastupuje všetky jej hodnoty v zátvorke. (Ak má ξ povedzme 3 hodnoty P, Q, R, tak (ξ)=(P,Q,R).) Hodnoty premennej sa stanovujú. Toto stanovenie je opisom viet, ktoré premenná zastupuje. Ako sa deje opis členov výrazu v zátvorke, je nepodstatné. Môžeme rozlíšiť tri druhy opisu: 1. Priamy výpočet. V tomto prípade môžeme namiesto premennej jednoducho dosadiť jej konštantné hodnoty. 2. Udanie funkcie fx, ktorej hodnotami pre všetky hodnoty x sú opísané vety. 3. Udanie formálneho zákona, podľa ktorého sú tieto vety utvorené. V tomto prípade sú členmi výrazu v zátvorke všetky členy radu foriem."
+  },
+  {
+    "id": "5.502",
+    "text": "Teda namiesto „(-----P) (ξ, ...)“ píšem „N(ξ)“. N(ξ) je negácia všetkých hodnôt vetnej premennej ξ."
+  },
+  {
+    "id": "5.503",
+    "text": "Keďže zjavne sa dá ľahko vyjadriť, ako možno pomocou tejto operácie utvoriť vety a ako sa vety pomocou nej utvoriť nedajú, tak sa pre to musí dať nájsť exaktné vyjadrenie."
+  },
+  {
+    "id": "5.51",
+    "text": "Ak ξ má len jednu hodnotu, tak N(ξ)=~p (nie p), ak má dve hodnoty, tak N(ξ)=~p.~q (ani nie p, ani nie q)."
+  },
+  {
+    "id": "5.511",
+    "text": "Ako môže všezahŕňajúca, svet zrkadliaca logika používať také špeciálne háčiky a manipulácie? Len tak, že tieto všetky sa spájajú do nekonečne jemnej siete, do veľkého zrkadla."
+  },
+  {
+    "id": "5.512",
+    "text": "„~p“ je pravdivé, ak „p“ je nepravdivé. Teda v pravdivej vete „~p“ je „p“ nepravdivou vetou. Ako ju môže táto čiarka „~“ priviesť k tomu, aby súhlasila so skutočnosťou? To, čo v ~p neguje, však nie je „~“, ale to, čo je spoločné pre všetky znaky tejto notácie, ktoré negujú p. Teda spoločné pravidlo, podľa ktorého sa tvoria „~p“, „~~~p“, „~pv~p“, „~p.~p“, atď. atď. (ad inf.). A toto spoločné zrkadlí negáciu."
+  },
+  {
+    "id": "5.513",
+    "text": "Mohli by sme povedať: to, čo je spoločné pre všetky symboly, ktoré tvrdia tak p, ako aj q, je veta „p.q“. To, čo je spoločné pre všetky symboly, ktoré tvrdia buď p, alebo q, je veta „pvq“. A tak možno povedať: dve vety sú navzájom protikladné, ak nemajú navzájom nič spoločné, a: každá veta má len jeden negatív, pretože existuje len jedna veta, ktorá leží celkom mimo nej."
+  },
+  {
+    "id": "5.514",
+    "text": "Tak sa aj v Russellovej notácii ukazuje, že „q:pv~p“ hovorí to isté ako „q“; že „pv~p“ nehovorí nič. Ak je notácia stanovená, tak v nej existuje pravidlo, podľa ktorého sa tvoria všetky vety negujúce p, pravidlo, podľa ktorého sa tvoria všetky vety tvrdiace p, pravidlo, podľa ktorého sa tvoria všetky vety tvrdiace p alebo q, atď. Tieto pravidlá sú ekvivalentné so symbolmi a v nich sa zrkadlí ich zmysel."
+  },
+  {
+    "id": "5.515",
+    "text": "Na našich symboloch sa musí ukázať, že to, čo je navzájom spojené prostredníctvom „v“, „.“, atď., musia byť vety. A tak to aj je, pretože symbol „p“ a „q“ predsa sám predpokladá „v“, „~“, atď. Ak znak „p“ v „pvq“ nezastupuje zložený znak, potom sám nemôže mať zmysel; potom však ani znaky, ktoré majú ten istý zmysel ako „p“ - „pvp“, „p.p“, atď. - nemôžu mať nijaký zmysel. Ak však „pvp“ nemá zmysel, potom nemôže mať zmysel ani „pvq“."
+  },
+  {
+    "id": "5.5151",
+    "text": "Musí byť znak negatívnej vety vytvorený pomocou znaku pozitívnej vety? Prečo by sme nemohli negatívnu vetu vyjadriť pomocou negatívneho faktu? (Povedzme: ak „a“ nie je v určitom vzťahu s „b“, tak by to mohlo vyjadrovať, že aRb nie je faktom.) No aj tu je negatívna veta utvorená nepriamo prostredníctvom pozitívnej vety. Pozitívna veta musí predpokladať existenciu negatívnej vety a naopak."
+  },
+  {
+    "id": "5.52",
+    "text": "Ak sú hodnotami ξ všetky hodnoty funkcie fx pre všetky hodnoty x, tak N(ξ)=~(∃x).fx"
+  },
+  {
+    "id": "5.521",
+    "text": "Pojem všetky oddeľujem od pravdivostnej funkcie."
+  },
+  {
+    "id": "5.522",
+    "text": "Frege a Russell zaviedli všeobecnosť v spojení s logickým súčinom alebo s logickým súčtom. Tak sa stalo obťažným porozumieť vetám „(∃x).fx“ a „(x).fx“, v ktorých sú obe idey obsiahnuté."
+  },
+  {
+    "id": "5.523",
+    "text": "Špecifickosťou označenia všeobecnosti je, po prvé, že poukazuje na logický pravzor, a po druhé, že vyzdvihuje konštanty."
+  },
+  {
+    "id": "5.524",
+    "text": "Označenie všeobecnosti vystupuje ako argument."
+  },
+  {
+    "id": "5.525",
+    "text": "Ak sú dané predmety, tak už sú nám tým dané tiež všetky predmety. Ak sú dané elementárne vety, tak sú tým dané tiež všetky elementárne vety."
+  },
+  {
+    "id": "5.526",
+    "text": "Je nesprávne prepísať vetu „(∃x).fx“ - ako to robí Russell - slovami pomocou „fx je možné“. Istota, možnosť alebo nemožnosť nejakej situácie sa nevyjadruje vetou, ale tým, že nejaký výraz je tautológiou, zmysluplnou vetou alebo kontradikciou. Tento precedens, na ktorý by sme sa chceli stále odvolávať, musí tkvieť už v symbole samom."
+  },
+  {
+    "id": "5.5261",
+    "text": "Dokonale zovšeobecnená veta je - ako každá iná veta - zložená. (To sa ukazuje na tom, že v „(∃x,φ).φx“ musíme „φ“ a „x“ spomenúť oddelene. Obe sú nezávisle v označujúcom vzťahu k svetu, ako v nezovšeobecnenej vete.) Charakteristika zloženého symbolu: má niečo spoločné s inými symbolmi."
+  },
+  {
+    "id": "5.5262",
+    "text": "Veď pravdivosť alebo nepravdivosť každej vety mení niečo na všeobecnej stavbe sveta. A voľný priestor, ktorý je jeho stavbe ponechaný súhrnom elementárnych viet, je práve tým priestorom, ktorý ohraničujú úplne všeobecné vety. (Ak je nejaká elementárna veta pravdivá, tak tým je v každom prípade o jednu pravdivú elementárnu vetu viac.)"
+  },
+  {
+    "id": "5.53",
+    "text": "Totožnosť predmetu vyjadrujem pomocou totožnosti znaku, a nie pomocou znaku totožnosti. Odlišnosť predmetov prostredníctvom odlišnosti znakov."
+  },
+  {
+    "id": "5.5301",
+    "text": "Je zrejmé, že identita nie je relácia medzi predmetmi. To sa stane veľmi jasným, ak preskúmame napr. vetu „(x):fx.⊃.x=a“. Čo táto veta hovorí, je jednoducho to, že iba a spĺňa funkciu f, a nie to, že iba také veci spĺňajú funkciu f, ktoré majú istý vzťah k a. Pravda, mohli by sme povedať, že iba a má tento vzťah k a, ale nato, aby sme toto vyjadrili, by sme potrebovali sám znak totožnosti."
+  },
+  {
+    "id": "5.5302",
+    "text": "Russellova definícia „=“ nepostačuje; pretože podľa nej nemožno povedať, že dva predmety majú všetky vlastnosti spoločné. (Dokonca aj ak táto veta nie je nikdy pravdivá, predsa len má zmysel.)"
+  },
+  {
+    "id": "5.5303",
+    "text": "Dalo by sa povedať: hovoriť o dvoch veciach, že sú identické, je nezmysel, a hovoriť o jednej veci, že je identická sama so sebou, nehovorí vôbec nič."
+  },
+  {
+    "id": "5.531",
+    "text": "Nepíšem teda „f(a,b).a=b“, ale „f(a,a)“ (alebo „f(b,b)“). A nepíšem „f(a,b).~a=b“, ale „f(a,b)“."
+  },
+  {
+    "id": "5.532",
+    "text": "A analogicky: nie „(∃x,y).f(x,y).x=y“, ale „(∃x).f(x,x)“; a nie „(∃x,y).f(x,y).~x=y“, ale „(∃x,y).f(x,y)“. (Teda namiesto Russellovho „(∃x,y).f(x,y)“ „(∃x,y).v.(∃x).f(x,x)“.)"
+  },
+  {
+    "id": "5.5321",
+    "text": "Namiesto „(x):fx⊃x=a“ teda píšeme napr. „(∃x).fx.⊃.fa:~ (∃x,y).fx.fy“. A veta: „Len jedno x spĺňa f(x)“ znie: „(∃x).fx:~ (∃x,y).fx.fy“."
+  },
+  {
+    "id": "5.533",
+    "text": "Znak totožnosti teda nie je podstatnou súčasťou pojmového písma."
+  },
+  {
+    "id": "5.534",
+    "text": "A teraz vidíme, že zdanlivé vety ako: „a=a“, „a=b.b=c.⊃a=c“, „(x).x=x“, „(∃x).x=a“, atď. sa v správnom pojmovom písme vôbec nedajú napísať."
+  },
+  {
+    "id": "5.535",
+    "text": "Týmto sa riešia tiež všetky problémy, ktoré boli spojené s takýmito zdanlivými vetami. Všetky problémy, ktoré so sebou prináša Russellova „Axiom of Infinity“, treba riešiť už tu."
+  },
+  {
+    "id": "5.5351",
+    "text": "To, čo má hovoriť Axiom of Infinity, by sa v jazyku vyjadrovalo prostredníctvom existencie nekonečne veľa mien s odlišným významom."
+  },
+  {
+    "id": "5.54",
+    "text": "Existujú isté prípady, kedy sa dostávame do pokušenia použiť výrazy formy „a=a“ alebo „p⊃p“ a pod. A síce, deje sa to vtedy, keď by sme chceli hovoriť o pravzore: vete, veci atď. Tak Russell v Principles of Mathematics nezmysel „p je veta“ prepísal symbolmi pomocou „p⊃p“ a postavil ako hypotézu pred isté vety, aby sa ich miesta pre argumenty mohli obsadzovať iba vetami. (Postaviť hypotézu p⊃p pred nejakú vetu, aby sa jej zaistili argumenty správnej formy, je nezmyslom už preto, lebo táto hypotéza nebude pre nie-vetu ako argument nepravdivá, ale nezmyselná, a lebo táto veta sama bude kvôli nesprávnemu druhu argumentov nezmyselná, teda samu seba chráni práve tak dobre - alebo tak zle - pred nesprávnymi argumentmi, ako pre tento účel pripojená hypotéza bez zmyslu.)"
+  },
+  {
+    "id": "5.541",
+    "text": "Práve tak niektorí chceli „neexistujú nijaké veci“ vyjadriť pomocou „~(∃x).x=x“. Ale aj keby to bola veta - nebola by pravdivá tiež vtedy, ak by síce „veci existovali“, neboli by však samy so sebou identické?"
+  },
+  {
+    "id": "5.542",
+    "text": "Vo všeobecnej vetnej forme sa vyskytuje veta vo vete iba ako báza pravdivostných operácií. Na prvý pohľad sa zdá, akoby sa nejaká veta mohla v inej vyskytovať aj iným spôsobom. Najmä v istých vetných formách psychológie, ako „A verí, že p je faktom“, alebo „A myslí p“, atď. Tu sa totiž na pohľad zdá, akoby veta p bola v akejsi relácii s nejakým predmetom A. (A v modernej teórii poznania (Russell, Moore, atď.) boli tieto vety takto aj chápané.) Je však jasné, že „A verí, že p“, „A myslí p“, „A hovorí p“ majú formu „'p' hovorí p“: a tu nejde o priradenie faktu a predmetu, ale o priradenie faktov prostredníctvom priradenia ich predmetov."
+  },
+  {
+    "id": "5.5421",
+    "text": "To tiež ukazuje, že duša - subjekt atď. ako je chápaná v dnešnej povrchnej psychológii, je chiméra. Zložená duša by už totiž nebola dušou."
+  },
+  {
+    "id": "5.5422",
+    "text": "Správne vysvetlenie formy vety „A súdi p“ musí ukázať, že je nemožné súdiť nezmysel. (Russellova teória túto podmienku nespĺňa.)"
+  },
+  {
+    "id": "5.5423",
+    "text": "Vnímať nejaký komplex znamená vnímať, že sa jeho súčasti majú k sebe tak a tak. Toto tiež vysvetľuje, že obrazec [Kocka Necker] možno vidieť ako kocku dvoma spôsobmi; a všetky podobné javy. Pretože skutočne vidíme dva odlišné fakty. (Ak sa pozerám najprv na vrcholy a a iba letmo na vrcholy b, tak sa a javí vpredu; a naopak.)"
+  },
+  {
+    "id": "5.55",
+    "text": "Otázku o všetkých možných formách elementárnych viet musíme teraz zodpovedať a priori. Elementárna veta pozostáva z mien. Keďže však nevieme udať počet mien s odlišným významom, tak nevieme udať ani zloženie elementárnej vety."
+  },
+  {
+    "id": "5.551",
+    "text": "Naším princípom je, že každá otázka, ktorá sa vôbec dá rozhodnúť pomocou logiky, sa musí dať rozhodnúť bez čohokoľvek ďalšieho. (A ak sa dostávame do situácie, že sa pri odpovedaní na takýto problém musíme pozrieť na svet, tak to ukazuje, že sme na úplne nesprávnej stope.)"
+  },
+  {
+    "id": "5.552",
+    "text": "Skúsenosť, ktorú potrebujeme pre porozumenie logike, nie je tou skúsenosťou, že sa niečo má tak a tak, ale, že niečo je: to však práve nie je nijaká skúsenosť. Logika je pred každou skúsenosťou - že je niečo tak. Je pred Ako, nie pred Čo."
+  },
+  {
+    "id": "5.5521",
+    "text": "A ak by to tak nebolo, ako by sme mohli logiku používať? Mohli by sme povedať: ak by logika existovala, aj keby neexistoval svet, ako by potom mohla existovať logika, keďže svet existuje?"
+  },
+  {
+    "id": "5.553",
+    "text": "Russell povedal, že existujú jednoduché relácie medzi rôznymi počtami vecí (Individuals). Ale medzi ktorými počtami? A ako sa to má rozhodnúť? - Prostredníctvom skúsenosti? (Význačné číslo neexistuje.)"
+  },
+  {
+    "id": "5.554",
+    "text": "Udanie akejkoľvek špeciálnej formy by bolo úplne ľubovoľné."
+  },
+  {
+    "id": "5.5541",
+    "text": "Má sa dať a priori udať, či sa napr. môžem dostať do takej situácie, že niečo musím označiť pomocou znaku 27-miestnej relácie."
+  },
+  {
+    "id": "5.5542",
+    "text": "Smieme sa však vôbec takto pýtať? Môžeme zostaviť nejakú znakovú formu a nevedieť, či jej niečo môže zodpovedať?"
+  },
+  {
+    "id": "5.555",
+    "text": "Má zmysel táto otázka: čo musí byť, aby niečo mohlo byť - faktom?"
+  },
+  {
+    "id": "5.556",
+    "text": "Je jasné, že máme istý pojem o elementárnej vete, bez ohľadu na jej konkrétnu logickú formu. Kde však možno tvoriť symboly podľa nejakého systému, tam je logicky dôležitý tento systém, a nie jednotlivé symboly. A ako by aj bolo možné, že by som mal v logike do činenia s formami, ktoré môžem vynájsť? Ale musím mať do činenia s tým, čo mi umožňuje tieto formy vynájsť."
+  },
+  {
+    "id": "5.5561",
+    "text": "Nemôže existovať hierarchia foriem elementárnych viet. Len to, čo sami konštruujeme, môžeme predvídať."
+  },
+  {
+    "id": "5.5562",
+    "text": "Empirická realita je ohraničená súhrnom predmetov. Táto hranica sa opäť ukazuje v súhrne elementárnych viet. Hierarchie sú a musia byť nezávislé od reality."
+  },
+  {
+    "id": "5.5563",
+    "text": "Ak z čisto logických dôvodov vieme, že elementárne vety musia existovať, potom to musí vedieť každý, kto vetám rozumie v ich neanalyzovanej forme."
+  },
+  {
+    "id": "5.557",
+    "text": "Všetky vety nášho bežného jazyka sú fakticky, tak ako sú, v dokonalom logickom poriadku.  To najjednoduchšie, čo tu máme udať, nie je pripodobnením pravdy, ale úplná pravda sama. (Naše problémy nie sú abstraktné, ale azda tie najkonkrétnejšie, ktoré existujú.)"
+  },
+  {
+    "id": "5.5571",
+    "text": "Použitie logiky rozhoduje o tom, ktoré elementárne vety existujú. Čo tkvie v použití, nemôže logika predvídať. To je jasné: logika nesmie kolidovať so svojím použitím. No logika sa musí so svojím použitím dotýkať. Teda logika a jej použitie nesmú do seba navzájom presahovať."
+  },
+  {
+    "id": "5.6",
+    "text": "Ak nemôžem elementárne vety udať a priori, potom musí viesť k zjavnému nezmyslu, keď ich chcem udať."
+  },
+  {
+    "id": "5.61",
+    "text": "Hranice môjho jazyka znamenajú hranice môjho sveta. Logika vypĺňa svet; hranice sveta sú aj jej hranicami. V logike teda nemôžeme povedať: to a to vo svete existuje, tamto nie. To by totiž zjavne predpokladalo, že vylučujeme isté možnosti, a to nie je možné, keďže inak by logika musela vystúpiť za hranice sveta; ak by totiž mohla skúmať tieto hranice aj z druhej strany. Čo nemôžeme myslieť, to nemôžeme myslieť; nemôžeme teda ani povedať, čo nemôžeme myslieť."
+  },
+  {
+    "id": "5.62",
+    "text": "Táto poznámka poskytuje kľúč k rozhodnutiu otázky, koľko pravdy je v solipsizme. Totiž to, čo solipsizmus mieni, je úplne správne, len sa to nedá povedať, ale sa to ukazuje."
+  },
+  {
+    "id": "5.621",
+    "text": "To, že svet je mojím svetom, sa ukazuje v tom, že hranice tohto jazyka (jazyka, ktorému jedinému rozumiem) znamenajú hranice môjho sveta."
+  },
+  {
+    "id": "5.63",
+    "text": "Svet a život sú jedno."
+  },
+  {
+    "id": "5.631",
+    "text": "Som svojím svetom. (Mikrokozmos.)"
+  },
+  {
+    "id": "5.632",
+    "text": "Mysliaci, predstavujúci si subjekt neexistuje. Ak by som písal knihu „Svet, ako sa mi naskytol“, bolo by v nej treba informovať aj o mojom tele a povedať, ktoré údy podliehajú mojej vôli a ktoré nie, atď.; to je totiž metóda, ako izolovať subjekt, alebo skôr, ako ukázať, že v istom dôležitom zmysle nijaký subjekt neexistuje: o ňom jedinom by totiž v tejto knihe nemohla byť reč."
+  },
+  {
+    "id": "5.633",
+    "text": "Subjekt nepatrí k svetu, ale je hranicou sveta."
+  },
+  {
+    "id": "5.6331",
+    "text": "Kde vo svete možno spozorovať metafyzický subjekt? Hovoríš, že sa to tu má celkom tak, ako s okom a zorným poľom. No oko skutočne nevidíš. A nič na zornom poli neumožňuje usudzovať na to, že ho vidí nejaké oko."
+  },
+  {
+    "id": "5.634",
+    "text": "Zorné pole totiž nemá povedzme takúto formu: [Oko a zorné pole] To súvisí s tým, že ani nijaká časť našej skúsenosti nie je a priori. Všetko, čo vidíme, by mohlo byť aj inak. Všetko, čo vôbec môžeme opísať, by mohlo byť aj inak. Neexistuje nijaký rád vecí a priori."
+  },
+  {
+    "id": "5.64",
+    "text": "Tu vidno, že solipsizmus v prísnom prevedení sa zhoduje s čistým realizmom. Ja solipsizmu sa scvrkáva na bezrozmerný bod a ostáva realita, ktorá je s ním koordinovaná."
+  },
+  {
+    "id": "5.641",
+    "text": "Existuje teda skutočne istý zmysel, v ktorom vo filozofii môže byť nepsychologicky reč o Ja. Ja vstupuje do filozofie tým, že „svet je mojím svetom“. Filozofické Ja nie je človek, nie je to ľudské telo alebo ľudská duša, ktorou sa zaoberá psychológia, ale metafyzický subjekt, hranica - nie časť - sveta."
+  },
+  {
+    "id": "6",
+    "text": "Všeobecná forma pravdivostnej funkcie je: [p, ξ, N(ξ)]. Toto je všeobecná forma vety."
+  },
+  {
+    "id": "6.001",
+    "text": "Neznamená to nič iné ako to, že každá veta je výsledkom sukcesívneho použitia operácie N(ξ) na elementárne vety."
+  },
+  {
+    "id": "6.002",
+    "text": "Ak je daná všeobecná forma toho, ako je veta vystavaná, tak už tým je daná tiež všeobecná forma toho, ako možno z jednej vety pomocou istej operácie vytvoriť inú vetu."
+  },
+  {
+    "id": "6.01",
+    "text": "Všeobecná forma operácie Ω'(η) teda je: [ξ, Ν(ξ)]' (η) (= [η, ξ, N(ξ)]). To je najvšeobecnejšia forma prechodu od jednej vety k druhej."
+  },
+  {
+    "id": "6.02",
+    "text": "A takto sa dostávame k číslam: definujem x = Ω^0'x Def. a Ω'Ω^ν'x = Ω^(ν+1)'x Def. Podľa týchto pravidiel pre znaky teda rad x, Ω'x, Ω'Ω'x, Ω'Ω'Ω'x, ... píšeme takto Ω^0'x, Ω^(0+1)'x, Ω^(0+1+1)'x, Ω^(0+1+1+1)'x, ... Teda - namiesto „[x, ξ, Ω'ξ]“ – píšem „[Ω^0'x, Ω^ν'x, Ω^(ν+1)'x]“. A definujem: 0+1=1 Def., 0+1+1=2 Def., 0+1+1+1=3 Def., (atď.)"
+  },
+  {
+    "id": "6.021",
+    "text": "Číslo je exponent operácie."
+  },
+  {
+    "id": "6.022",
+    "text": "Pojem čísla nie je nič iné ako to, čo je spoločné pre všetky čísla, všeobecná forma čísla. Pojem čísla je premenné číslo. A pojem rovnosti čísel je všeobecná forma všetkých špeciálnych rovností čísel."
+  },
+  {
+    "id": "6.03",
+    "text": "Všeobecná forma celého čísla je: [0, ξ, ξ+1]."
+  },
+  {
+    "id": "6.031",
+    "text": "Teória tried je v matematike úplne zbytočná. To súvisí s tým, že všeobecnosť, ktorú potrebujeme v matematike, nie je náhodná všeobecnosť."
+  },
+  {
+    "id": "6.1",
+    "text": "Vety logiky sú tautológie."
+  },
+  {
+    "id": "6.11",
+    "text": "Vety logiky teda nič nehovoria. (Sú to analytické vety.)"
+  },
+  {
+    "id": "6.111",
+    "text": "Teórie, v rámci ktorých sa nejaká veta logiky javí ako majúca obsah, sú vždy nesprávne. Niekto by sa napr. mohol domnievať, že slová „pravdivý“ a „nepravdivý“ označujú dve vlastnosti medzi inými vlastnosťami, a potom by sa ako pozoruhodný fakt javilo to, že každá veta má jednu z týchto vlastností. V takom prípade sa to vôbec nezdá samozrejmé, rovnako, ako by samozrejme neznela povedzme veta: „Všetky ruže sú buď žlté, alebo červené“, aj ak by bola pravdivá. Ba oná veta teraz úplne nadobúda charakter prírodovednej vety, a to je neklamným znamením toho, že bola chápaná nesprávne."
+  },
+  {
+    "id": "6.112",
+    "text": "Správne vysvetlenie logických viet im musí dať jedinečné postavenie medzi všetkými vetami."
+  },
+  {
+    "id": "6.113",
+    "text": "Osobitým rysom logických viet je to, že na symbole samom možno poznať ich pravdivosť, a tento fakt v sebe zahŕňa celú filozofiu logiky. A tak je tiež jedným z najdôležitejších faktov to, že pravdivosť alebo nepravdivosť nie-logických viet sa nedá poznať na vete samej."
+  },
+  {
+    "id": "6.12",
+    "text": "To, že vety logiky sú tautológie, ukazuje formálne - logické - vlastnosti jazyka, sveta. To, že ich súčasti takto pospájané dávajú tautológiu, charakterizuje logiku ich súčastí. Na to, aby vety pospájané určitým spôsobom dávajú tautológiu, musia mať určité vlastnosti štruktúry. To, že takto spojené dávajú tautológiu, teda ukazuje, že tieto vlastnosti štruktúry majú."
+  },
+  {
+    "id": "6.1201",
+    "text": "To, že napr. vety „p“ a „~p“ v spojení „~(p.~p)“ dávajú tautológiu, ukazuje, že si navzájom protirečia. To, že vety „p⊃q“, „p“ a „q“ vo forme „(p⊃q).(p):⊃:(q)“ dávajú navzájom spojené tautológiu, ukazuje, že q vyplýva z p a p⊃q. To, že „(x).fx:⊃:fa“ je tautológia, ukazuje, že fa vyplýva z (x).fx. atď. atď."
+  },
+  {
+    "id": "6.1202",
+    "text": "Je jasné, že pre ten istý účel by sme namiesto tautológií mohli použiť aj kontradikcie."
+  },
+  {
+    "id": "6.1203",
+    "text": "Aby sme tautológiu rozpoznali ako tautológiu, môžeme v prípadoch, v ktorých sa v tautológii nevyskytuje označenie všeobecnosti, použiť túto názornú metódu: namiesto „p“, „q“, „r“ atď. píšem „PpN“, „PqN“, „PrN“ atď. Pravdivostné kombinácie vyjadrujem pomocou zátvoriek, napr.: PpN PqN a priradenie pravdivosti alebo nepravdivosti celej vety a pravdivostných kombinácií pravdivostných argumentov pomocou čiar takýmto spôsobom: PpN N PqN P Tento znak by teda reprezentoval napr. vetu p⊃q. Teraz chcem napr. vetu ~(p.~p) (zákon protirečenia) preskúmať z toho hľadiska, či je tautológiou. Forma „~ξ“ sa v našej notácii píše P ξ N Forma „ξ.η“ takto: P ξ N P η N N Preto veta ~(p.~q) znie takto: P N P P q N P PN N N P Ak namiesto „q“ dosadíme „p“ a preskúmame spojenie najkrajnejších P a N s najvnútornejšími, tak dostaneme, že pravdivosť celej vety je priradená všetkým pravdivostným kombináciám jej argumentu, jej nepravdivosť nijakej z pravdivostných kombinácií."
+  },
+  {
+    "id": "6.121",
+    "text": "Vety logiky demonštrujú logické vlastnosti viet tým, že ich spájajú do nič nehovoriacich viet. Túto metódu by sme mohli nazvať aj nulovou metódou. V logickej vete sa vety navzájom uvádzajú do rovnováhy a stav rovnováhy potom naznačuje, ako musia byť tieto vety logicky uspôsobené."
+  },
+  {
+    "id": "6.122",
+    "text": "Z toho plynie, že sa môžeme zaobísť aj bez logických viet, pretože v primeranej notácii môžeme formálne vlastnosti viet poznať prostým pohľadom na tieto vety."
+  },
+  {
+    "id": "6.1221",
+    "text": "Ak napr. dve vety „p“ a „q“ v spojení „p⊃q“ dávajú tautológiu, tak je jasné, že q vyplýva z p. To, že napr. „q“ vyplýva z „p⊃q.p“, vidíme z týchto dvoch viet samých, môžeme to však ukázať aj tak, že ich spojíme do „p⊃q.p:⊃:q“ a potom ukážeme, že je to tautológia."
+  },
+  {
+    "id": "6.1222",
+    "text": "To vrhá svetlo na otázku, prečo logické vety skúsenosť nemôže potvrdiť, rovnako ako ich skúsenosť nemôže vyvrátiť. Nielenže veta logiky nemôže byť nijakou možnou skúsenosťou vyvrátiteľná, ale ňou nemôže byť ani potvrditeľná."
+  },
+  {
+    "id": "6.1223",
+    "text": "Teraz sa stáva jasným, prečo sme často cítili, akoby sme „logické pravdy“ mali „požadovať“: môžeme ich totiž požadovať do tej miery, do akej môžeme požadovať dostačujúcu notáciu."
+  },
+  {
+    "id": "6.1224",
+    "text": "Teraz sa tiež stáva jasným, prečo sa logika nazývala náukou o formách a o usudzovaní."
+  },
+  {
+    "id": "6.123",
+    "text": "Je to jasné: logické zákony už nesmú podliehať logickým zákonom. (Neexistuje, ako sa domnieval Russell, pre každý „Type“ vlastný zákon protirečenia, ale stačí jeden, keďže sa nepoužíva sám na seba.)"
+  },
+  {
+    "id": "6.1231",
+    "text": "Rysom logickej vety nie je všeobecná platnosť. Byť všeobecný predsa znamená iba: náhodou platiť pre všetky veci. Nezovšeobecnená veta však môže byť práve tak dobre tautologická ako zovšeobecnená veta."
+  },
+  {
+    "id": "6.1232",
+    "text": "Logickú všeobecnú platnosť by sme mohli nazvať podstatnou v protiklade k náhodnej všeobecnej platnosti takých viet ako povedzme: „Všetci ľudia sú smrteľní“. Vety ako Russellova „Axiom of Reducibility“ nie sú logickými vetami, a to vysvetľuje náš pocit: že ak by boli pravdivé, tak by mohli byť pravdivé iba vďaka nejakej priaznivej náhode."
+  },
+  {
+    "id": "6.1233",
+    "text": "Dá sa myslieť svet, v ktorom Axiom of Reducibility neplatí. Je však jasné, že logika nemá nič do činenia s otázkou, či je náš svet skutočne taký alebo nie."
+  },
+  {
+    "id": "6.124",
+    "text": "Logické vety opisujú lešenie sveta, alebo ho skôr reprezentujú. „Nehovoria“ o ničom. Predpokladajú, že mená majú význam a elementárne vety zmysel: a to je ich spojenie so svetom. Je jasné, že to, že isté spojenia symbolov – ktoré podstatne majú určitý charakter - sú tautológie, musí niečo o svete naznačovať. Toto je to rozhodujúce. Povedali sme, že na symboloch, ktoré používame, je niečo ľubovoľné, niečo nie je. V logike vyjadruje len to neľubovoľné: to však znamená, že v logike nie my vyjadrujeme pomocou znakov to, čo chceme, ale že v logike vypovedá povaha samých bytostne nevyhnutných znakov: ak poznáme logickú syntax nejakého znakového jazyka, potom sú už dané všetky vety logiky."
+  },
+  {
+    "id": "6.125",
+    "text": "Je možné, a to aj podľa starého chápania logiky, vopred podať opis všetkých „pravdivých“ logických viet."
+  },
+  {
+    "id": "6.1251",
+    "text": "Preto tiež v logike nikdy nemôžu existovať prekvapenia."
+  },
+  {
+    "id": "6.126",
+    "text": "Či nejaká veta prináleží logike, môžeme vypočítať, a to tak, že vypočítame logické vlastnosti symbolu. A to robíme vtedy, keď nejakú logickú vetu „dokazujeme“. Pretože túto logickú vetu tvoríme z iných logických viet podľa prostých pravidiel pre znaky bez toho, že by sme sa starali o zmysel a význam. Dôkaz logických viet spočíva v tom, že ich prostredníctvom sukcesívneho použitia istých operácií necháme vzniknúť z iných logických viet, ktoré z nich vytvárajú vždy znovu tautológie. (A síce, z tautológie vyplývajú iba tautológie.) Prirodzene, tento spôsob ako ukázať, že jej vety sú tautológie, je pre logiku úplne nepodstatný. Už preto, lebo tie vety, z ktorých dôkaz vychádza, musia predsa bez dôkazu ukazovať, že sú tautológiami."
+  },
+  {
+    "id": "6.1261",
+    "text": "V logike sú proces a výsledok ekvivalentné. (Preto nijaké prekvapenie.)"
+  },
+  {
+    "id": "6.1262",
+    "text": "Dôkaz v logike je iba mechanickou pomôckou na ľahšie rozpoznanie tautológie, keď je komplikovaná."
+  },
+  {
+    "id": "6.1263",
+    "text": "Bolo by to predsa pozoruhodné, ak by sme zmysluplnú vetu mohli logicky dokázať z iných viet, a logickú vetu tiež. Je vopred jasné, že logický dôkaz zmysluplnej vety a dôkaz v logike musia byť dve úplne odlišné veci."
+  },
+  {
+    "id": "6.1264",
+    "text": "Zmysluplná veta niečo vypovedá a jej dôkaz ukazuje, že to tak je; v logike je každá veta formou dôkazu. Každá veta logiky je modus ponens reprezentovaný znakmi. (A modus ponens nemožno vyjadriť prostredníctvom vety.)"
+  },
+  {
+    "id": "6.1265",
+    "text": "Logiku možno vždy chápať tak, že každá veta je svojím vlastným dôkazom."
+  },
+  {
+    "id": "6.127",
+    "text": "Všetky vety logiky sú rovnako oprávnené, neexistujú medzi nimi bytostne základné zákony a odvodené vety. Každá tautológia sama ukazuje, že je tautológiou."
+  },
+  {
+    "id": "6.1271",
+    "text": "Je jasné, že počet „základných logických zákonov“ je ľubovoľný, pretože logiku by sme predsa mohli odvodiť z jedného základného zákona, a to tak, že jednoducho utvoríme napr. z Fregeho základných zákonov logický súčin. (Frege by možno povedal, že tento základný zákon teraz už nie je bezprostredne zrejmý. Je však pozoruhodné, že taký exaktný mysliteľ ako Frege sa odvolával na stupeň zrejmosti ako kritérium logickej vety.)"
+  },
+  {
+    "id": "6.13",
+    "text": "Logika nie je náuka, ale zrkadlový obraz sveta. Logika je transcendentálna."
+  },
+  {
+    "id": "6.2",
+    "text": "Matematika je logickou metódou. Vety matematiky sú rovnosti, teda zdanlivé vety."
+  },
+  {
+    "id": "6.21",
+    "text": "Veta matematiky nevyjadruje nijakú myšlienku."
+  },
+  {
+    "id": "6.211",
+    "text": "V živote predsa nikdy nepotrebujeme matematickú vetu ako takú, ale matematickú vetu používame len nato, aby sme z viet, ktoré nepatria do matematiky, usúdili na iné vety, ktoré tak isto nepatria do matematiky. (Vo filozofii vedie otázka: „Načo vlastne používame toto slovo, túto vetu?“ vždy znovu k cenným nahliadnutiam.)"
+  },
+  {
+    "id": "6.22",
+    "text": "Logiku sveta, ktorú vety logiky ukazujú v tautológiách, ukazuje matematika v rovnostiach."
+  },
+  {
+    "id": "6.23",
+    "text": "Ak sú dva výrazy spojené znakom totožnosti, tak to znamená, že sú navzájom nahraditeľné. Či to však tak je, to sa musí ukazovať na týchto dvoch výrazoch samých. To, že dva výrazy sú navzájom nahraditeľné, charakterizuje ich logickú formu."
+  },
+  {
+    "id": "6.231",
+    "text": "Vlastnosťou tvrdenia je, že ho možno chápať ako dvojitú negáciu. Vlastnosťou „1+1+1+1“ je, že to možno chápať ako „(1+1)+(1+1)“."
+  },
+  {
+    "id": "6.232",
+    "text": "Frege hovorí, že obidva tieto výrazy majú ten istý význam, ale odlišný zmysel. Tým podstatným na rovnosti je však to, že nie je nevyhnutná na to, aby ukázala, že obidva tieto výrazy, ktoré spája znak totožnosti, majú ten istý význam, keďže sa to dá zistiť z týchto dvoch výrazov samých."
+  },
+  {
+    "id": "6.2321",
+    "text": "A to, že vety matematiky možno dokázať, neznamená predsa nič iné ako to, že ich správnosť možno nahliadnuť bez toho, že by to, čo vyjadrujú, samo bolo treba porovnať - s cieľom zistiť správnosť - s faktami."
+  },
+  {
+    "id": "6.2322",
+    "text": "Identita významu dvoch výrazov sa nedá tvrdiť. Pretože nato, aby som mohol tvrdiť niečo o ich význame, musím poznať ich význam: a tým, že poznám ich význam, viem, či znamenajú to isté alebo niečo odlišné."
+  },
+  {
+    "id": "6.2323",
+    "text": "Rovnosť vyznačuje len stanovisko, z ktorého sa pozerám na tieto dva výrazy, totiž zo stanoviska totožnosti ich významu."
+  },
+  {
+    "id": "6.233",
+    "text": "Otázku, či na riešenie matematických problémov potrebujeme nazeranie, treba zodpovedať tak, že je to práve jazyk, ktorý tu dodáva potrebné nazeranie."
+  },
+  {
+    "id": "6.2331",
+    "text": "Proces počítania sprostredkúva práve toto nazeranie. Výpočet nie je experiment."
+  },
+  {
+    "id": "6.234",
+    "text": "Matematika je metódou logiky."
+  },
+  {
+    "id": "6.2341",
+    "text": "Podstatné na matematickej metóde je to, že pracuje s rovnosťami. Na tejto metóde totiž spočíva to, že každá veta matematiky sa musí rozumieť sama sebou."
+  },
+  {
+    "id": "6.24",
+    "text": "Metóda, ktorou matematika dospieva k svojim rovnostiam, je substitučná metóda. Pretože rovnosti vyjadrujú nahraditeľnosť dvoch výrazov a od istého počtu rovností postupujeme k novým rovnostiam tak, že - v zhode s týmito rovnosťami - jedny výrazy nahrádzame inými."
+  },
+  {
+    "id": "6.241",
+    "text": "Tak dôkaz vety 2x2=4 znie: (Ω^ν)^μ'x = Ω^(ν×μ)'x Def., Ω^(2×2)'x = (Ω^2)^2'x = (Ω^2)^(1+1)'x = Ω^2'Ω^2'x = Ω^(1+1)'Ω^(1+1)'x = (Ω'Ω)'(Ω'Ω)'x = Ω'Ω'Ω'Ω'x = Ω^(1+1+1+1)'x = Ω^4'x."
+  },
+  {
+    "id": "6.3",
+    "text": "Skúmanie logiky znamená skúmanie všetkej zákonitosti. A mimo logiky je všetko náhoda."
+  },
+  {
+    "id": "6.31",
+    "text": "Takzvaný zákon indukcie nemôže byť v nijakom prípade logickým zákonom, pretože je zjavne zmysluplnou vetou. - A preto nemôže byť ani zákonom apriórnym."
+  },
+  {
+    "id": "6.32",
+    "text": "Zákon kauzality nie je zákon, ale forma zákona."
+  },
+  {
+    "id": "6.321",
+    "text": "„Zákon kauzality“, to je rodové meno. A ako v mechanike existujú, povedzme, zákony minima - ako napr. zákon najmenšieho účinku -, tak vo fyzike existujú zákony kauzality, zákony formy kauzality."
+  },
+  {
+    "id": "6.3211",
+    "text": "Aj to, že nejaký „zákon najmenšieho účinku“ musí existovať, predsa ľudia tušili skôr, ako presne vedeli, ako znie. (Tak ako vždy, aj tu sa to, čo je a priori isté, preukazuje ako niečo čisto logické.)"
+  },
+  {
+    "id": "6.33",
+    "text": "Neveríme a priori na zákon zachovania, ale vieme a priori o možnosti istej logickej formy."
+  },
+  {
+    "id": "6.34",
+    "text": "Všetky také vety, ako veta o dostatočnom dôvode, o kontinuite v prírode, o vynaložení najmenšieho úsilia v prírode atď. atď., tieto všetky sú apriórnymi nahliadnutiami toho, aké formy možno dať vetám vedy."
+  },
+  {
+    "id": "6.341",
+    "text": "Newtonovská mechanika napr. uvádza opis sveta na istú jednotnú formu. Myslime si bielu plochu, na ktorej sú nepravidelné čierne škvrny. Teraz povieme: nech už tým vznikne akýkoľvek obraz, vždy sa môžem jeho opisu ľubovoľne priblížiť, a to tak, že túto plochu pokryjem primerane jemnou štvorcovou sieťou a o každom štvorci poviem, že je biely alebo čierny. Týmto spôsobom uvediem opis tejto plochy na istú jednotnú formu. Táto forma je ľubovoľná, pretože by som s tým istým úspechom mohol použiť sieť z trojuholníkových alebo šesťuholníkových očiek. Je možné, že opis pomocou trojuholníkovej siete by bol jednoduchší; to znamená, že by sme túto plochu mohli pomocou hrubšej trojuholníkovej siete opísať presnejšie ako pomocou jemnejšej štvorcovej (alebo naopak) atď. Odlišným sieťam zodpovedajú odlišné systémy opisu sveta. Mechanika určuje istú formu opisu sveta tým, že hovorí: všetky vety opisu sveta musíme získať daným spôsobom z istého počtu daných viet - axióm mechaniky. Týmto dodáva stavebné kamene na stavbu budovy vedy a hovorí: nech už chceš vystavať ktorúkoľvek budovu, každú musíš nejako postaviť z týchto a len z týchto stavebných kameňov. (Ako sme schopní pomocou systému čísel zapísať každé ľubovoľné číslo, tak musíme byť schopní pomocou systému mechaniky zapísať každú ľubovoľnú vetu fyziky.)"
+  },
+  {
+    "id": "6.342",
+    "text": "A teraz vidíme vzájomné postavenie logiky a mechaniky. (Sieť by sme mohli vytvoriť aj z obrazcov odlišného druhu, povedzme z trojuholníkov a šesťuholníkov.) To, že sa nejaký obraz - ako ten, ktorý sme spomenuli vyššie – dá opísať pomocou siete danej formy, o obraze nič nevypovedá. (Pretože to platí pre každý obraz tohto druhu.) No to, že sa dá pomocou určitej siete určitej jemnosti opísať úplne, to obraz charakterizuje. Rovnako o svete nič nevypovedá to, že sa dá opísať pomocou newtonovskej mechaniky; isto však to, že sa pomocou nej dá opísať tak, ako to práve je. Aj to hovorí niečo o svete, že pomocou jednej mechaniky sa dá opísať jednoduchšie ako pomocou druhej."
+  },
+  {
+    "id": "6.343",
+    "text": "Mechanika je pokus o konštruovanie všetkých pravdivých viet, ktoré potrebujeme na opis sveta, podľa jedného plánu."
+  },
+  {
+    "id": "6.3431",
+    "text": "Fyzikálne zákony cez celý logický aparát predsa hovoria o predmetoch sveta."
+  },
+  {
+    "id": "6.3432",
+    "text": "Nesmieme zabúdať, že opis sveta pomocou mechaniky je vždy úplne všeobecný. Nie je v ňom napr. nikdy reč o určitých materiálnnych bodoch, ale vždy len o akýchkoľvek."
+  },
+  {
+    "id": "6.35",
+    "text": "Hoci sú škvrny v našom obraze geometrické obrazce, geometria predsa len nemôže, samozrejme, vôbec nič povedať o ich faktickej forme a polohe. Sieť je však čisto geometrická, všetky jej vlastnosti možno udať a priori. Zákony ako veta o dostatočnom dôvode, atď. hovoria o sieti, nie o tom, čo sieť opisuje."
+  },
+  {
+    "id": "6.36",
+    "text": "Ak by existoval zákon kauzality, tak by mohol znieť: „Existujú prírodné zákony“."
+  },
+  {
+    "id": "6.361",
+    "text": "To však, pravda, nemožno povedať: ukazuje sa to. V súlade s Hertzovým spôsobom vyjadrovania by sme mohli povedať: len zákonité súvislosti sú mysliteľné."
+  },
+  {
+    "id": "6.3611",
+    "text": "Nijaký proces nemôžeme porovnávať s „plynutím času“ - to neexistuje, ale iba s iným procesom (povedzme s chodom chronometra). Preto je opis časového priebehu možný len tak, že sa oprieme o nejaký iný proces. Niečo úplne analogické platí pre priestor. Kde sa napr. hovorí, že nemôže nastať ani jedna z dvoch udalostí (ktoré sa navzájom vylučujú), pretože neexistuje nijaká príčina, prečo by jedna udalosť mala nastať skôr ako druhá, tam ide v skutočnosti o to, že vôbec nemožno opísať jednu z týchto dvoch udalostí, ak tam nie je nejaká asymetria. A ak tam takáto asymetria je, tak ju môžeme chápať ako príčinu nastania jednej udalosti a nenastania tej druhej."
+  },
+  {
+    "id": "6.36111",
+    "text": "Kantov problém pravej a ľavej ruky, ktoré nemožno prekryť, existuje už v rovine, dokonca v jednorozmernom priestore, kde dva kongruentné obrazce a a b tiež nemožno prekryť bez toho, že by sme vyšli z tohto priestoru. Pravá a ľavá ruka sú fakticky úplne kongruentné. A to, že ich nemožno prekryť, s tým nemá nič do činenia. Pravá rukavica by sa dala natiahnuť na ľavú ruku, ak by sa dala otočiť v štvorrozmernom priestore."
+  },
+  {
+    "id": "6.362",
+    "text": "Čo sa dá opísať, to sa môže aj udiať, a čo má zákon kauzality vylúčiť, to sa nedá ani opísať."
+  },
+  {
+    "id": "6.363",
+    "text": "Induktívny postup spočíva v tom, že prijímame najjednoduchší zákon, ktorý sa dá uviesť do súladu s našimi skúsenosťami."
+  },
+  {
+    "id": "6.3631",
+    "text": "Tento postup však nemá logické, ale iba psychologické zdôvodnenie. Je jasné, že neexistuje dôvod veriť, že ten najjednoduchší prípad skutočne aj nastane."
+  },
+  {
+    "id": "6.36311",
+    "text": "To, že Slnko zajtra vyjde, je hypotéza; a to znamená: nevieme, či vyjde."
+  },
+  {
+    "id": "6.37",
+    "text": "Nátlak, pôsobením ktorého by sa niečo muselo udiať, pretože sa udialo niečo iné, neexistuje. Existuje len logická nevyhnutnosť."
+  },
+  {
+    "id": "6.371",
+    "text": "Základom celého moderného nazerania na svet je ilúzia, že takzvané prírodné zákony sú vysvetleniami prírodných javov."
+  },
+  {
+    "id": "6.372",
+    "text": "Tak sa moderní ľudia zastavujú pri prírodných zákonoch ako pri niečom nespochybniteľnom, ako ľudia dávnejších dôb pri Bohu a Osude. A jedni i druhí majú pravdu i nepravdu. Starí sú však do tej miery jasnejší, že uznávajú jasné ukončenie, zatiaľ čo pri novom systéme sa má zdať, akoby bolo vysvetlené všetko."
+  },
+  {
+    "id": "6.373",
+    "text": "Svet je nezávislý od mojej vôle."
+  },
+  {
+    "id": "6.374",
+    "text": "Ak by sa aj všetko, čo si želáme, udialo, tak by to bola iba takpovediac priazeň osudu, pretože neexistuje nijaká logická súvislosť medzi vôľou a svetom, ktorá by to zaručovala, a predpokladanú fyzikálnu súvislosť by sme už predsa chcieť nemohli."
+  },
+  {
+    "id": "6.375",
+    "text": "Ako existuje iba logická nevyhnutnosť, taktiež existuje iba logická nemožnosť."
+  },
+  {
+    "id": "6.3751",
+    "text": "Napr. to, že dve farby sú súčasne na jednom mieste zorného poľa, je nemožné, a síce logicky nemožné, pretože je to vylúčené logickou štruktúrou farby. Pomyslime na to, ako sa toto protirečenie javí vo fyzike: asi tak, že jedna častica nemôže mať v tom istom čase dve rýchlosti; to znamená, že nemôže byť v tom istom čase na dvoch miestach; to znamená, že častice na rôznych miestach v jednom čase nemôžu byť identické. (Je jasné, že logický súčin dvoch elementárnych viet nemôže byť ani tautológiou, ani kontradikciou. Výpoveď, že nejaký bod zorného poľa má v tom istom čase dve rôzne farby, je kontradikciou.)"
+  },
+  {
+    "id": "6.4",
+    "text": "Všetky vety majú tú istú hodnotu."
+  },
+  {
+    "id": "6.41",
+    "text": "Zmysel sveta musí spočívať mimo neho. Vo svete je všetko tak, ako je, a všetko sa deje tak, ako sa deje; v ňom neexistuje nijaká hodnota - a ak by existovala, tak by nemala nijakú hodnotu. Ak existuje hodnota, ktorá má hodnotu, tak musí spočívať mimo všetkého diania a tak-bytia. Pretože všetko dianie a tak-bytie je náhodné. Čo ho činí nenáhodným, nemôže spočívať vo svete, pretože inak by to zase bolo náhodné. Musí to spočívať mimo sveta."
+  },
+  {
+    "id": "6.42",
+    "text": "Preto nemôžu existovať ani vety etiky. Vety nemôžu vyjadrovať nič vyššie."
+  },
+  {
+    "id": "6.421",
+    "text": "Je jasné, že etika sa nedá vysloviť. Etika je transcendentálna. (Etika a estetika sú jedno.)"
+  },
+  {
+    "id": "6.422",
+    "text": "Prvá myšlienka pri stanovovaní etického zákona vo forme „Si povinný...“ je: a čo potom, ak to neurobím? Je však jasné, že etika nemá nič do činenia s trestom a odmenou v obvyklom zmysle. Teda táto otázka o následkoch konania musí byť nedôležitá. - Prinajmenšom nesmú byť týmito následkami udalosti. Pretože niečo na tomto položení otázky predsa musí byť správne. Musí síce existovať istý druh etickej odmeny a etického trestu, tieto však musia tkvieť v konaní samom. (A aj to je jasné, že odmena musí byť niečo príjemné, trest niečo nepríjemné.)"
+  },
+  {
+    "id": "6.423",
+    "text": "O vôli ako nositeľovi etična nemožno hovoriť. A vôľa ako fenomén zaujíma len psychológiu."
+  },
+  {
+    "id": "6.43",
+    "text": "Ak dobré alebo zlé chcenie mení svet, tak môže meniť iba hranice sveta, nie fakty; nie to, čo možno vyjadriť pomocou jazyka. Skrátka, svet sa tým potom musí stať úplne iným. Musí sa, takpovediac, zmenšiť alebo zväčšiť ako celok. Svet šťastného je iný ako svet nešťastného."
+  },
+  {
+    "id": "6.431",
+    "text": "Tak ako sa ani pri smrti svet nemení, ale sa končí."
+  },
+  {
+    "id": "6.4311",
+    "text": "Smrť nie je udalosťou života. Smrť neprežívame. Ak pod večnosťou nerozumieme nekonečné časové trvanie, ale nečasovosť, potom večne žije ten, kto žije v prítomnosti. Náš život je práve tak bez konca, ako je naše zorné pole bez hraníc."
+  },
+  {
+    "id": "6.4312",
+    "text": "Časová nesmrteľnosť duše človeka, to teda znamená jej večné žitie ďalej aj po smrti, nielenže nie je nijakým spôsobom zaručená, ale predovšetkým tento predpoklad vôbec neprináša to, čo sa ním vždy chcelo dosiahnuť. Rieši sa nejaká záhada tým, že žijem večne ďalej? Nie je tento večný život potom rovnako záhadný ako súčasný život? Riešenie záhady života v priestore a čase leží mimo priestoru a času. (Nemáme predsa riešiť problémy prírodnej vedy.)"
+  },
+  {
+    "id": "6.432",
+    "text": "Ako svet je, je pre to, čo je vyššie, úplne nepodstatné. Boh sa nezjavuje vo svete."
+  },
+  {
+    "id": "6.4321",
+    "text": "Fakty patria všetky iba k úlohe, nie k riešeniu."
+  },
+  {
+    "id": "6.44",
+    "text": "Nie to, ako svet je, je mystično, ale to, že je."
+  },
+  {
+    "id": "6.45",
+    "text": "Nazeranie na svet sub specie aeterni je nazeranie naň ako na - ohraničený – celok. Pocit sveta ako ohraničeného celku je mystický pocit."
+  },
+  {
+    "id": "6.5",
+    "text": "K odpovedi, ktorú nemožno vysloviť, nemožno vysloviť ani otázku. Záhada neexistuje. Ak sa nejaká otázka vôbec dá položiť, tak ju možno aj zodpovedať."
+  },
+  {
+    "id": "6.51",
+    "text": "Skepticizmus nie je nevyvrátiteľný, ale zjavne nezmyselný, ak chce pochybovať tam, kde sa nemožno pýtať. Pretože pochybnosť môže existovať len tam, kde existuje otázka; otázka len tam, kde existuje odpoveď, a táto len tam, kde možno niečo povedať."
+  },
+  {
+    "id": "6.52",
+    "text": "Cítime, že dokonca aj keby boli všetky možné vedecké otázky zodpovedané, našich životných problémov sa to stále ani len nedotklo. Iste, potom už jednoducho neostáva nijaká otázka; a práve to je odpoveď."
+  },
+  {
+    "id": "6.521",
+    "text": "Riešenie problému života spozorujeme na tom, že tento problém zmizne. (Nie je toto dôvod, prečo ľudia, ktorým sa stal zmysel života po dlhých pochybnostiach jasným, prečo títo potom neboli schopní povedať, v čom tento zmysel spočíval?)"
+  },
+  {
+    "id": "6.522",
+    "text": "Existuje, pravdaže, nevysloviteľné. To sa ukazuje, je to mystično."
+  },
+  {
+    "id": "6.53",
+    "text": "Správna metóda filozofie by vlastne bola táto: nepovedať nič okrem toho, čo sa povedať dá, teda vety prírodných vied - teda čosi, čo s filozofiou nemá nič do činenia -, a potom, ak by niekto iný chcel povedať niečo metafyzické mu vždy ukázať, že istým znakom vo svojich vetách nedal nijaký význam. Táto metóda by bola pre toho druhého neuspokojivá - nemal by pocit, že ho učíme filozofiu – ale ona by bola tou jedinou prísne správnou metódou."
+  },
+  {
+    "id": "6.54",
+    "text": "Moje vety objasňujú prostredníctvom toho, že ten, kto mi rozumie, ich na konci rozpozná ako nezmyselné, keď pomocou nich - po nich - vystúpil nad ne. (Musí takpovediac odhodiť rebrík potom, čo po ňom vystúpil hore.) Musí tieto vety prekonať, potom uvidí svet správne."
+  },
+  {
+    "id": "7",
+    "text": "O čom nemožno hovoriť, o tom treba mlčať."
+  }
+]
