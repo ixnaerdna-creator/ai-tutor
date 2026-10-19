@@ -241,10 +241,10 @@ with left:
     st.caption("Kliknutím na text otvoríte výklad vybraného odseku.")
     reader_event = book_reader(
         data={"paragraphs": book, "selected": st.session_state.selected_id,
-              "bookKey": f"tractatus-{BOOK_DIGEST[:16]}", "readerHeight": 650},
+              "bookKey": f"tractatus-{BOOK_DIGEST[:16]}"},
         key="tractatus_main_reader",
         width="stretch",
-        height=674,  # Vnútorná čítačka má explicitných 650 px; rezerva 24 px pre obal.
+        height=720,  # Dostatočná výška čítačky; jediná vnútorná posuvná plocha.
         on_selected_change=lambda: None,
     )
     selected = reader_event.selected
