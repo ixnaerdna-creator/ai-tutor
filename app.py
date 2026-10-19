@@ -18,8 +18,8 @@ st.markdown("""
     <style>
     /* ODSTRÁNENIE ZBYTOČNÝCH MEDZIER NA STRÁNKE A MAXIMALIZÁCIA VÝŠKY */
     .block-container {
-        padding-top: 2rem !important; /* Zmenšená horná medzera */
-        padding-bottom: 0rem !important; /* Žiadna dolná medzera */
+        padding-top: 2rem !important; 
+        padding-bottom: 0rem !important; 
         margin-bottom: 0rem !important;
     }
     
@@ -73,10 +73,7 @@ st.markdown("""
         line-height: 1.7;
     }
 
-    /* Výraznejší posuvník (Scrollbar) PRE ĽAVÝ KONTAJNER */
-    [data-testid="stVerticalBlock"] > div > div > div > div > div > div[data-testid="stVerticalBlock"] {
-        overflow-y: auto !important;
-    }
+    /* Výraznejší posuvník (Scrollbar) PRE VŠETKY KONTAJNERY */
     ::-webkit-scrollbar {
         width: 14px;
     }
@@ -144,21 +141,18 @@ with col1:
     st.markdown("### 📖 Tractatus Logico-Philosophicus")
     st.markdown("<hr style='margin-top: 0; margin-bottom: 10px;'>", unsafe_allow_html=True)
     
-    # Použitie relatívnej výšky '85vh', čo znamená 85% výšky okna prehliadača,
-    # aby sa kontajner prispôsobil a využil maximum priestoru
-    book_container = st.container(height=None, border=False)
-    
-    # Pre vizuálne natiahnutie do výšky ho uzavrieme do bloku, 
-    # ktorý si cez CSS vypýta maximálnu dostupnú výšku (tzv. flexbox alebo vh)
+    # CSS pre vynútenie relatívnej výšky pre ľavý blok bez vyvolania chyby
     st.markdown("""
         <style>
-        /* Kontajner knihy využije 85% výšky obrazovky */
-        div[data-testid="stVerticalBlock"] > div > div > div > div > div > div[data-testid="stVerticalBlock"]:nth-of-type(1) {
+        div[data-testid="column"]:nth-of-type(1) div[data-testid="stVerticalBlock"]:first-of-type {
             height: 85vh !important;
-            min-height: 85vh !important;
+            overflow-y: auto !important;
         }
         </style>
     """, unsafe_allow_html=True)
+    
+    # Prázdny kontajner bez chybného parametra 'height=None'
+    book_container = st.container(border=False)
     
     with book_container:
         for para in st.session_state.text_data:
@@ -183,24 +177,22 @@ with col2:
     
     st.markdown(f"### 💬 Diskusia k textu ({st.session_state.prompt_count} / 20)")
     
-    # Ak je vybraný odsek a ukazuje sa výklad, chat okno bude menšie, inak zaberie viac miesta (napr. 60vh)
-    chat_container_css_height = "35vh" if st.session_state.selected_paragraph else "70vh"
+    # Dynamická výška pravého panelu podľa toho, či je zobrazený výklad
+    chat_container_css_height = "35vh" if st.session_state.selected_paragraph else "75vh"
     
     st.markdown(f"""
         <style>
-        /* Kontajner chatu v pravej časti */
-        div[data-testid="stVerticalBlock"] > div > div > div > div > div > div[data-testid="stVerticalBlock"]:nth-of-type(2) {
+        div[data-testid="column"]:nth-of-type(2) div[data-testid="stVerticalBlock"]:first-of-type {{
             height: {chat_container_css_height} !important;
             overflow-y: auto !important;
             border: 1px solid rgba(49, 51, 63, 0.2);
             border-radius: 0.5rem;
             padding: 1rem;
-        }
+        }}
         </style>
     """, unsafe_allow_html=True)
     
-    # Použijeme obyčajný kontajner, o ktorého výšku sa už postará vložené CSS vyššie
-    chat_container = st.container()
+    chat_container = st.container(border=False)
     
     with chat_container:
         if len(st.session_state.messages) == 0:
