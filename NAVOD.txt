@@ -1,0 +1,37 @@
+OPRAVA ČÍTAČKY A NÁPISOV – 19. 10. 2026
+
+V existujúcom GitHub repozitári nahraďte IBA DVA súbory:
+  1) app.py
+  2) book_reader.py
+
+Ostatné súbory, najmä text.json, tutor_core.py, requirements.txt a Streamlit Secrets,
+nechajte bez zmeny. Funkcie výkladu a diskusie sa nemenia.
+
+ZMENY
+- Hlavný titul: Ludwig Wittgenstein - Tractatus logico-philosophicus
+- Pod ním jediná inštrukcia: Kliknutím na text otvoríte výklad vybraného odseku.
+- Odstránené údaje o počte téz pri nadpise a technický odsek na spodku stránky.
+- Čítačka má vlastnú presnú výšku v pixeloch (650 px); v komponente Streamlitu už
+  nezávisí od percentuálnej výšky nadradeného HTML elementu.
+- Na začiatok / Na koniec priamo nastavujú pozíciu vnútorného posuvníka.
+- Zmena tézy na výklad nemení povolených 20 diskusných krokov.
+
+POSTUP
+1. Otvorte na GitHube app.py, zvoľte Edit a nahraďte jeho obsah priloženým app.py.
+   Uložte cez Commit changes.
+2. Rovnako nahraďte book_reader.py. Uložte cez Commit changes.
+3. Počkajte na automatické opätovné nasadenie cez Streamlit Community Cloud.
+4. Otvorte stránku a použite Ctrl + F5 (vo Firefoxe, v prípade potreby skúste
+   súkromné okno) na načítanie novej verzie.
+5. Stlačte Na koniec – musí sa zobraziť posledná téza 7 a text „Koniec textu“.
+6. Overte kliknutie na konkrétnu tézu i jednu skúšobnú otázku.
+
+KONTROLA
+Automatický Chromium test overil 524 testovacích odsekov, posúvanie na koniec,
+návrat na začiatok, ručný posun na koniec a kliknutie na posledný odsek. Tieto
+kontroly prešli. Nevykonali sme test priamo na vašej živej Streamlit stránke;
+preto po nasadení prosím overte výsledok podľa bodov 4–6.
+
+Pokiaľ by posuvník ani potom nefungoval, pošlite snímku obrazovky so zobrazenou
+čítačkou a informáciu, či hýbete posuvníkom priamo v čítačke alebo posuvníkom
+celej stránky. Tak možno zistiť, ktorý obal ešte blokuje posúvanie.
